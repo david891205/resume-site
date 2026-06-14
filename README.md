@@ -2,6 +2,8 @@
 
 開啟 `index.html` 即可瀏覽履歷網站。網站為靜態 HTML，樣式與互動都寫在同一個檔案內，圖片放在 `assets/` 資料夾。
 
+一頁式 PDF 履歷已輸出為 `assets/lv-che-yen-onepage-resume.pdf`，來源檔為 `one-page-resume.html`。若日後要修改 PDF 內容，先改 HTML，再重新列印成 PDF。
+
 ## 圖片與簡報如何永久公開
 
 網站上所有公開圖片、PDF、PPT 與簡報預覽圖都已整理到 `assets/`。部署到 GitHub Pages、Netlify、Vercel 或 Cloudflare Pages 後，這些檔案會跟 `index.html` 一起公開，不需要另外找圖床，也不要使用 `C:\Users\...` 這種本機路徑。
@@ -12,6 +14,7 @@
 https://david891205.github.io/resume-site/assets/profile-photo.png
 https://david891205.github.io/resume-site/assets/esgpb-chatbot-screenshot.png
 https://david891205.github.io/resume-site/assets/smart-travel-slides/slide-01.png
+https://david891205.github.io/resume-site/assets/lv-che-yen-onepage-resume.pdf
 ```
 
 只要 repository 不刪除、GitHub Pages 不關閉，這些圖片連結就會持續有效。

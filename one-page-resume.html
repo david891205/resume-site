@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>呂哲言｜一頁式履歷</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    figure {
+      margin: 0;
+    }
+
+    body {
+      margin: 0;
+      background: #e5e7eb;
+      color: #202938;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", Arial, sans-serif;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      position: relative;
+      width: 210mm;
+      height: 297mm;
+      margin: 0 auto;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(214, 171, 70, .12), transparent 30%),
+        linear-gradient(180deg, #fffdf7 0%, #ffffff 52%, #f8fafc 100%);
+      padding: 8.5mm 9.5mm 8mm;
+    }
+
+    .page::before,
+    .page::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      opacity: .18;
+      transform: rotate(-18deg);
+      border: 1px solid rgba(184, 134, 11, .28);
+      background: rgba(232, 190, 95, .22);
+    }
+
+    .page::before {
+      right: -22mm;
+      top: 78mm;
+      width: 82mm;
+      height: 40mm;
+    }
+
+    .page::after {
+      right: 8mm;
+      bottom: 18mm;
+      width: 64mm;
+      height: 34mm;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 5.5mm;
+    }
+
+    .top {
+      display: grid;
+      grid-template-columns: 34mm 1fr 45mm;
+      gap: 6mm;
+      align-items: center;
+      padding-bottom: 4.5mm;
+      border-bottom: 2px solid #d8a63f;
+    }
+
+    .portrait {
+      width: 34mm;
+      height: 39mm;
+      border-radius: 4mm;
+      object-fit: cover;
+      object-position: 50% 18%;
+      border: 1px solid #d9e2ef;
+      box-shadow: 0 7px 18px rgba(15, 23, 42, .12);
+    }
+
+    h1 {
+      margin: 0 0 1.4mm;
+      color: #174c8f;
+      font-size: 25pt;
+      line-height: 1;
+      letter-spacing: 0;
+      font-weight: 900;
+    }
+
+    .role {
+      margin: 0;
+      color: #0f172a;
+      font-size: 10.2pt;
+      font-weight: 800;
+    }
+
+    .intro {
+      margin: 2mm 0 0;
+      color: #475569;
+      font-size: 7.4pt;
+      line-height: 1.55;
+      max-width: 91mm;
+    }
+
+    .contact {
+      border-left: 3px solid #d8a63f;
+      padding-left: 3.2mm;
+      font-size: 7pt;
+      line-height: 1.65;
+      color: #334155;
+      font-style: normal;
+    }
+
+    .contact b {
+      display: block;
+      color: #174c8f;
+      font-size: 8pt;
+      margin-bottom: .8mm;
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: 55mm 1fr;
+      gap: 6mm;
+      min-height: 0;
+      flex: 1;
+    }
+
+    .left,
+    .right {
+      min-width: 0;
+    }
+
+    .section {
+      margin-bottom: 4.3mm;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 2mm;
+      margin: 0 0 2.3mm;
+      color: #174c8f;
+      font-size: 9.2pt;
+      font-weight: 900;
+      letter-spacing: .03em;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 3.2mm;
+      height: 3.2mm;
+      border-radius: 1mm;
+      background: #d8a63f;
+      box-shadow: 0 0 0 1.2mm rgba(216, 166, 63, .16);
+    }
+
+    .side-card {
+      border: 1px solid #dbe4f0;
+      background: rgba(255, 255, 255, .82);
+      border-radius: 3mm;
+      padding: 3.2mm;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, .05);
+    }
+
+    .target-list,
+    .award-list,
+    .plain-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .target-list li,
+    .award-list li,
+    .plain-list li {
+      margin: 0 0 1.6mm;
+      color: #334155;
+      font-size: 7.1pt;
+      line-height: 1.45;
+    }
+
+    .target-list strong,
+    .award-list strong {
+      color: #0f172a;
+      font-weight: 800;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.3mm;
+    }
+
+    .skill {
+      padding: 1.1mm 1.9mm;
+      border-radius: 999px;
+      border: 1px solid #c9d7ea;
+      background: #eef6ff;
+      color: #1d4f8f;
+      font-size: 6.55pt;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .project-groups {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.4mm;
+    }
+
+    .project-card {
+      border-top: 1.5px solid #d8a63f;
+      background: rgba(255, 255, 255, .74);
+      padding: 2.7mm 2.8mm 2.5mm;
+      border-radius: 2.4mm;
+      box-shadow: 0 5px 15px rgba(15, 23, 42, .04);
+      break-inside: avoid;
+    }
+
+    .project-card h3 {
+      margin: 0 0 2mm;
+      color: #174c8f;
+      font-size: 8.4pt;
+      line-height: 1.25;
+      font-weight: 900;
+    }
+
+    .item {
+      margin: 0 0 2.1mm;
+      padding-left: 2.4mm;
+      border-left: 1px solid rgba(23, 76, 143, .28);
+    }
+
+    .item:last-child {
+      margin-bottom: 0;
+    }
+
+    .item b {
+      display: block;
+      color: #111827;
+      font-size: 6.9pt;
+      line-height: 1.35;
+      font-weight: 900;
+    }
+
+    .item span {
+      display: block;
+      margin-top: .6mm;
+      color: #475569;
+      font-size: 6.25pt;
+      line-height: 1.38;
+      font-weight: 600;
+    }
+
+    .highlight-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.2mm;
+      margin-top: 4mm;
+    }
+
+    .mini-photo {
+      overflow: hidden;
+      border-radius: 2.4mm;
+      border: 1px solid #dbe4f0;
+      background: #fff;
+    }
+
+    .mini-photo img {
+      display: block;
+      width: 100%;
+      height: 21.5mm;
+      object-fit: cover;
+    }
+
+    .mini-photo span {
+      display: block;
+      min-height: 8.8mm;
+      padding: 1mm 1.2mm;
+      color: #475569;
+      font-size: 5.35pt;
+      line-height: 1.25;
+      font-weight: 800;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 4mm;
+      align-items: center;
+      padding-top: 2.8mm;
+      border-top: 1px solid #d8a63f;
+      color: #64748b;
+      font-size: 6pt;
+      line-height: 1.4;
+    }
+
+    .footer strong {
+      color: #174c8f;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+      }
+
+      .page {
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page" aria-label="呂哲言一頁式履歷">
+    <div class="content">
+      <header class="top">
+        <img class="portrait" src="assets/profile-photo.png" alt="呂哲言履歷大頭照" />
+        <div>
+          <h1>呂哲言</h1>
+          <p class="role">AI 應用工程｜LLM / RAG 系統｜NLP 對話研究</p>
+          <p class="intro">淡江大學資訊工程學系碩士班準畢業，聚焦大型語言模型應用、RAG 知識庫、AI Agent、多模態互動與產學合作系統整合。經驗涵蓋旅遊、ESG 商家推薦、教育、醫療、鐵道巡檢與智慧照護場域。</p>
+        </div>
+        <address class="contact">
+          <b>Contact</b>
+          Email：a28473458@gmail.com<br />
+          LINE ID：david891205<br />
+          求職方向：AI 應用 / LLM / RAG / NLP<br />
+          身分：台灣｜碩士準畢業
+        </address>
+      </header>
+
+      <section class="main">
+        <aside class="left">
+          <section class="section side-card">
+            <h2 class="section-title">職務定位</h2>
+            <ul class="target-list">
+              <li><strong>AI 應用工程師：</strong>將模型、資料庫、API 與使用者流程整合成可展示系統。</li>
+              <li><strong>LLM / RAG 工程師：</strong>處理知識庫建置、向量檢索、回答品質與幻覺風險控制。</li>
+              <li><strong>NLP / ML 工程師：</strong>具對話研究、資料處理、模型訓練與評估分析經驗。</li>
+            </ul>
+          </section>
+
+          <section class="section side-card">
+            <h2 class="section-title">技術關鍵字</h2>
+            <div class="skills">
+              <span class="skill">Python</span>
+              <span class="skill">PyTorch</span>
+              <span class="skill">Transformers</span>
+              <span class="skill">OpenAI API</span>
+              <span class="skill">Azure OpenAI</span>
+              <span class="skill">RAG</span>
+              <span class="skill">Qdrant</span>
+              <span class="skill">Redis</span>
+              <span class="skill">PostgreSQL</span>
+              <span class="skill">Neo4j</span>
+              <span class="skill">Docker</span>
+              <span class="skill">RESTful API</span>
+              <span class="skill">Whisper</span>
+              <span class="skill">BERT</span>
+              <span class="skill">CNN / LSTM</span>
+              <span class="skill">Prompt Engineering</span>
+              <span class="skill">Knowledge Graph</span>
+              <span class="skill">n8n / Webhook</span>
+            </div>
+          </section>
+
+          <section class="section side-card">
+            <h2 class="section-title">獲獎與公開成果</h2>
+            <ul class="award-list">
+              <li><strong>2025 InnoServe 第三名：</strong>具意圖探測的多模態旅遊問答服務系統。</li>
+              <li><strong>2024 AI 應用鬥智賽佳作：</strong>Deep龍力團隊，以 Llama 為例處理 LLM 幻覺、成本與特殊需求。</li>
+              <li><strong>2025 第十屆台灣服務創新獎：</strong>代表 AIIT 淡江大學人工智慧與產業技術實驗室領獎。</li>
+            </ul>
+          </section>
+
+        </aside>
+
+        <section class="right">
+          <section class="section">
+            <h2 class="section-title">代表專案與計畫</h2>
+            <div class="project-groups">
+              <article class="project-card">
+                <h3>AI Agent / RAG 應用專案</h3>
+                <div class="item">
+                  <b>好奇兄弟雲端｜ESGPB 虛擬人商家推薦助理</b>
+                  <span>Docker 建置 Qdrant、Redis、PostgreSQL；串接商家資料庫 API，支援文字、語音、拍照互動與多語系商家推薦。</span>
+                </div>
+                <div class="item">
+                  <b>多模態意圖驅動旅遊 AI Agent 系統</b>
+                  <span>InnoServe 第三名。整合 Neo4j、Qdrant、Redis、PostgreSQL、Whisper、Blip2、LLM 與外部 API，產生旅遊問答與行程建議。</span>
+                </div>
+                <div class="item">
+                  <b>2024 年度 AI 應用鬥智賽｜以 Llama 解決 LLM 幻覺、成本及特殊需求</b>
+                  <span>以 RAG、BM25、Cosine Similarity、實體與語意分析降低幻覺，並評估本地 / 替代模型降低 API 成本。</span>
+                </div>
+                <div class="item">
+                  <b>全域意境感知之智慧會議秘書系統</b>
+                  <span>Whisper 逐字稿、說話者分離、Sentence-BERT、HDBSCAN、TextRank、LLM 摘要與 n8n / Webhook 任務追蹤。</span>
+                </div>
+              </article>
+
+              <article class="project-card">
+                <h3>國科會 / 科技部與產學合作</h3>
+                <div class="item">
+                  <b>112年度「產學合作計畫-基於深度學習之霸凌偵測及專注力辨識系統」【科技部案】</b>
+                  <span>AIIT × 精英國際教育集團；整合影像、語音、語調與多模型融合，偵測疑似霸凌與專注力狀態。</span>
+                </div>
+                <div class="item">
+                  <b>113年度「產學合作計畫—AI智慧英語學習系統之開發及融入精準學習之成效」【科技部案】</b>
+                  <span>Azure TTS、Speech Service 與 Azure OpenAI，支援語音示範、發音評分與對話評分。</span>
+                </div>
+                <div class="item">
+                  <b>國科會：智慧居家養老~基於機器學習與深度學習的規律性分析、行為辨識及異常狀態辨識研究與實作</b>
+                  <span>LSTM、Transformer、Autoencoder、Isolation Forest 進行行為規律性分析與異常偵測。</span>
+                </div>
+                <div class="item">
+                  <b>高齡者智慧健康管理：基於 AI 姿勢分析與知識圖譜問答【科技部案】</b>
+                  <span>姿勢分析、健康知識庫、Knowledge Graph 與 RAG 問答，支援智慧健康管理流程。</span>
+                </div>
+              </article>
+
+              <article class="project-card">
+                <h3>產業顧問 / 教學場域</h3>
+                <div class="item">
+                  <b>委託應用AI建構鐵道專業服務及巡檢數位轉型建置之規劃、基本設計、細部設計審查、監督審驗(含鐵道領域專業顧問)技術服務</b>
+                  <span>協助整理 AI 建構、鐵道知識庫、影像辨識、巡檢數位轉型、設計審查與顧問支援架構。</span>
+                </div>
+                <div class="item">
+                  <b>榮總合作工作坊｜AI 輔助預立醫療流程與醫療紀錄</b>
+                  <span>協助專科護理師使用 ChatGPT / 生成式 AI 進行流程撰寫、紀錄草稿與文件整理。</span>
+                </div>
+                <div class="item">
+                  <b>陽明交通大學｜半導體 AI 與 ChatGPT 應用班 第一梯次、第二梯次</b>
+                  <span>整理半導體場域下的生成式 AI、Prompt Engineering、資料分析、文件整理與流程自動化案例。</span>
+                </div>
+              </article>
+
+              <article class="project-card">
+                <h3>研究與系統能力</h3>
+                <div class="item">
+                  <b>碩士論文｜開放域目標導向主動對話研究</b>
+                  <span>處理對話歷史、使用者條件、候選知識與最終目標，進行對話規劃、回應生成、資料處理與評估分析。</span>
+                </div>
+                <div class="item">
+                  <b>系統整合能力</b>
+                  <span>可將 LLM、RAG、向量資料庫、短期 / 長期記憶、API、語音與影像輸入整合成可操作的 AI 應用流程。</span>
+                </div>
+                <div class="item">
+                  <b>文件與場域轉譯能力</b>
+                  <span>能把研究、標案、工作坊與產學需求轉成技術架構、流程文件、展示素材與履歷可讀成果。</span>
+                </div>
+              </article>
+            </div>
+
+            <div class="highlight-row" aria-label="專案照片與截圖">
+              <figure class="mini-photo">
+                <img src="assets/esgpb-chatbot-screenshot.png" alt="ESGPB 商家推薦助理截圖" />
+                <span>ESGPB 商家推薦助理</span>
+              </figure>
+              <figure class="mini-photo">
+                <img src="assets/ceci-ai-railway-visit.png" alt="世曦工程拜訪淡江合照" />
+                <span>世曦工程交流合照</span>
+              </figure>
+              <figure class="mini-photo">
+                <img src="assets/innoserve-travel-award.jpg" alt="InnoServe 旅遊 AI Agent 第三名獎狀" />
+                <span>InnoServe 第三名</span>
+              </figure>
+              <figure class="mini-photo">
+                <img src="assets/service-innovation-award-list.jpg" alt="台灣服務創新獎得獎名單" />
+                <span>台灣服務創新獎名單</span>
+              </figure>
+              <figure class="mini-photo">
+                <img src="assets/vgh-ai-workshop-speaking.jpg" alt="榮總 AI 工作坊授課照片" />
+                <span>榮總 AI 工作坊授課</span>
+              </figure>
+              <figure class="mini-photo">
+                <img src="assets/service-award-stage.jpg" alt="台灣服務創新獎領獎現場" />
+                <span>服務創新獎領獎現場</span>
+              </figure>
+            </div>
+          </section>
+        </section>
+      </section>
+
+      <footer class="footer">
+        <span><strong>定位：</strong>AI 應用工程、LLM/RAG、NLP、機器學習、後端 AI 系統整合</span>
+        <span><strong>更新：</strong>2026.06｜完整作品集請參考個人網站</span>
+      </footer>
+    </div>
+  </main>
+</body>
+</html>
