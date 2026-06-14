@@ -934,6 +934,57 @@
       overflow: hidden;
     }
 
+    .video-demo {
+      overflow: hidden;
+    }
+
+    .video-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .video-frame {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #0f172a;
+      box-shadow: var(--shadow-soft);
+      aspect-ratio: 16 / 9;
+    }
+
+    .video-frame iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-detail {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 100%;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      background: linear-gradient(180deg, #ffffff, #f8fbff);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .video-detail h3 {
+      margin: 0 0 8px;
+      font-size: 19px;
+    }
+
+    .video-detail p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
     .deck-shell {
       display: grid;
       grid-template-columns: minmax(0, 1fr) 280px;
@@ -1212,6 +1263,10 @@
       .deck-shell {
         grid-template-columns: 1fr;
       }
+
+      .video-shell {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 760px) {
@@ -1389,6 +1444,7 @@
         <a href="#highlights">能力</a>
         <a href="#projects">專案</a>
         <a href="#deck">簡報</a>
+        <a href="#meeting-video">影片</a>
         <a href="#evidence">紀錄</a>
         <a href="#awards">獲獎</a>
         <a href="#selfintro">自傳</a>
@@ -1414,6 +1470,7 @@
         <div class="cta">
           <a class="btn primary" href="mailto:a28473458@gmail.com">寄信給我</a>
           <a class="btn" href="assets/lv-che-yen-onepage-resume.pdf" target="_blank" rel="noreferrer">一頁式 PDF</a>
+          <a class="btn" href="#meeting-video">會議諸葛影片</a>
           <a class="btn" href="#projects">查看專案</a>
           <a class="btn" href="#evidence">活動紀錄</a>
           <button class="btn" type="button" onclick="window.print()">列印履歷</button>
@@ -1939,6 +1996,10 @@
                 <li>多代理協作負責資料分析、摘要生成、任務追蹤與系統回饋。</li>
               </ul>
               <div class="tag-row"><span class="tag blue">Whisper 語音辨識</span><span class="tag cyan">Speaker Diarization 說話者分離</span><span class="tag green">n8n 流程自動化</span><span class="tag orange">Webhook 系統串接</span><span class="tag rose">Multi-Agent 多代理協作</span></div>
+              <div class="source-row">
+                <a class="source-link" href="#meeting-video">觀看展示影片</a>
+                <a class="source-link" href="https://drive.google.com/file/d/13D-BYGdDgXNsK3xFbfcFx9DEyhXHfPki/view?usp=drive_link" target="_blank" rel="noreferrer">Google Drive 原始影片</a>
+              </div>
             </article>
           </div>
         </section>
@@ -1968,6 +2029,41 @@
                 <button class="slide-control" type="button" id="travelSlideNext">下一張</button>
               </div>
               <div class="slide-thumbs" id="travelSlideThumbs" aria-label="投影片頁碼"></div>
+            </aside>
+          </div>
+        </section>
+
+        <section id="meeting-video" class="section-block video-demo">
+          <div class="section-head">
+            <div>
+              <div class="accent-line" aria-hidden="true"></div>
+              <h2>會議諸葛展示影片</h2>
+              <p>這段影片展示全域意境感知智慧會議秘書系統的整體功能，包含會前資料整理、會中逐字稿與摘要、會後任務追蹤等流程。</p>
+            </div>
+            <div class="source-row">
+              <a class="source-link" href="https://drive.google.com/file/d/13D-BYGdDgXNsK3xFbfcFx9DEyhXHfPki/view?usp=drive_link" target="_blank" rel="noreferrer">開啟原始影片</a>
+            </div>
+          </div>
+          <div class="video-shell">
+            <div class="video-frame">
+              <iframe
+                src="https://drive.google.com/file/d/13D-BYGdDgXNsK3xFbfcFx9DEyhXHfPki/preview"
+                title="會議諸葛整體功能展示影片"
+                loading="lazy"
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowfullscreen></iframe>
+            </div>
+            <aside class="video-detail" aria-label="會議諸葛影片說明">
+              <div>
+                <h3>全域意境感知智慧會議秘書系統</h3>
+                <p>以會議情境為主軸，串接語音辨識、說話者分離、摘要生成、任務追蹤與 Webhook 推播，讓會議從紀錄到後續執行能被系統化管理。</p>
+              </div>
+              <div class="tag-row">
+                <span class="tag blue">Whisper 語音辨識</span>
+                <span class="tag cyan">會議摘要</span>
+                <span class="tag green">任務追蹤</span>
+                <span class="tag orange">Webhook 串接</span>
+              </div>
             </aside>
           </div>
         </section>

@@ -8,6 +8,8 @@
 
 網站上所有公開圖片、PDF、PPT 與簡報預覽圖都已整理到 `assets/`。部署到 GitHub Pages、Netlify、Vercel 或 Cloudflare Pages 後，這些檔案會跟 `index.html` 一起公開，不需要另外找圖床，也不要使用 `C:\Users\...` 這種本機路徑。
 
+會議諸葛展示影片使用 Google Drive iframe 嵌入，原因是本機影片檔約 168MB，超過 GitHub 一般單檔上傳限制。若要讓外部訪客在網站上直接播放，Google Drive 檔案分享權限需設為「知道連結的任何人」且角色為「檢視者」。
+
 若 GitHub 帳號是 `david891205`、repository 名稱是 `resume-site`，部署完成後圖片網址會像這樣：
 
 ```text
