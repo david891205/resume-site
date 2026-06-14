@@ -2,7 +2,7 @@
 
 開啟 `index.html` 即可瀏覽履歷網站。網站為靜態 HTML，樣式與互動都寫在同一個檔案內，圖片放在 `assets/` 資料夾。
 
-一頁式 PDF 履歷已輸出為 `assets/lv-che-yen-onepage-resume.pdf`，來源檔為 `one-page-resume.html`。若日後要修改 PDF 內容，先改 HTML，再重新列印成 PDF。
+一頁式 PDF 履歷已輸出為 `assets/lv-che-yen-onepage-resume.pdf`，來源檔為 `one-page-resume.html`。目前採 A4 橫式清晰版，避免直式一頁塞入過多專案時字級過小。若日後要修改 PDF 內容，先改 HTML，再重新列印成 PDF。
 
 ## 圖片與簡報如何永久公開
 
