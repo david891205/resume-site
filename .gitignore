@@ -1,0 +1,16 @@
+# Public site files are index.html, README.md, and assets/.
+resume-site-public.zip
+
+# Keep raw source documents and original images local.
+*.docx
+*.pptx
+*.pdf
+*.jpg
+*.jpeg
+*.png
+*.JPG
+*.JPEG
+*.PNG
+
+# Re-include curated website assets.
+!assets/**

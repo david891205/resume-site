@@ -1,0 +1,2381 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>呂哲言｜AI / LLM / RAG 個人網站</title>
+  <meta name="description" content="呂哲言的個人履歷網站，聚焦 AI、LLM、RAG、NLP、AI Agent、多模態 AI、產學合作與教學工作坊。" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232563eb'/%3E%3Ctext x='32' y='39' font-size='24' text-anchor='middle' fill='white' font-family='Arial,sans-serif' font-weight='700'%3EAI%3C/text%3E%3C/svg%3E" />
+  <style>
+    :root {
+      --ink: #0f172a;
+      --ink-2: #1e293b;
+      --paper: #f8fafc;
+      --surface: #ffffff;
+      --surface-soft: #eef4ff;
+      --text: #111827;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --line-strong: #cbd5e1;
+      --blue: #2563eb;
+      --cyan: #06b6d4;
+      --orange: #f97316;
+      --rose: #e11d48;
+      --green: #059669;
+      --amber: #d97706;
+      --indigo: #8b5cf6;
+      --shadow: 0 16px 32px rgba(37, 99, 235, .15);
+      --shadow-soft: 0 8px 24px rgba(15, 23, 42, .06);
+      --radius: 8px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 92px;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", Arial, sans-serif;
+      line-height: 1.72;
+      letter-spacing: 0;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(100% - 48px, var(--max));
+      margin: 0 auto;
+    }
+
+    .ambient {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        linear-gradient(120deg, rgba(37, 99, 235, .08), transparent 40%),
+        linear-gradient(245deg, rgba(139, 92, 246, .08), transparent 42%),
+        #f8fafc;
+    }
+
+    .ambient::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+        background-image:
+          linear-gradient(rgba(37, 99, 235, .06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(37, 99, 235, .045) 1px, transparent 1px);
+      background-size: 52px 52px;
+        mask-image: linear-gradient(180deg, rgba(0, 0, 0, .55), transparent 72%);
+      animation: gridDrift 24s linear infinite;
+    }
+
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 80;
+      height: 3px;
+      background: rgba(255, 255, 255, .08);
+    }
+
+    .scroll-progress span {
+      display: block;
+      width: 100%;
+      height: 100%;
+      transform: scaleX(0);
+      transform-origin: left;
+      background: linear-gradient(90deg, var(--blue), var(--cyan), var(--orange), var(--rose), var(--green));
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, .88);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--ink);
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      box-shadow: 0 12px 28px rgba(37, 99, 235, .32);
+    }
+
+    .navlinks {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .navlinks a,
+    .navlinks button {
+      min-height: 36px;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      padding: 8px 11px;
+      background: transparent;
+      color: #475569;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 720;
+      line-height: 1.3;
+      cursor: pointer;
+    }
+
+    .navlinks a:hover,
+    .navlinks button:hover,
+    .navlinks a.is-active {
+      color: var(--blue);
+      border-color: rgba(37, 99, 235, .2);
+      background: #eff6ff;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 560px;
+      padding: 56px 0 42px;
+      color: var(--ink);
+      overflow: hidden;
+    }
+
+    .signal-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: .18;
+      pointer-events: none;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.16fr) 380px;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .hero-card,
+    .profile-panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+      padding: 42px;
+      background:
+        linear-gradient(90deg, rgba(37, 99, 235, .045), transparent 1px) 0 0 / 48px 48px,
+        linear-gradient(180deg, rgba(255, 255, 255, .92), rgba(255, 255, 255, .78)),
+        #fff;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--blue), var(--cyan), var(--orange), var(--rose), var(--green));
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      color: inherit;
+      font-size: 72px;
+      line-height: 1.03;
+      letter-spacing: 0;
+    }
+
+    .title {
+      margin: 0 0 18px;
+      color: #1e293b;
+      font-size: 24px;
+      font-weight: 780;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 790px;
+      margin: 0;
+      color: #475569;
+      font-size: 17px;
+    }
+
+    .hero-roles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 23px 0 0;
+    }
+
+    .hero-roles span,
+    .tag,
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      border-radius: var(--radius);
+      font-size: 12px;
+      font-weight: 780;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .hero-roles span {
+      border: 1px solid #dbeafe;
+      padding: 7px 10px;
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 44px;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius);
+      padding: 11px 15px;
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      font-size: 14px;
+      font-weight: 780;
+      line-height: 1.2;
+      cursor: pointer;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(37, 99, 235, .28);
+      background: #eff6ff;
+    }
+
+    .btn.primary {
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      box-shadow: 0 14px 30px rgba(37, 99, 235, .28);
+    }
+
+    .btn.light {
+      border-color: var(--line);
+      background: #fff;
+      color: var(--text);
+    }
+
+    .proof-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .proof-stat {
+      min-height: 94px;
+        border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 15px;
+        background: #fff;
+    }
+
+    .proof-stat b {
+      display: block;
+        color: var(--ink);
+      font-size: 25px;
+      line-height: 1.05;
+    }
+
+    .proof-stat span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .profile-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      padding: 24px;
+      background: rgba(255, 255, 255, .95);
+      color: var(--text);
+    }
+
+    .avatar {
+      width: 88px;
+      height: 88px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #f8fafc;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-panel h2,
+    .profile-panel h3,
+    .profile-panel p {
+      margin: 0;
+    }
+
+    .role-switcher {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 7px;
+    }
+
+    .role-switcher button,
+    .filter-btn,
+    .project-toggle,
+    .source-link {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      color: var(--text);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 760;
+      line-height: 1.25;
+      cursor: pointer;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease, color .2s ease;
+    }
+
+    .role-switcher button {
+      min-height: 36px;
+    }
+
+    .role-switcher button.is-active,
+    .filter-btn.is-active {
+      border-color: transparent;
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .role-copy {
+      min-height: 68px;
+      border-left: 4px solid var(--blue);
+      padding: 10px 12px;
+      background: #eff6ff;
+      color: #1e3a8a;
+      font-size: 14px;
+    }
+
+    .status-list {
+      display: grid;
+      gap: 9px;
+    }
+
+    .status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    .status-row:last-child { border-bottom: 0; }
+    .status-row span { color: var(--muted); }
+    .status-row strong { text-align: right; }
+
+    main {
+      padding: 34px 0 72px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 94px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .side-card,
+    .highlight-card,
+    .project-card,
+    .evidence-card,
+    .award-card,
+    .mini-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .side-card {
+      padding: 20px;
+    }
+
+    .side-card h2,
+    .side-card h3 {
+      margin: 0 0 14px;
+      font-size: 18px;
+    }
+
+    .skill-search {
+      display: grid;
+      gap: 7px;
+      margin-bottom: 16px;
+    }
+
+    .skill-search span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 780;
+    }
+
+    .skill-search input {
+      width: 100%;
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 8px 10px;
+      background: #fff;
+      color: var(--text);
+      font: inherit;
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+
+    .skill-group {
+      margin-bottom: 17px;
+    }
+
+    .skill-group:last-child { margin-bottom: 0; }
+
+    .skill-group h4 {
+      margin: 0 0 8px;
+      font-size: 14px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .skill-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+      background: #fff;
+      box-shadow: var(--shadow-soft);
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+    }
+
+    .skill-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+    }
+
+    .skill-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(37, 99, 235, .38);
+      box-shadow: var(--shadow);
+    }
+
+    .skill-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 15px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, #eff6ff, #f5f3ff);
+      color: var(--blue);
+      font-size: 22px;
+      font-weight: 850;
+    }
+
+    .skill-card h3 {
+      margin: 0 0 12px;
+      color: var(--ink);
+      font-size: 19px;
+      line-height: 1.35;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .skill-tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #eff6ff;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 650;
+      line-height: 1.2;
+      transition: transform .2s ease, background .2s ease, color .2s ease;
+    }
+
+    .skill-tag:hover {
+      transform: translateY(-2px);
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .chip {
+      border: 1px solid rgba(37, 99, 235, .14);
+      padding: 7px 9px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+
+    .chip.alt {
+      border-color: rgba(8, 145, 178, .16);
+      background: #ecfeff;
+      color: #0e7490;
+    }
+
+    .chip.warm {
+      border-color: rgba(249, 115, 22, .2);
+      background: #fff7ed;
+      color: #c2410c;
+    }
+
+    .chip.is-muted {
+      opacity: .25;
+      transform: scale(.98);
+    }
+
+    .section-block {
+      margin-bottom: 42px;
+      scroll-margin-top: 92px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 14px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      max-width: 62ch;
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .accent-line {
+      width: 64px;
+      height: 4px;
+      margin-bottom: 10px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--blue), var(--cyan), var(--orange), var(--rose));
+    }
+
+    .summary-copy {
+      display: grid;
+      gap: 14px;
+      max-width: 84ch;
+      font-size: 16px;
+    }
+
+    .summary-copy p {
+      margin: 0;
+    }
+
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .highlight-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 176px;
+      padding: 18px;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .highlight-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 5px;
+      background: var(--accent-color, var(--blue));
+    }
+
+    .highlight-card:hover,
+    .project-card:hover,
+    .evidence-card:hover,
+    .award-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(37, 99, 235, .26);
+      box-shadow: var(--shadow);
+    }
+
+    .highlight-kicker {
+      display: block;
+      color: var(--accent-color, var(--blue));
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: 0;
+    }
+
+    .highlight-card h3 {
+      margin: 8px 0 8px;
+      font-size: 18px;
+      line-height: 1.35;
+    }
+
+    .highlight-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .collab-grid,
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .mini-card {
+      padding: 18px;
+    }
+
+    .mini-card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .mini-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .source-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 13px;
+    }
+
+    .source-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      min-height: 36px;
+      border-color: rgba(37, 99, 235, .32);
+      padding: 8px 12px;
+      color: var(--blue);
+      background: linear-gradient(180deg, #fff, #eff6ff);
+      box-shadow: 0 8px 18px rgba(37, 99, 235, .08);
+      text-decoration: none;
+    }
+
+    .source-link::after {
+      content: "↗";
+      display: inline-flex;
+      align-items: center;
+      min-height: 18px;
+      border-radius: 999px;
+      padding: 2px 6px;
+      background: rgba(37, 99, 235, .1);
+      color: #1d4ed8;
+      font-size: 10px;
+      font-weight: 850;
+      line-height: 1;
+    }
+
+    .source-link:hover,
+    .project-toggle:hover,
+    .filter-btn:hover,
+    .role-switcher button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(37, 99, 235, .28);
+      background: #eff6ff;
+    }
+
+    .source-link:hover {
+      border-color: rgba(37, 99, 235, .52);
+      box-shadow: 0 12px 24px rgba(37, 99, 235, .16);
+    }
+
+    .project-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .project-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-btn {
+      min-height: 38px;
+      padding: 8px 11px;
+    }
+
+    .project-count {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 760;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      padding: 20px;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, opacity .2s ease;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 5px;
+      background: var(--accent-color, var(--blue));
+      opacity: .88;
+    }
+
+    .project-card.is-hidden {
+      display: none;
+    }
+
+    .project-card h3 {
+      margin: 0 0 7px;
+      font-size: 20px;
+      line-height: 1.36;
+    }
+
+    .project-card p {
+      margin: 0;
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 11px;
+    }
+
+    .period {
+      flex: 0 0 auto;
+      align-self: flex-start;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 5px 8px;
+      background: #f8fafc;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 820;
+      white-space: nowrap;
+    }
+
+    .muted { color: var(--muted); }
+
+    .role-line {
+      margin: 11px 0 0;
+      border-left: 4px solid var(--accent-color, var(--blue));
+      padding: 9px 11px;
+      background: #f8fafc;
+      color: #334155;
+      font-size: 14px;
+    }
+
+    ul.clean {
+      margin: 12px 0 0;
+      padding-left: 20px;
+    }
+
+    ul.clean li {
+      margin: 5px 0;
+    }
+
+    .project-card.is-collapsed ul.clean {
+      max-height: 92px;
+      overflow: hidden;
+      mask-image: linear-gradient(180deg, #000 66%, transparent);
+    }
+
+    .tag-row,
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 13px;
+    }
+
+    .tag {
+      padding: 5px 8px;
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .tag.blue { background: #eff6ff; color: #1d4ed8; }
+    .tag.cyan { background: #ecfeff; color: #0e7490; }
+    .tag.orange { background: #fff7ed; color: #c2410c; }
+    .tag.green { background: #ecfdf5; color: #047857; }
+    .tag.rose { background: #fff1f2; color: #be123c; }
+
+    .project-toggle {
+      min-height: 34px;
+      margin-top: 14px;
+      padding: 7px 10px;
+      color: var(--blue);
+    }
+
+    .deck-preview {
+      overflow: hidden;
+    }
+
+    .deck-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .slide-stage {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .slide-stage img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      background: #f8fafc;
+    }
+
+    .slide-side {
+      display: grid;
+      gap: 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+      background: #fff;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .slide-side h3 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.35;
+    }
+
+    .slide-side p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .slide-counter {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .slide-controls {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .slide-control {
+      min-height: 38px;
+      border: 1px solid rgba(37, 99, 235, .28);
+      border-radius: var(--radius);
+      background: #fff;
+      color: var(--blue);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+
+    .slide-control:hover {
+      transform: translateY(-1px);
+      border-color: rgba(37, 99, 235, .48);
+      background: #eff6ff;
+    }
+
+    .slide-thumbs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      max-height: 168px;
+      overflow: auto;
+      padding-right: 4px;
+    }
+
+    .slide-thumb {
+      width: 34px;
+      min-height: 30px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fff;
+      color: var(--muted);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .slide-thumb.is-active {
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: #fff;
+    }
+
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .evidence-card {
+      overflow: hidden;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .evidence-card img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      background: #e5e7eb;
+    }
+
+    .evidence-card.portrait img {
+      aspect-ratio: 4 / 5;
+      object-fit: contain;
+      padding: 10px;
+      background: #f8fafc;
+    }
+
+    .evidence-card.wide {
+      grid-column: span 2;
+    }
+
+    .evidence-card.wide img {
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      padding: 8px;
+      background: #f8fafc;
+    }
+
+    .evidence-body {
+      padding: 14px;
+    }
+
+    .evidence-body h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+      line-height: 1.38;
+    }
+
+    .evidence-body p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .award-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .award-card {
+      overflow: hidden;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .award-card img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: contain;
+      padding: 10px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .award-body {
+      padding: 16px;
+    }
+
+    .award-body h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      line-height: 1.35;
+    }
+
+    .award-body p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .selfintro {
+      max-width: 88ch;
+    }
+
+    .selfintro p {
+      margin: 0 0 14px;
+    }
+
+    .notice {
+      border: 1px solid rgba(217, 119, 6, .28);
+      border-radius: var(--radius);
+      background: #fffbeb;
+      color: #7c2d12;
+      padding: 14px 16px;
+      font-size: 14px;
+    }
+
+    .footer {
+      padding: 18px 0 42px;
+      color: rgba(15, 23, 42, .62);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .btn:focus-visible,
+    .source-link:focus-visible,
+    .filter-btn:focus-visible,
+    .project-toggle:focus-visible,
+    .role-switcher button:focus-visible,
+    .skill-search input:focus-visible,
+    .navlinks a:focus-visible,
+    .navlinks button:focus-visible {
+      outline: 3px solid rgba(37, 99, 235, .25);
+      outline-offset: 2px;
+    }
+
+    @keyframes gridDrift {
+      from { background-position: 0 0, 0 0; }
+      to { background-position: 52px 52px, 52px 52px; }
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .layout,
+      .highlight-grid,
+      .award-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: relative;
+        top: 0;
+      }
+
+      .profile-panel {
+        max-width: none;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .evidence-grid,
+      .project-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .deck-shell {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 32px, var(--max));
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 12px 0;
+      }
+
+      .navlinks {
+        justify-content: flex-start;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 44px 0 30px;
+      }
+
+      .hero-card,
+      .profile-panel {
+        padding: 24px;
+      }
+
+      h1 {
+        font-size: 44px;
+      }
+
+      .title {
+        font-size: 20px;
+      }
+
+      .proof-stats,
+      .role-switcher,
+      .skills-grid,
+      .collab-grid,
+      .mini-grid,
+      .project-grid,
+      .evidence-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .evidence-card.wide {
+        grid-column: auto;
+      }
+
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .project-top {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .period {
+        white-space: normal;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+
+      .ambient::before,
+      .reveal,
+      .btn,
+      .project-card,
+      .highlight-card,
+      .evidence-card,
+      .award-card,
+      .chip {
+        animation: none;
+        transition: none;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        color: #111827;
+      }
+
+      .ambient,
+      .scroll-progress,
+      .signal-canvas,
+      .topbar,
+      .cta,
+      .role-switcher,
+      .project-filters,
+      .project-toggle,
+      .skill-search {
+        display: none !important;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 0 0 18px;
+        color: #111827;
+      }
+
+      .hero-grid,
+      .layout,
+      .highlight-grid,
+      .project-grid,
+      .evidence-grid,
+      .award-grid,
+      .collab-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .hero-card,
+      .profile-panel,
+      .side-card,
+      .highlight-card,
+      .project-card,
+      .evidence-card,
+      .award-card,
+      .mini-card {
+        box-shadow: none;
+        border: 1px solid #d8dee9;
+        background: #fff;
+      }
+
+      h1 {
+        color: #111827;
+        font-size: 40px;
+      }
+
+      .lead,
+      .title,
+      .proof-stat span {
+        color: #374151;
+      }
+
+      .proof-stat {
+        background: #fff;
+        border-color: #d8dee9;
+      }
+
+      .proof-stat b {
+        color: #111827;
+      }
+
+      .project-card.is-collapsed ul.clean {
+        max-height: none;
+        overflow: visible;
+        mask-image: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <div class="topbar">
+    <nav class="container nav" aria-label="主要導覽">
+      <a class="brand" href="#top" aria-label="回到頂部"><span class="brand-mark">呂</span><span>呂哲言｜個人網站</span></a>
+      <div class="navlinks">
+        <a href="#about">摘要</a>
+        <a href="#skills">技能</a>
+        <a href="#highlights">能力</a>
+        <a href="#projects">專案</a>
+        <a href="#deck">簡報</a>
+        <a href="#evidence">紀錄</a>
+        <a href="#awards">獲獎</a>
+        <a href="#selfintro">自傳</a>
+        <button type="button" onclick="window.print()">匯出 PDF</button>
+      </div>
+    </nav>
+  </div>
+
+  <header id="top" class="hero">
+    <canvas class="signal-canvas" id="signalCanvas" aria-hidden="true"></canvas>
+    <div class="container hero-grid">
+      <div class="hero-card">
+        <h1>呂哲言</h1>
+        <p class="title">AI 應用工程｜LLM / RAG 系統｜NLP 對話研究</p>
+        <p class="lead">我目前就讀淡江大學資工碩士班，主要做大型語言模型應用、RAG 知識庫建置、對話系統與多模態 AI。過去參與旅遊問答、ESG 商家推薦、國科會 / 科技部計畫、鐵道標案文件、醫療工作坊與半導體 AI 課程，重點是把模型接到資料庫、API 與現場流程中。</p>
+        <div class="hero-roles" aria-label="核心領域">
+          <span>LLM / RAG</span>
+          <span>AI Agent</span>
+          <span>向量資料庫 / 對話記憶</span>
+          <span>語音辨識與多模態互動</span>
+          <span>產學合作與 API 串接</span>
+        </div>
+        <div class="cta">
+          <a class="btn primary" href="mailto:a28473458@gmail.com">寄信給我</a>
+          <a class="btn" href="#projects">查看專案</a>
+          <a class="btn" href="#evidence">活動紀錄</a>
+          <button class="btn" type="button" onclick="window.print()">列印履歷</button>
+        </div>
+        <div class="proof-stats" aria-label="履歷重點">
+          <div class="proof-stat"><b>產學合作</b><span>ESG 商家、教育、鐵道、智慧照護等場域</span></div>
+          <div class="proof-stat"><b>競賽紀錄</b><span>InnoServe、AI 應用鬥智賽、台灣服務創新獎</span></div>
+          <div class="proof-stat"><b>RAG / Agent</b><span>向量檢索、對話記憶、API 串接與任務流程</span></div>
+          <div class="proof-stat"><b>教學工作坊</b><span>半導體 AI 課程、榮總醫療 AI 工作坊</span></div>
+        </div>
+      </div>
+
+      <aside class="profile-panel">
+        <div class="avatar"><img src="assets/profile-photo.png" alt="呂哲言個人照片" /></div>
+        <div>
+          <h2>聯絡與方向</h2>
+          <p class="muted">碩士準畢業，主要應徵 AI 應用工程、LLM/RAG 系統、NLP 與機器學習相關職位。</p>
+        </div>
+        <div class="role-switcher" aria-label="履歷重點切換">
+          <button type="button" class="is-active" data-role="engineer">工程</button>
+          <button type="button" data-role="research">研究</button>
+          <button type="button" data-role="field">場域</button>
+        </div>
+        <p class="role-copy" id="roleCopy">我比較熟悉把模型輸出、知識檢索、資料庫與 API 串成一個可操作的應用流程。</p>
+        <div class="status-list">
+          <div class="status-row"><span>求職方向</span><strong>AI 應用 / LLM / RAG</strong></div>
+          <div class="status-row"><span>學歷狀態</span><strong>碩士準畢業</strong></div>
+          <div class="status-row"><span>Email</span><strong><a href="mailto:a28473458@gmail.com">a28473458@gmail.com</a></strong></div>
+          <div class="status-row"><span>LINE ID</span><strong>david891205</strong></div>
+          <div class="status-row"><span>地點</span><strong>台灣｜雙北 / 桃園可配合</strong></div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="layout">
+      <aside class="sidebar" aria-label="聯絡資訊與職務方向">
+        <div class="side-card">
+          <h2>快速聯絡</h2>
+          <div class="status-list">
+            <div class="status-row"><span>Email</span><strong><a href="mailto:a28473458@gmail.com">a28473458@gmail.com</a></strong></div>
+            <div class="status-row"><span>LINE ID</span><strong>david891205</strong></div>
+            <div class="status-row"><span>地點</span><strong>台灣｜雙北 / 桃園可配合</strong></div>
+          </div>
+        </div>
+
+        <div class="side-card">
+          <h3>希望職稱</h3>
+          <div class="chips"><span class="chip">AI 應用工程師</span><span class="chip">LLM 應用工程師</span><span class="chip">RAG 工程師</span><span class="chip">NLP 工程師</span><span class="chip">機器學習工程師</span><span class="chip">後端 AI 工程師</span></div>
+        </div>
+
+        <div class="side-card">
+          <h3>目前重點</h3>
+          <p class="muted">LLM/RAG 系統、Prompt 與回答品質優化、向量資料庫、API 串接、多模態 AI 與後端部署。</p>
+        </div>
+      </aside>
+
+      <div>
+        <section id="about" class="section-block">
+          <div class="section-head">
+            <div>
+              <div class="accent-line" aria-hidden="true"></div>
+              <h2>個人摘要</h2>
+              <p>主要方向是 LLM/RAG、NLP 對話系統與多模態 AI，並把這些技術放進旅遊、教育、醫療、商家推薦與工程顧問等場域。</p>
+            </div>
+          </div>
+          <div class="summary-copy">
+            <p>我是一名即將完成碩士學位的資訊工程研究生，主要研究開放域目標導向主動對話、對話規劃與回應生成。研究訓練讓我熟悉資料處理、模型設計、訓練流程、評估指標與錯誤分析。</p>
+            <p>實作面則聚焦把 AI 做成可用系統：旅遊 AI Agent、ESGPB 虛擬人商家推薦、教育安全、語音學習、智慧照護、鐵道巡檢數位轉型規劃，以及醫療與半導體場域的 AI 教學工作坊。</p>
+          </div>
+        </section>
+
+        <section id="skills" class="section-block skills-section">
+          <div class="section-head">
+            <div>
+              <div class="accent-line" aria-hidden="true"></div>
+              <h2>技術能力</h2>
+              <p>以下整理目前最常使用的能力群，保留英文關鍵字並補上台灣職缺常見的繁體中文說法。</p>
+            </div>
+          </div>
+          <div class="skills-grid">
+            <article class="skill-card">
+              <div class="skill-icon" aria-hidden="true">AI</div>
+              <h3>AI / Deep Learning｜深度學習</h3>
+              <div class="skill-tags">
+                <span class="skill-tag">PyTorch 深度學習框架</span>
+                <span class="skill-tag">Transformers 模型架構</span>
+                <span class="skill-tag">Hugging Face 模型套件</span>
+                <span class="skill-tag">BART / GPT-2 生成模型</span>
+                <span class="skill-tag">BERT / T5 語言模型</span>
+                <span class="skill-tag">DPO 偏好最佳化</span>
+                <span class="skill-tag">Contrastive Learning 對比學習</span>
+              </div>
+            </article>
+            <article class="skill-card">
+              <div class="skill-icon" aria-hidden="true">RAG</div>
+              <h3>LLM / RAG Systems｜大語言模型應用</h3>
+              <div class="skill-tags">
+                <span class="skill-tag">OpenAI API 模型串接</span>
+                <span class="skill-tag">Azure OpenAI 企業應用</span>
+                <span class="skill-tag">GPT Realtime 即時語音</span>
+                <span class="skill-tag">Embedding 語意向量</span>
+                <span class="skill-tag">Qdrant 向量資料庫</span>
+                <span class="skill-tag">LangChain LLM 流程</span>
+                <span class="skill-tag">LangGraph Agent 狀態流程</span>
+                <span class="skill-tag">AI Agent 智能代理</span>
+              </div>
+            </article>
+            <article class="skill-card">
+              <div class="skill-icon" aria-hidden="true">NLP</div>
+              <h3>Dialogue Research｜對話系統研究</h3>
+              <div class="skill-tags">
+                <span class="skill-tag">Goal-oriented Dialogue 目標導向對話</span>
+                <span class="skill-tag">Dialogue Planning 對話規劃</span>
+                <span class="skill-tag">Response Generation 回應生成</span>
+                <span class="skill-tag">Knowledge-grounded Generation 知識基礎生成</span>
+                <span class="skill-tag">BLEU / F1 / Goal Success 評估指標</span>
+              </div>
+            </article>
+            <article class="skill-card">
+              <div class="skill-icon" aria-hidden="true">API</div>
+              <h3>Backend / Deployment｜後端與部署</h3>
+              <div class="skill-tags">
+                <span class="skill-tag">Python 資料處理</span>
+                <span class="skill-tag">FastAPI API 開發</span>
+                <span class="skill-tag">Flask Web 服務</span>
+                <span class="skill-tag">Docker 容器化部署</span>
+                <span class="skill-tag">RESTful API 串接</span>
+                <span class="skill-tag">Git 版本控管</span>
+                <span class="skill-tag">Linux 開發環境</span>
+                <span class="skill-tag">Pandas 資料清理</span>
+              </div>
+            </article>
+            <article class="skill-card">
+              <div class="skill-icon" aria-hidden="true">CV</div>
+              <h3>Multimodal AI｜語音與多模態</h3>
+              <div class="skill-tags">
+                <span class="skill-tag">Whisper 語音辨識</span>
+                <span class="skill-tag">Azure Speech 語音服務</span>
+                <span class="skill-tag">STT / TTS 語音轉文字與合成</span>
+                <span class="skill-tag">MFCC 語音特徵</span>
+                <span class="skill-tag">CNN / LSTM 序列模型</span>
+                <span class="skill-tag">3DCNN 影片動作特徵</span>
+                <span class="skill-tag">Pose Estimation 姿態估計</span>
+              </div>
+            </article>
+            <article class="skill-card">
+              <div class="skill-icon" aria-hidden="true">EXP</div>
+              <h3>Research Practice｜研究與評估</h3>
+              <div class="skill-tags">
+                <span class="skill-tag">Experiment Design 實驗設計</span>
+                <span class="skill-tag">Ablation Study 消融實驗</span>
+                <span class="skill-tag">Error Analysis 錯誤分析</span>
+                <span class="skill-tag">Technical Writing 技術文件撰寫</span>
+                <span class="skill-tag">Data Cleaning 資料清理</span>
+                <span class="skill-tag">Reproducible Evaluation 可重現評估</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="highlights" class="section-block">
+          <div class="section-head">
+            <div>
+              <div class="accent-line" aria-hidden="true"></div>
+              <h2>能力與實作重點</h2>
+              <p>以下整理我目前最常使用、也有實作案例支撐的能力。</p>
+            </div>
+          </div>
+          <div class="highlight-grid">
+            <article class="highlight-card" style="--accent-color: var(--blue)">
+              <span class="highlight-kicker">Industry AI</span>
+              <h3>產學合作與場域需求</h3>
+              <p>參與精英國際教育、好奇兄弟雲端、世曦工程等合作或文件規劃，題目涵蓋教育安全、商家推薦、智慧照護與鐵道巡檢。</p>
+            </article>
+            <article class="highlight-card" style="--accent-color: var(--cyan)">
+              <span class="highlight-kicker">LLM Stack</span>
+              <h3>LLM / RAG 系統整合</h3>
+              <p>使用向量資料庫、Embedding、短期記憶、長期資料庫與 RESTful API 串接，讓回答能對應知識庫與即時資料。</p>
+            </article>
+            <article class="highlight-card" style="--accent-color: var(--orange)">
+              <span class="highlight-kicker">Multimodal</span>
+              <h3>多模態與語音互動</h3>
+              <p>處理語音辨識、文字生成、影像辨識、姿態估計與感測資料，應用在旅遊問答、英語學習、霸凌偵測與虛擬人互動。</p>
+            </article>
+            <article class="highlight-card" style="--accent-color: var(--green)">
+              <span class="highlight-kicker">Teaching</span>
+              <h3>教學與工作坊支援</h3>
+              <p>協助半導體 AI 課程與醫療 AI 工作坊，將生成式 AI 轉成非資訊背景也能操作的流程。</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="education" class="section-block">
+          <div class="section-head">
+            <div>
+              <div class="accent-line" aria-hidden="true"></div>
+              <h2>學歷與研究方向</h2>
+            </div>
+          </div>
+          <div class="mini-grid">
+            <article class="mini-card">
+              <h3>淡江大學｜資訊工程學系 碩士班</h3>
+              <p>準畢業研究生。研究方向：大型語言模型應用、RAG 知識庫、AI Agent、NLP、目標導向對話系統。</p>
+            </article>
+            <article class="mini-card">
+              <h3>碩士論文研究</h3>
+              <p>研究目標導向主動對話中的規劃遵循回應生成，聚焦模型如何根據對話歷史、候選知識與目標逐步推進對話。</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="collabs" class="section-block">
+          <div class="section-head">
+            <div>
+              <div class="accent-line" aria-hidden="true"></div>
+              <h2>合作與公開資料</h2>
+              <p>部分合作、課程、標案與活動有公開頁面或本機文件可對照。</p>
+            </div>
+          </div>
+          <div class="collab-grid">
+            <article class="mini-card">
+              <h3>好奇兄弟雲端｜ESGPB 虛擬人與商家推薦</h3>
+              <p>ESGPB 網站可見商家、折扣、ESG 活動與 PB 撇步商家推薦助理入口；專案補充為虛擬人、RAG 與語音互動整合。</p>
+              <div class="source-row">
+                <a class="source-link" href="https://esgpaybonus.tw/" target="_blank" rel="noreferrer">ESGPB 網站</a>
+                <a class="source-link" href="https://www.104.com.tw/company/1a2x6bm2kw?jobsource=google" target="_blank" rel="noreferrer">合作公司 104</a>
+              </div>
+            </article>
+            <article class="mini-card">
+              <h3>台灣世曦工程｜委託應用AI建構鐵道專業服務及巡檢數位轉型建置之規劃、基本設計、細部設計審查、監督審驗(含鐵道領域專業顧問)技術服務</h3>
+              <p>相關資料包含標案頁、決標資訊與淡江時報交流新聞，主題為 AI 建構、鐵道專業服務與巡檢數位轉型。</p>
+              <div class="source-row">
+                <a class="source-link" href="https://ezbid.tw/detail/3.15.29/114CZ016" target="_blank" rel="noreferrer">標案頁</a>
+                <a class="source-link" href="https://tkutimes.tku.edu.tw/dtl.aspx?no=59619" target="_blank" rel="noreferrer">淡江時報</a>
+                <a class="source-link" href="https://www.104.com.tw/company/d1w3jw0?jobsource=index_s_cs" target="_blank" rel="noreferrer">世曦 104</a>
+              </div>
+            </article>
+            <article class="mini-card">
+              <h3>精英國際教育集團｜112年度「產學合作計畫-基於深度學習之霸凌偵測及專注力辨識系統」【科技部案】</h3>
+              <p>國科會支持之產學合作研究，結合幼兒園既有攝影設備與多模態 AI，建立疑似霸凌事件的即時偵測與通知流程。</p>
+              <div class="source-row">
+                <a class="source-link" href="https://web335s00.emis.tku.edu.tw/research/query-nati-sci-detail.asp?code=1210302" target="_blank" rel="noreferrer">淡江計畫頁</a>
+                <a class="source-link" href="https://www.104.com.tw/company/d17r2nc?jobsource=index_s_ac" target="_blank" rel="noreferrer">精英國際教育 104</a>
+              </div>
+            </article>
+            <article class="mini-card">
+              <h3>113年度「產學合作計畫—AI智慧英語學習系統之開發及融入精準學習之成效」【科技部案】</h3>
+              <p>語音示範、發音評分與對話評分相關計畫，對應 AI 智慧英語學習平台開發。</p>
+              <div class="source-row">
+                <a class="source-link" href="https://web335s00.emis.tku.edu.tw/research/query-nati-sci-detail.asp?code=1310301" target="_blank" rel="noreferrer">淡江計畫頁</a>
+              </div>
+            </article>
+            <article class="mini-card">
+              <h3>智慧居家養老~基於機器學習與深度學習的規律性分析、行為辨識及異常狀態辨識研究與實作</h3>
+              <p>國科會研究計畫，聚焦居家照護場域的規律性分析、行為辨識與異常狀態辨識。</p>
+              <div class="source-row">
+                <a class="source-link" href="https://teacher.tku.edu.tw/StfFdDtl.aspx?tid=7142586" target="_blank" rel="noreferrer">淡江教師歷程</a>
+              </div>
+            </article>
+            <article class="mini-card">
+              <h3>高齡者智慧健康管理：基於 AI 姿勢分析與知識圖譜問答【科技部案】</h3>
+              <p>結合 AI 姿勢分析、知識圖譜與 RAG 健康問答，支援高齡者智慧健康管理。</p>
+              <div class="source-row">
+                <a class="source-link" href="https://web335s00.emis.tku.edu.tw/research/query-nati-sci-detail.asp?code=1410166" target="_blank" rel="noreferrer">淡江計畫頁</a>
+              </div>
+            </article>
+            <article class="mini-card">
+              <h3>陽明交通大學｜半導體 AI 與 ChatGPT 應用班</h3>
+              <p>課程網站列出半導體概念、Python、資料處理、機器學習、深度學習、NLP、ChatGPT 與專題實作。</p>
+              <div class="source-row">
+                <a class="source-link" href="https://it.stem.lasercenter.nycu.edu.tw/" target="_blank" rel="noreferrer">課程網站</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="projects" class="section-block">
+          <div class="section-head">
+            <div>
+              <div class="accent-line" aria-hidden="true"></div>
+              <h2>專案經歷</h2>
+              <p>以下以實際參與內容整理，保留合作來源與技術重點。</p>
+            </div>
+          </div>
+          <div class="project-toolbar">
+            <div class="project-filters" aria-label="專案篩選">
+              <button class="filter-btn is-active" type="button" data-filter="all">全部</button>
+              <button class="filter-btn" type="button" data-filter="llm">LLM / RAG</button>
+              <button class="filter-btn" type="button" data-filter="multimodal">多模態</button>
+              <button class="filter-btn" type="button" data-filter="industry">產學合作</button>
+              <button class="filter-btn" type="button" data-filter="teaching">教學 / 工作坊</button>
+            </div>
+            <div class="project-count" id="projectCount">全部專案</div>
+          </div>
+
+          <div class="project-grid">
+            <article class="project-card" data-tags="llm multimodal industry" style="--accent-color: var(--rose)">
+              <div class="project-top">
+                <div>
+                  <h3>ESGPB 虛擬人商家推薦助理</h3>
+                  <p class="muted">好奇兄弟雲端合作｜語音、文字、拍照互動的商家推薦系統</p>
+                </div>
+                <span class="period">2025</span>
+              </div>
+              <p>以 PB 撇步平台的商家與優惠資料為基礎，讓使用者可在小視窗中選擇語言，透過虛擬人用語音、文字或照片互動，推薦餐廳與服務。</p>
+              <p class="role-line">負責內容：RAG 知識庫架構、向量資料庫、短期 / 長期記憶資料分層、語音互動與商家虛擬形象流程規劃；使用 Sora / Prompt Engineering 產出商家虛擬形象。</p>
+              <ul class="clean">
+                <li>以 Docker 建立 Qdrant、Redis、PostgreSQL 等服務：向量檢索、短期對話記憶與長期偏好資料分層。</li>
+                <li>Qdrant 儲存商家語意向量，搭配 OpenAI Embedding 支援餐廳與優惠的語意搜尋。</li>
+                <li>串接合作方商家資料庫 API，讓推薦結果能對應即時商家資料與優惠內容。</li>
+                <li>語音互動規劃使用 GPT Realtime，並保留使用者文字輸入與拍照互動入口。</li>
+              </ul>
+              <div class="tag-row"><span class="tag rose">GPT Realtime 即時語音</span><span class="tag blue">Qdrant 向量資料庫</span><span class="tag green">Redis 短期記憶</span><span class="tag orange">PostgreSQL 長期資料庫</span><span class="tag">Docker 部署</span><span class="tag cyan">Sora 虛擬形象</span></div>
+              <div class="source-row">
+                <a class="source-link" href="https://esgpaybonus.tw/" target="_blank" rel="noreferrer">ESGPB</a>
+                <a class="source-link" href="https://www.104.com.tw/company/1a2x6bm2kw?jobsource=google" target="_blank" rel="noreferrer">好奇兄弟 104</a>
+              </div>
+            </article>
+
+            <article class="project-card" data-tags="multimodal industry" style="--accent-color: var(--orange)">
+              <div class="project-top">
+                <div>
+                  <h3>112年度「產學合作計畫-基於深度學習之霸凌偵測及專注力辨識系統」【科技部案】</h3>
+                  <p class="muted">國科會產學合作｜AIIT × 精英國際教育集團</p>
+                </div>
+                <span class="period">112/11–113/10</span>
+              </div>
+              <p>結合幼兒園既有攝影設備與 AI 技術，透過影像辨識、語音訊號處理、語調分析等多模態資料，建立疑似霸凌與專注力辨識機制。</p>
+              <p class="role-line">計畫背景：由張志勇教授主持，AIIT 與精英國際教育集團合作，研究成果已陸續發表於 IEEE Transactions 等國際期刊。</p>
+              <ul class="clean">
+                <li>整合 STT 語音轉文字、BERT 文本分類、MFCC 語音特徵、CNN/LSTM 與 3DCNN/LSTM 等模型方向，分析攻擊性語句、威脅性語音與異常動作。</li>
+                <li>以多模型融合判斷疑似霸凌情境，一旦偵測到風險，可通知班級教師或家長介入。</li>
+                <li>使用多模態視覺化與特徵分析，輔助事件判讀與系統改善。</li>
+              </ul>
+              <div class="tag-row"><span class="tag orange">BERT 文本分類</span><span class="tag cyan">STT 語音轉文字</span><span class="tag">MFCC 語音特徵</span><span class="tag green">CNN / LSTM</span><span class="tag rose">3DCNN 動作辨識</span><span class="tag">多模態融合</span></div>
+              <div class="source-row">
+                <a class="source-link" href="https://web335s00.emis.tku.edu.tw/research/query-nati-sci-detail.asp?code=1210302" target="_blank" rel="noreferrer">淡江計畫頁</a>
+                <a class="source-link" href="https://www.104.com.tw/company/d17r2nc?jobsource=index_s_ac" target="_blank" rel="noreferrer">精英國際教育 104</a>
+              </div>
+            </article>
+
+            <article class="project-card" data-tags="llm multimodal" style="--accent-color: var(--blue)">
+              <div class="project-top">
+                <div>
+                  <h3>多模態意圖驅動旅遊 AI Agent 系統</h3>
+                  <p class="muted">InnoServe 2025 商業發展治理創新組第三名</p>
+                </div>
+                <span class="period">2025</span>
+              </div>
+              <p>將旅遊手冊、景點、行程、常見問題與詐騙警示轉成互動式問答，支援導遊即時資訊推送、旅客問答與旅後資料沉澱。</p>
+              <p class="role-line">技術重點：以 Docker 承載 Neo4j、Qdrant、Redis、PostgreSQL，並結合 Whisper 語音辨識、Blip2 圖像理解、LLM、Embedding 與外部 API 檢索。</p>
+              <ul class="clean">
+                <li>以知識圖譜管理地點、景點與活動關係，並把旅遊資料轉為 Embedding 存入 Qdrant 向量資料庫。</li>
+                <li>Redis 保存即時互動短期記憶，PostgreSQL 管理旅遊紀錄與行程資訊。</li>
+                <li>Whisper 搭配 LoRA 微調改善方言與旅遊口語辨識；Blip2 支援圖片語意理解。</li>
+                <li>結合 DuckDuckGo API 補充即時資料，由 ChatGPT 生成行程建議、PDF 或 PPT。</li>
+              </ul>
+              <div class="tag-row"><span class="tag blue">AI Agent 智能代理</span><span class="tag cyan">Qdrant 向量資料庫</span><span class="tag green">Redis 短期記憶</span><span class="tag orange">Neo4j 知識圖譜</span><span class="tag">Whisper 語音辨識</span><span class="tag">Blip2 圖像理解</span></div>
+              <div class="source-row">
+                <a class="source-link" href="#deck">查看簡報預覽</a>
+                <a class="source-link" href="assets/smart-travel-demo.pptx" download>下載 PPT</a>
+                <a class="source-link" href="https://innoserve.tca.org.tw/" target="_blank" rel="noreferrer">InnoServe 官網</a>
+              </div>
+            </article>
+
+            <article class="project-card" data-tags="llm industry" style="--accent-color: var(--indigo)">
+              <div class="project-top">
+                <div>
+                  <h3>2024 AI 應用鬥智賽｜以 Llama 解決 LLM 幻覺、成本與風格需求</h3>
+                  <p class="muted">Deep龍力團隊｜與人工智能股份有限公司合作</p>
+                </div>
+                <span class="period">2024</span>
+              </div>
+              <p>針對企業導入 LLM 的三個痛點：幻覺內容、OpenAI API 成本壓力、特定產業語氣與風格不適配，提出以 Llama 為例的解法設計。</p>
+              <p class="role-line">技術重點：設計三階段知識檢索流程，結合 BM25、Cosine 語意相似度、實體 / 語意分析與交叉比對，降低 LLM 幻覺風險。</p>
+              <ul class="clean">
+                <li>以 RAG 檢索流程與知識庫查詢降低模型憑空生成風險，讓回答能回到可驗證資料。</li>
+                <li>透過本地或替代模型架構降低頻繁呼叫大型 API 的成本壓力。</li>
+                <li>針對特定產業人員語氣與品牌風格進行調整，補足通用模型難以貼合場景的問題。</li>
+              </ul>
+              <div class="tag-row"><span class="tag blue">Llama 開源模型</span><span class="tag cyan">RAG 知識庫檢索</span><span class="tag green">BM25 關鍵字檢索</span><span class="tag orange">Cosine Similarity 語意相似度</span><span class="tag rose">Hallucination 幻覺抑制</span></div>
+              <div class="source-row">
+                <a class="source-link" href="https://www.104.com.tw/company/1a2x6bkz59?jobsource=index_s_ac" target="_blank" rel="noreferrer">人工智能 104</a>
+                <a class="source-link" href="assets/aigo-deeplong-award.pdf" target="_blank">獎狀 PDF</a>
+              </div>
+            </article>
+
+            <article class="project-card" data-tags="llm multimodal industry" style="--accent-color: var(--green)">
+              <div class="project-top">
+                <div>
+                  <h3>委託應用AI建構鐵道專業服務及巡檢數位轉型建置之規劃、基本設計、細部設計審查、監督審驗(含鐵道領域專業顧問)技術服務</h3>
+                  <p class="muted">標案技術服務｜AI 建構、設計審查、監督審驗與顧問支援</p>
+                </div>
+                <span class="period">2025</span>
+              </div>
+              <p>協助世曦工程撰寫該標案相關規劃、基本設計、細部設計審查、監督審驗與鐵道專業顧問技術服務內容。</p>
+              <p class="role-line">相關資料包含標案頁、決標資訊、世曦公司頁面與淡江時報交流新聞。</p>
+              <ul class="clean">
+                <li>將鐵道巡檢、專業知識、影像辨識、文件查詢與數位轉型流程轉成可描述的 AI 技術服務架構。</li>
+                <li>整理規劃、設計審查與監督審驗可對應的資料流、模型流與顧問支援範圍。</li>
+                <li>以文件、合照與公開資料呈現合作與交流脈絡，不誇大為已完成部署系統。</li>
+              </ul>
+              <div class="tag-row"><span class="tag green">Railway AI 鐵道應用</span><span class="tag blue">RAG 知識庫</span><span class="tag cyan">Computer Vision 影像辨識</span><span class="tag orange">Digital Inspection 數位巡檢</span><span class="tag">Technical Proposal 技術服務文件</span></div>
+              <div class="source-row">
+                <a class="source-link" href="https://ezbid.tw/detail/3.15.29/114CZ016" target="_blank" rel="noreferrer">標案</a>
+                <a class="source-link" href="https://tkutimes.tku.edu.tw/dtl.aspx?no=59619" target="_blank" rel="noreferrer">淡江時報</a>
+                <a class="source-link" href="https://www.104.com.tw/company/d1w3jw0?jobsource=index_s_cs" target="_blank" rel="noreferrer">世曦 104</a>
+              </div>
+            </article>
+
+            <article class="project-card" data-tags="llm teaching industry" style="--accent-color: var(--rose)">
+              <div class="project-top">
+                <div>
+                  <h3>榮總合作工作坊｜AI 輔助預立醫療流程與醫療紀錄</h3>
+                  <p class="muted">教專科護理師使用 AI 撰寫預立醫療流程</p>
+                </div>
+                <span class="period">工作坊</span>
+              </div>
+              <p>依現場流程表，工作坊包含生成式 AI 應用全攻略、實作演練、運用 AI 建立預立醫療流程，以及運用 AI 建立醫療紀錄。</p>
+              <p class="role-line">我的角色：協助授課與實作，將 ChatGPT / 生成式 AI 轉成醫療流程撰寫、文字整理與紀錄草稿產出的操作流程。</p>
+              <ul class="clean">
+                <li>面向專科護理師，重點不是模型炫技，而是把 AI 用在可操作的醫療流程撰寫與紀錄整理。</li>
+                <li>透過實作與小組分享，協助學員把 AI 輸出轉成符合工作情境的文件草稿。</li>
+              </ul>
+              <div class="tag-row"><span class="tag rose">Healthcare 醫療場域</span><span class="tag blue">ChatGPT 生成式 AI</span><span class="tag cyan">Prompt 提示設計</span><span class="tag green">Workflow 流程設計</span><span class="tag">Workshop 工作坊</span></div>
+            </article>
+
+            <article class="project-card" data-tags="teaching llm" style="--accent-color: var(--amber)">
+              <div class="project-top">
+                <div>
+                  <h3>陽明交通大學｜半導體 AI 與 ChatGPT 應用班</h3>
+                  <p class="muted">第一梯次、第二梯次｜AI 教學支援與產業案例整理</p>
+                </div>
+                <span class="period">課程支援</span>
+              </div>
+              <p>協助半導體產業情境下的 AI 與 ChatGPT 應用規劃，課程涵蓋半導體概念、Python、資料處理、ML/DL、NLP、ChatGPT 與專題實作。</p>
+              <ul class="clean">
+                <li>整理生成式 AI、Prompt Engineering 提示工程、資料分析、文件整理與流程自動化案例。</li>
+                <li>協助把 ChatGPT 應用轉化為具體操作任務，支援非資訊背景學員理解與實作。</li>
+              </ul>
+              <div class="tag-row"><span class="tag orange">ChatGPT 生成式 AI</span><span class="tag blue">Prompt Engineering 提示工程</span><span class="tag cyan">Semiconductor 半導體應用</span><span class="tag">Teaching 教學支援</span></div>
+              <div class="source-row">
+                <a class="source-link" href="https://it.stem.lasercenter.nycu.edu.tw/" target="_blank" rel="noreferrer">課程網站</a>
+              </div>
+            </article>
+
+            <article class="project-card" data-tags="llm multimodal industry" style="--accent-color: var(--cyan)">
+              <div class="project-top">
+                <div>
+                  <h3>113年度「產學合作計畫—AI智慧英語學習系統之開發及融入精準學習之成效」【科技部案】</h3>
+                  <p class="muted">國科會產學合作｜語音示範、發音評分、對話評分</p>
+                </div>
+                <span class="period">113/11–114/10</span>
+              </div>
+              <p>參與 AI 智慧英語學習平台開發，改善口說訓練不足、評量主觀性高與缺乏即時回饋問題。</p>
+              <ul class="clean">
+                <li>使用 Azure TTS 建立標準語音示範，讓學生可聆聽與模仿。</li>
+                <li>使用 Azure Speech Service 分析錄音，提供流暢度、準確度、完整度與發音精確度等分數。</li>
+                <li>使用 Azure OpenAI 建立對話評分模組，提供語意理解、語法建議與內容評價。</li>
+              </ul>
+              <div class="tag-row"><span class="tag cyan">Azure TTS 語音合成</span><span class="tag blue">Azure Speech 語音評分</span><span class="tag green">Azure OpenAI 對話評分</span><span class="tag">NLP 自然語言處理</span></div>
+              <div class="source-row">
+                <a class="source-link" href="https://web335s00.emis.tku.edu.tw/research/query-nati-sci-detail.asp?code=1310301" target="_blank" rel="noreferrer">淡江計畫頁</a>
+              </div>
+            </article>
+
+            <article class="project-card" data-tags="llm multimodal industry" style="--accent-color: var(--green)">
+              <div class="project-top">
+                <div>
+                  <h3>智慧居家養老~基於機器學習與深度學習的規律性分析、行為辨識及異常狀態辨識研究與實作</h3>
+                  <p class="muted">國科會研究計畫｜IoT 行為建模、規律性分析與異常偵測</p>
+                </div>
+                <span class="period">112/08–113/07</span>
+              </div>
+              <p>參與智慧居家養老系統規劃，將感測資料、行為序列與異常狀態辨識整合到 AI 輔助照護流程。</p>
+              <ul class="clean">
+                <li>以 LSTM、Transformer、Autoencoder、Isolation Forest 分析行為規律性與異常。</li>
+                <li>以機器學習與深度學習方法分析居家場域中的行為辨識與異常狀態。</li>
+                <li>將規律性分析結果轉成可用於照護提醒與風險判斷的資料流程。</li>
+              </ul>
+              <div class="tag-row"><span class="tag green">IoT 感測資料</span><span class="tag blue">Transformer 序列建模</span><span class="tag cyan">Behavior Recognition 行為辨識</span><span class="tag orange">Anomaly Detection 異常偵測</span></div>
+              <div class="source-row">
+                <a class="source-link" href="https://teacher.tku.edu.tw/StfFdDtl.aspx?tid=7142586" target="_blank" rel="noreferrer">淡江教師歷程</a>
+              </div>
+            </article>
+
+            <article class="project-card" data-tags="llm multimodal industry" style="--accent-color: var(--green)">
+              <div class="project-top">
+                <div>
+                  <h3>高齡者智慧健康管理：基於 AI 姿勢分析與知識圖譜問答【科技部案】</h3>
+                  <p class="muted">國科會研究計畫｜AI 姿勢分析、知識圖譜與健康問答</p>
+                </div>
+                <span class="period">114/08–115/07</span>
+              </div>
+              <p>參與高齡者智慧健康管理系統規劃，將姿勢分析、健康知識庫、知識圖譜與 RAG 問答整合到 AI 輔助健康管理流程。</p>
+              <ul class="clean">
+                <li>透過 AI 姿勢分析偵測運動姿勢錯誤，降低高齡者受傷風險。</li>
+                <li>整合健康、營養、運動與醫療知識，結合知識圖譜與 RAG 技術提供個人化問答。</li>
+                <li>將姿勢分析結果與問答流程連接，支援高齡者健康管理與照護回饋。</li>
+              </ul>
+              <div class="tag-row"><span class="tag cyan">Pose Estimation 姿態估計</span><span class="tag orange">Knowledge Graph 知識圖譜</span><span class="tag">RAG 健康知識問答</span><span class="tag green">Smart Healthcare 智慧健康管理</span></div>
+              <div class="source-row">
+                <a class="source-link" href="https://web335s00.emis.tku.edu.tw/research/query-nati-sci-detail.asp?code=1410166" target="_blank" rel="noreferrer">淡江計畫頁</a>
+              </div>
+            </article>
+
+            <article class="project-card" data-tags="llm teaching" style="--accent-color: var(--blue)">
+              <div class="project-top">
+                <div>
+                  <h3>全域意境感知智慧會議秘書系統</h3>
+                  <p class="muted">AIGO 佳作相關技術文件｜會前、會中、會後自動化</p>
+                </div>
+                <span class="period">2025</span>
+              </div>
+              <p>系統定位為能「聽得懂會議、記得住內容、推得動行動」的 AI 智慧助理，整合會前資料包、會中逐字稿摘要與會後任務追蹤。</p>
+              <p class="role-line">技術內容：會議前整合資料，會中產出逐字稿與摘要，會後推播任務與追蹤進度。</p>
+              <ul class="clean">
+                <li>Whisper 即時語音辨識，ECAPA-TDNN / Spectral Clustering 區分發言者。</li>
+                <li>Sentence-BERT、HDBSCAN、TextRank 與 LLM 提示工程產出決策、任務與討論摘要。</li>
+                <li>n8n × Webhook 串接 LINE、Email、Google Calendar 進行推播、提醒與進度追蹤。</li>
+                <li>多代理協作負責資料分析、摘要生成、任務追蹤與系統回饋。</li>
+              </ul>
+              <div class="tag-row"><span class="tag blue">Whisper 語音辨識</span><span class="tag cyan">Speaker Diarization 說話者分離</span><span class="tag green">n8n 流程自動化</span><span class="tag orange">Webhook 系統串接</span><span class="tag rose">Multi-Agent 多代理協作</span></div>
+            </article>
+          </div>
+        </section>
+
+        <section id="deck" class="section-block deck-preview">
+          <div class="section-head">
+            <div>
+              <div class="accent-line" aria-hidden="true"></div>
+              <h2>多模態意圖驅動旅遊 AI Agent 簡報預覽</h2>
+              <p>這份簡報對應 InnoServe 2025 第三名作品，可直接在網頁中翻閱，也可下載原始 PPT。</p>
+            </div>
+            <div class="source-row">
+              <a class="source-link" href="assets/smart-travel-demo.pptx" download>下載 PPT</a>
+              <a class="source-link" href="https://innoserve.tca.org.tw/" target="_blank" rel="noreferrer">InnoServe 官網</a>
+            </div>
+          </div>
+          <div class="deck-shell">
+            <div class="slide-stage">
+              <img id="travelSlideImage" src="assets/smart-travel-slides/slide-01.png" alt="多模態意圖驅動旅遊 AI Agent 簡報第 1 張" loading="lazy" />
+            </div>
+            <aside class="slide-side" aria-label="簡報控制">
+              <span class="slide-counter" id="travelSlideCounter">第 1 / 40 張</span>
+              <h3>智慧旅遊作品簡報</h3>
+              <p>使用下方按鈕切換投影片。此預覽由本機 PPT 匯出為圖片，訪客不下載檔案也能先查看內容。</p>
+              <div class="slide-controls">
+                <button class="slide-control" type="button" id="travelSlidePrev">上一張</button>
+                <button class="slide-control" type="button" id="travelSlideNext">下一張</button>
+              </div>
+              <div class="slide-thumbs" id="travelSlideThumbs" aria-label="投影片頁碼"></div>
+            </aside>
+          </div>
+        </section>
+
+        <section id="evidence" class="section-block">
+          <div class="section-head">
+            <div>
+              <div class="accent-line" aria-hidden="true"></div>
+              <h2>活動與作品紀錄</h2>
+              <p>照片下方補上場合與參與內容，方便辨識每張圖的意義。</p>
+            </div>
+          </div>
+          <div class="evidence-grid">
+            <article class="evidence-card wide">
+              <img src="assets/esgpb-chatbot-screenshot.png" alt="ESGPB 網站右下角 PB 撇步商家推薦助理實作截圖" loading="lazy" />
+              <div class="evidence-body">
+                <h3>ESGPB 商家推薦助理實作截圖</h3>
+                <p>好奇兄弟雲端合作專案。網站右下角可看到 PB 撇步商家推薦助理，支援語言選擇、文字輸入、語音與拍照互動入口。</p>
+                <div class="source-row">
+                  <a class="source-link" href="https://esgpaybonus.tw/" target="_blank" rel="noreferrer">ESGPB 網站</a>
+                  <a class="source-link" href="https://www.104.com.tw/company/1a2x6bm2kw?jobsource=google" target="_blank" rel="noreferrer">好奇兄弟 104</a>
+                </div>
+              </div>
+            </article>
+            <article class="evidence-card portrait">
+              <img src="assets/service-innovation-award-list.jpg" alt="第十屆台灣服務創新獎得獎名單，AI 應用類別列出淡江大學人工智慧與產業技術實驗室" loading="lazy" />
+              <div class="evidence-body">
+                <h3>台灣服務創新獎得獎名單</h3>
+                <p>第十屆台灣服務創新獎得獎名單，AI 應用類別列出 AIIT 淡江大學人工智慧與產業技術實驗室。</p>
+                <div class="source-row">
+                  <a class="source-link" href="https://www.asit.org.tw/2025/10/31/12561/" target="_blank" rel="noreferrer">ASIT 公開頁</a>
+                </div>
+              </div>
+            </article>
+            <article class="evidence-card">
+              <img src="assets/service-award-stage.jpg" alt="2025 第十屆台灣服務創新獎頒獎現場照片" loading="lazy" />
+              <div class="evidence-body">
+                <h3>代表 AIIT 領獎現場</h3>
+                <p>頒獎現場照片。當天代表 AIIT 上台領取 AI 應用相關獎項，作為實驗室對外服務創新成果紀錄。</p>
+                <div class="source-row">
+                  <a class="source-link" href="https://www.asit.org.tw/2025/10/31/12561/" target="_blank" rel="noreferrer">ASIT 公開頁</a>
+                </div>
+              </div>
+            </article>
+            <article class="evidence-card">
+              <img src="assets/vgh-ai-workshop-speaking.jpg" alt="榮總合作工作坊中，呂哲言於現場協助講授生成式 AI 實作" loading="lazy" />
+              <div class="evidence-body">
+                <h3>榮總 AI 工作坊授課</h3>
+                <p>榮總合作工作坊現場，協助專科護理師使用生成式 AI 進行預立醫療流程與醫療紀錄撰寫練習。</p>
+              </div>
+            </article>
+            <article class="evidence-card">
+              <img src="assets/vgh-ai-workshop-agenda.jpg" alt="榮總工作坊流程表，包含生成式 AI 實作與運用 AI 建立預立醫療流程" loading="lazy" />
+              <div class="evidence-body">
+                <h3>工作坊流程表</h3>
+                <p>當天議程包含生成式 AI 應用、實作演練、預立醫療流程與醫療紀錄建立。</p>
+              </div>
+            </article>
+            <article class="evidence-card">
+              <img src="assets/ceci-ai-railway-visit.png" alt="台灣世曦拜訪淡江 AI 創智場域合照與新聞截圖" loading="lazy" />
+              <div class="evidence-body">
+                <h3>世曦工程拜訪淡江</h3>
+                <p>台灣世曦團隊拜訪淡江 AI 創智場域，交流智慧工程、影像處理、NLP 與鐵道安全等應用。</p>
+                <div class="source-row">
+                  <a class="source-link" href="https://tkutimes.tku.edu.tw/dtl.aspx?no=59619" target="_blank" rel="noreferrer">淡江時報</a>
+                  <a class="source-link" href="https://www.104.com.tw/company/d1w3jw0?jobsource=index_s_cs" target="_blank" rel="noreferrer">世曦 104</a>
+                </div>
+              </div>
+            </article>
+            <article class="evidence-card portrait">
+              <img src="assets/innoserve-travel-award.jpg" alt="InnoServe 2025 第三名獎狀，作品為具意圖探測的多模態旅遊問答服務系統" loading="lazy" />
+              <div class="evidence-body">
+                <h3>InnoServe 第三名獎狀</h3>
+                <p>第 30 屆 InnoServe 第三名獎狀，對應「具意圖探測的多模態旅遊問答服務系統」。</p>
+                <div class="source-row">
+                  <a class="source-link" href="https://innoserve.tca.org.tw/" target="_blank" rel="noreferrer">InnoServe 官網</a>
+                  <a class="source-link" href="#deck">簡報預覽</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="awards" class="section-block">
+          <div class="section-head">
+            <div>
+              <div class="accent-line" aria-hidden="true"></div>
+              <h2>競賽與獲獎</h2>
+              <p>以下整理競賽與領獎紀錄，搭配獎狀或公開頁面。</p>
+            </div>
+          </div>
+          <div class="award-grid">
+            <article class="award-card">
+              <img src="assets/innoserve-travel-award.jpg" alt="InnoServe 2025 第三名獎狀" loading="lazy" />
+              <div class="award-body">
+                <h3>2025 InnoServe｜商業發展治理創新組第三名</h3>
+                <p>作品：具意圖探測的多模態旅遊問答服務系統。系統結合 AI Agent、RAG 知識庫、Qdrant 向量資料庫、Redis、PostgreSQL、Whisper 語音辨識與多模態輸入。</p>
+                <div class="tag-row"><span class="tag blue">第三名</span><span class="tag cyan">Travel AI Agent 旅遊智能代理</span><span class="tag green">RAG 知識庫</span></div>
+                <div class="source-row">
+                  <a class="source-link" href="https://innoserve.tca.org.tw/" target="_blank" rel="noreferrer">InnoServe 官網</a>
+                  <a class="source-link" href="#deck">簡報預覽</a>
+                </div>
+              </div>
+            </article>
+            <article class="award-card">
+              <img src="assets/aigo-deeplong-award.jpg" alt="2024 年度 AI 應用鬥智賽 Deep龍力團隊佳作獎狀" loading="lazy" />
+              <div class="award-body">
+                <h3>2024 年度 AI 應用鬥智賽｜佳作</h3>
+                <p>團隊：Deep龍力。議題：以 Llama 為例解決 LLM 幻覺問題、節省成本及特殊需求。需求單位為人工智能股份有限公司。</p>
+                <div class="tag-row"><span class="tag rose">佳作</span><span class="tag blue">Llama 開源模型</span><span class="tag orange">Cost Reduction 成本優化</span></div>
+                <div class="source-row">
+                  <a class="source-link" href="https://www.104.com.tw/company/1a2x6bkz59?jobsource=index_s_ac" target="_blank" rel="noreferrer">人工智能 104</a>
+                </div>
+              </div>
+            </article>
+            <article class="award-card">
+              <img src="assets/service-innovation-award-list.jpg" alt="第十屆台灣服務創新獎得獎名單" loading="lazy" />
+              <div class="award-body">
+                <h3>2025 第十屆台灣服務創新獎｜AI 應用</h3>
+                <p>代表 AIIT 淡江大學人工智慧與產業技術實驗室領取 2025 第十屆台灣服務創新獎 AI 應用相關獎項。</p>
+                <div class="tag-row"><span class="tag green">AI 應用</span><span class="tag cyan">AIIT</span><span class="tag">代表領獎</span></div>
+                <div class="source-row">
+                  <a class="source-link" href="https://www.asit.org.tw/2025/10/31/12561/" target="_blank" rel="noreferrer">ASIT 公開頁</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="selfintro" class="section-block selfintro">
+          <div class="section-head">
+            <div>
+              <div class="accent-line" aria-hidden="true"></div>
+              <h2>自傳</h2>
+            </div>
+          </div>
+          <p>我目前就讀淡江大學資訊工程學系碩士班，主要做大型語言模型、RAG、AI Agent 與 NLP 對話系統。碩士論文研究開放域目標導向主動對話，重點是讓模型能根據對話歷史、使用者條件、候選知識與最終目標，逐步推進對話。</p>
+          <p>研究上，我主要處理對話規劃、回應生成、資料處理、模型訓練與評估分析。實作上，我熟悉把模型輸出、RAG 知識庫、向量資料庫、後端 API 與使用者流程串成一個可操作的 AI 應用。</p>
+          <p>專案上，我接觸過旅遊問答、ESGPB 商家推薦、國科會 / 科技部計畫、鐵道巡檢文件規劃、半導體 AI 課程與醫療 AI 工作坊。這些經驗讓我比較能從現場需求出發，判斷要用檢索、資料庫、語音互動、影像模型或後端整合中的哪一段來解決問題。</p>
+          <p>我希望找 AI 應用工程師、LLM/RAG 工程師、NLP 工程師或機器學習工程師相關工作。比起只展示工具名稱，我更想投入能把模型、資料與流程整合起來的系統開發。</p>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="container footer">© 2026 呂哲言｜Resume Website｜最後更新：2026-06-14</footer>
+
+  <script>
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', event => {
+        const target = document.querySelector(link.getAttribute('href'));
+        if (!target) return;
+        event.preventDefault();
+        target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+      });
+    });
+
+    const progressBar = document.querySelector('.scroll-progress span');
+    const updateProgress = () => {
+      if (!progressBar) return;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = max > 0 ? window.scrollY / max : 0;
+      progressBar.style.transform = `scaleX(${Math.min(1, Math.max(0, ratio))})`;
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+
+    const roleCopy = document.getElementById('roleCopy');
+    const roleMessages = {
+      engineer: '能把 LLM、RAG 知識庫、向量資料庫、語音互動與後端 API 串成可展示、可部署、可評估的 AI 應用。',
+      research: '熟悉 NLP 任務從問題定義、資料處理、模型設計、訓練流程到評估指標的研究鏈路。',
+      field: '有教育、醫療、ESG 商家、鐵道、旅遊與照護場域經驗，能把需求轉成可實作的 AI 應用流程。'
+    };
+
+    document.querySelectorAll('.role-switcher button').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.role-switcher button').forEach(item => item.classList.remove('is-active'));
+        button.classList.add('is-active');
+        if (roleCopy) roleCopy.textContent = roleMessages[button.dataset.role] || roleMessages.engineer;
+      });
+    });
+
+    const revealTargets = document.querySelectorAll('.hero-card, .profile-panel, .side-card, .skill-card, .highlight-card, .mini-card, .project-card, .evidence-card, .award-card, .section-block');
+    revealTargets.forEach(target => target.classList.add('reveal'));
+    if ('IntersectionObserver' in window && !prefersReducedMotion) {
+      const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
+      revealTargets.forEach(target => revealObserver.observe(target));
+    } else {
+      revealTargets.forEach(target => target.classList.add('is-visible'));
+    }
+    window.setTimeout(() => {
+      revealTargets.forEach(target => target.classList.add('is-visible'));
+    }, 800);
+
+    const navLinks = [...document.querySelectorAll('.navlinks a[href^="#"]')];
+    const navTargets = navLinks
+      .map(link => document.querySelector(link.getAttribute('href')))
+      .filter(Boolean);
+    if ('IntersectionObserver' in window) {
+      const navObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          navLinks.forEach(link => {
+            link.classList.toggle('is-active', link.getAttribute('href') === `#${entry.target.id}`);
+          });
+        });
+      }, { rootMargin: '-35% 0px -55% 0px', threshold: 0.01 });
+      navTargets.forEach(target => navObserver.observe(target));
+    }
+
+    const skillSearch = document.getElementById('skillSearch');
+    const skillChips = [...document.querySelectorAll('#skills .chip')];
+    if (skillSearch) {
+      skillSearch.addEventListener('input', () => {
+        const query = skillSearch.value.trim().toLowerCase();
+        skillChips.forEach(chip => {
+          const hit = !query || chip.textContent.toLowerCase().includes(query);
+          chip.classList.toggle('is-muted', !hit);
+        });
+      });
+    }
+
+    const projectCards = [...document.querySelectorAll('#projects .project-card')];
+    const projectCount = document.getElementById('projectCount');
+    projectCards.forEach((card, index) => {
+      const list = card.querySelector('ul.clean');
+      if (!list) return;
+      card.classList.toggle('is-collapsed', index > 1);
+      const toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'project-toggle';
+      toggle.textContent = index > 1 ? '展開重點' : '收合重點';
+      toggle.addEventListener('click', () => {
+        const collapsed = card.classList.toggle('is-collapsed');
+        toggle.textContent = collapsed ? '展開重點' : '收合重點';
+      });
+      card.append(toggle);
+    });
+
+    const filters = [...document.querySelectorAll('.filter-btn')];
+    const updateProjectCount = filter => {
+      if (!projectCount) return;
+      const visible = projectCards.filter(card => !card.classList.contains('is-hidden')).length;
+      const label = filter === 'all' ? '全部' : filters.find(button => button.dataset.filter === filter)?.textContent || '目前';
+      projectCount.textContent = `${label}：${visible} 個案例`;
+    };
+
+    const projectMatches = (card, filter) => {
+      if (filter === 'all') return true;
+      return (card.dataset.tags || '').split(/\s+/).includes(filter);
+    };
+
+    filters.forEach(button => {
+      button.addEventListener('click', () => {
+        filters.forEach(item => item.classList.remove('is-active'));
+        button.classList.add('is-active');
+        projectCards.forEach(card => {
+          card.classList.toggle('is-hidden', !projectMatches(card, button.dataset.filter));
+        });
+        updateProjectCount(button.dataset.filter);
+      });
+    });
+    updateProjectCount('all');
+
+    const travelSlideImage = document.getElementById('travelSlideImage');
+    const travelSlideCounter = document.getElementById('travelSlideCounter');
+    const travelSlidePrev = document.getElementById('travelSlidePrev');
+    const travelSlideNext = document.getElementById('travelSlideNext');
+    const travelSlideThumbs = document.getElementById('travelSlideThumbs');
+    const travelSlides = Array.from({ length: 40 }, (_, index) => {
+      const number = String(index + 1).padStart(2, '0');
+      return `assets/smart-travel-slides/slide-${number}.png`;
+    });
+    let travelSlideIndex = 0;
+
+    const updateTravelSlide = nextIndex => {
+      if (!travelSlideImage || !travelSlideCounter) return;
+      travelSlideIndex = (nextIndex + travelSlides.length) % travelSlides.length;
+      travelSlideImage.src = travelSlides[travelSlideIndex];
+      travelSlideImage.alt = `多模態意圖驅動旅遊 AI Agent 簡報第 ${travelSlideIndex + 1} 張`;
+      travelSlideCounter.textContent = `第 ${travelSlideIndex + 1} / ${travelSlides.length} 張`;
+      document.querySelectorAll('.slide-thumb').forEach((button, index) => {
+        button.classList.toggle('is-active', index === travelSlideIndex);
+      });
+    };
+
+    if (travelSlideThumbs) {
+      travelSlides.forEach((_, index) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'slide-thumb';
+        button.textContent = String(index + 1);
+        button.setAttribute('aria-label', `查看第 ${index + 1} 張投影片`);
+        button.addEventListener('click', () => updateTravelSlide(index));
+        travelSlideThumbs.append(button);
+      });
+    }
+    if (travelSlidePrev) travelSlidePrev.addEventListener('click', () => updateTravelSlide(travelSlideIndex - 1));
+    if (travelSlideNext) travelSlideNext.addEventListener('click', () => updateTravelSlide(travelSlideIndex + 1));
+    updateTravelSlide(0);
+
+    const canvas = document.getElementById('signalCanvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let nodes = [];
+      let width = 0;
+      let height = 0;
+      let pointer = null;
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+
+      const nodePalette = ['37,99,235', '8,145,178', '249,115,22', '225,29,72', '5,150,105'];
+
+      const createNodes = () => {
+        const count = Math.max(38, Math.min(86, Math.floor((width * height) / 18000)));
+        nodes = Array.from({ length: count }, (_, index) => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - .5) * .24,
+          vy: (Math.random() - .5) * .24,
+          r: index % 7 === 0 ? 2.2 : 1.35,
+          hue: index % nodePalette.length
+        }));
+      };
+
+      const resizeCanvas = () => {
+        const rect = canvas.getBoundingClientRect();
+        width = Math.max(1, rect.width);
+        height = Math.max(1, rect.height);
+        canvas.width = Math.floor(width * ratio);
+        canvas.height = Math.floor(height * ratio);
+        ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+        createNodes();
+      };
+
+      const drawNetwork = () => {
+        ctx.clearRect(0, 0, width, height);
+        ctx.lineWidth = 1;
+
+        nodes.forEach((node, index) => {
+          if (!prefersReducedMotion) {
+            node.x += node.vx;
+            node.y += node.vy;
+            if (node.x < -20) node.x = width + 20;
+            if (node.x > width + 20) node.x = -20;
+            if (node.y < -20) node.y = height + 20;
+            if (node.y > height + 20) node.y = -20;
+          }
+
+          for (let i = index + 1; i < nodes.length; i += 1) {
+            const other = nodes[i];
+            const dx = node.x - other.x;
+            const dy = node.y - other.y;
+            const distance = Math.hypot(dx, dy);
+            if (distance > 138) continue;
+            const alpha = (1 - distance / 138) * .22;
+            ctx.strokeStyle = `rgba(148, 163, 184, ${alpha})`;
+            ctx.beginPath();
+            ctx.moveTo(node.x, node.y);
+            ctx.lineTo(other.x, other.y);
+            ctx.stroke();
+          }
+
+          if (pointer) {
+            const dx = node.x - pointer.x;
+            const dy = node.y - pointer.y;
+            const distance = Math.hypot(dx, dy);
+            if (distance < 190) {
+              ctx.strokeStyle = `rgba(255, 255, 255, ${(1 - distance / 190) * .18})`;
+              ctx.beginPath();
+              ctx.moveTo(node.x, node.y);
+              ctx.lineTo(pointer.x, pointer.y);
+              ctx.stroke();
+            }
+          }
+
+          ctx.fillStyle = `rgba(${nodePalette[node.hue]}, .78)`;
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        if (!prefersReducedMotion) requestAnimationFrame(drawNetwork);
+      };
+
+      window.addEventListener('resize', resizeCanvas);
+      if (!prefersReducedMotion) {
+        canvas.closest('.hero').addEventListener('pointermove', event => {
+          const rect = canvas.getBoundingClientRect();
+          pointer = { x: event.clientX - rect.left, y: event.clientY - rect.top };
+        });
+        canvas.closest('.hero').addEventListener('pointerleave', () => {
+          pointer = null;
+        });
+      }
+
+      resizeCanvas();
+      drawNetwork();
+    }
+  </script>
+</body>
+</html>
