@@ -1,5 +1,5 @@
 \documentclass[8pt,a4paper]{extarticle}
-\usepackage[top=4mm,bottom=4mm,left=4.5mm,right=4.5mm]{geometry}
+\usepackage[top=4.5mm,bottom=4.5mm,left=5.5mm,right=5.5mm]{geometry}
 \usepackage{fontspec}
 \usepackage{xeCJK}
 \usepackage{xcolor}
@@ -7,6 +7,7 @@
 \usepackage{tikz}
 \usepackage{tabularx}
 \usepackage{array}
+\usepackage[most]{tcolorbox}
 \usepackage[hidelinks]{hyperref}
 
 \pagestyle{empty}
@@ -15,202 +16,275 @@
 \urlstyle{same}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
-\setlength{\fboxsep}{1.1mm}
-\setlength{\fboxrule}{0.32pt}
-\renewcommand{\baselinestretch}{0.92}
+\renewcommand{\baselinestretch}{0.96}
 
-\definecolor{ink}{HTML}{152033}
-\definecolor{muted}{HTML}{506077}
-\definecolor{navy}{HTML}{174C8F}
-\definecolor{line}{HTML}{D5E0EF}
-\definecolor{soft}{HTML}{F6FAFE}
-\definecolor{cyan}{HTML}{0E7490}
-\definecolor{gold}{HTML}{C58A18}
-\definecolor{red}{HTML}{C62828}
-\definecolor{deep}{HTML}{0B1F3A}
+\definecolor{ink}{HTML}{0B1F3A}
+\definecolor{muted}{HTML}{42526B}
+\definecolor{soft}{HTML}{F6FAFF}
+\definecolor{line}{HTML}{D7E3F3}
+\definecolor{blueA}{HTML}{1557C0}
+\definecolor{cyanA}{HTML}{008C95}
+\definecolor{purpleA}{HTML}{6D35B8}
+\definecolor{orangeA}{HTML}{F05A22}
+\definecolor{greenA}{HTML}{079669}
+\definecolor{redA}{HTML}{C62828}
+\definecolor{goldA}{HTML}{D18B00}
 \color{ink}
 
-\newcommand{\hi}[1]{\textcolor{red}{\textbf{#1}}}
-\newcommand{\muted}[1]{\textcolor{muted}{#1}}
-\newcommand{\titleline}[1]{{\color{navy}\bfseries #1}\hfill{\color{gold}\rule{12mm}{0.8pt}}\par\vspace{0.35mm}}
-\newcommand{\card}[1]{\fcolorbox{line}{white}{\begin{minipage}{\dimexpr\linewidth-2\fboxsep-2\fboxrule}#1\end{minipage}}}
-\newcommand{\tag}[1]{\fcolorbox{line}{soft}{\strut\textcolor{navy}{\tiny\bfseries #1}}}
-\newcommand{\role}[2]{\textbf{#1}\par{\tiny\textcolor{muted}{#2}}\vspace{0.35mm}}
-\newcommand{\proj}[3]{%
-  {\tiny\textbf{#1}}\par
-  {\tiny\textcolor{muted}{#2}}\par
-  {\tiny #3}\vspace{0.42mm}
+\tcbset{
+  resumeBox/.style={
+    enhanced,
+    boxrule=.72pt,
+    arc=2mm,
+    left=1.25mm,
+    right=1.25mm,
+    top=.8mm,
+    bottom=.8mm,
+    colback=white,
+    before skip=0pt,
+    after skip=0pt,
+    fontupper=\color{ink}
+  }
 }
-\newcommand{\thumb}[3]{%
+
+\newtcolorbox{colorboxx}[2][]{resumeBox,colframe=#2,#1}
+\newcommand{\hi}[1]{\textcolor{redA}{\textbf{#1}}}
+\newcommand{\muted}[1]{\textcolor{muted}{#1}}
+\newcommand{\sect}[3]{%
+  \noindent{\large\bfseries\textcolor{#2}{#1}}\hspace{1mm}{\large\bfseries #3}\par\vspace{0.45mm}
+}
+\newcommand{\chip}[2]{%
+  \tcbox[
+    enhanced,
+    on line,
+    boxrule=.45pt,
+    arc=1.4mm,
+    left=.9mm,
+    right=.9mm,
+    top=.45mm,
+    bottom=.45mm,
+    colback=#1!7,
+    colframe=#1!70,
+    boxsep=0pt
+  ]{\scriptsize\bfseries\textcolor{#1}{#2}}%
+}
+\newcommand{\point}[2]{%
+  {\scriptsize\textcolor{#1}{\bfseries #2}}\par
+}
+\newcommand{\tinyline}[2]{%
+  {\scriptsize\textbf{#1}}\ {\scriptsize #2}\par
+}
+\newcommand{\proofimg}[3]{%
   \begin{minipage}[t]{#1}
     \centering
-    \fcolorbox{line}{white}{\includegraphics[width=\dimexpr\linewidth-2\fboxsep-2\fboxrule,height=24mm,keepaspectratio]{#2}}\\[-0.15mm]
-    {\tiny\bfseries #3}
+    \fcolorbox{line}{white}{\includegraphics[width=\dimexpr\linewidth-2\fboxsep-2\fboxrule,height=20mm,keepaspectratio]{#2}}\\[-.3mm]
+    {\scriptsize\bfseries #3}
   \end{minipage}
 }
 
 \begin{document}
 \begin{tikzpicture}[remember picture,overlay]
   \fill[soft] (current page.south west) rectangle (current page.north east);
-  \foreach \x in {0,7,...,210} \draw[line,opacity=.34,line width=.16pt] ([xshift=\x mm]current page.south west) -- ([xshift=\x mm]current page.north west);
-  \foreach \y in {0,7,...,297} \draw[line,opacity=.34,line width=.16pt] ([yshift=\y mm]current page.south west) -- ([yshift=\y mm]current page.south east);
-  \draw[cyan,opacity=.26,line width=1pt] ([xshift=-8mm,yshift=245mm]current page.south west) -- ([xshift=218mm,yshift=285mm]current page.south west);
-  \draw[gold,opacity=.28,line width=.9pt] ([xshift=118mm,yshift=-5mm]current page.south west) -- ([xshift=218mm,yshift=48mm]current page.south west);
-  \draw[red,opacity=.13,line width=1pt] ([xshift=167mm,yshift=294mm]current page.south west) -- ([xshift=210mm,yshift=252mm]current page.south west);
+  \foreach \x in {0,9,...,210} \draw[line,opacity=.34,line width=.16pt] ([xshift=\x mm]current page.south west) -- ([xshift=\x mm]current page.north west);
+  \foreach \y in {0,9,...,297} \draw[line,opacity=.34,line width=.16pt] ([yshift=\y mm]current page.south west) -- ([yshift=\y mm]current page.south east);
+  \fill[blueA!12] ([xshift=136mm,yshift=271mm]current page.south west) .. controls +(18mm,18mm) and +(-10mm,18mm) .. ([xshift=206mm,yshift=265mm]current page.south west) -- ([xshift=206mm,yshift=297mm]current page.south west) -- ([xshift=146mm,yshift=297mm]current page.south west) -- cycle;
+  \draw[blueA,opacity=.16,line width=1.2pt] ([xshift=7mm,yshift=244mm]current page.south west) -- ([xshift=205mm,yshift=284mm]current page.south west);
+  \draw[purpleA,opacity=.18,line width=1pt] ([xshift=164mm,yshift=294mm]current page.south west) -- ([xshift=210mm,yshift=252mm]current page.south west);
 \end{tikzpicture}
 
-\begin{minipage}[t]{25mm}
-  \includegraphics[width=25mm,height=27mm,keepaspectratio]{assets/profile-photo.png}
+\begin{minipage}[t]{36mm}
+  \begin{colorboxx}[height=43mm,valign=center,halign=center]{blueA}
+    \includegraphics[width=31mm,height=39mm,keepaspectratio]{assets/profile-photo.png}
+  \end{colorboxx}
 \end{minipage}\hfill
-\begin{minipage}[t]{115mm}
-  {\fontsize{25}{26}\selectfont\color{navy}\bfseries 呂哲言}\par\vspace{0.25mm}
-  {\large\bfseries AI 應用工程｜LLM / RAG 系統｜NLP / 多模態 AI}\par
-  {\small 淡江大學資訊工程學系碩士班準畢業。強項是把模型、資料庫、API、語音與影像流程接成可展示、可說明、可交付的 AI 應用。}
-\end{minipage}\hfill
-\begin{minipage}[t]{55mm}
-  \card{
-    {\bfseries\color{navy}聯絡與作品}\par
-    {\scriptsize Email：a28473458@gmail.com\par
-    LINE ID：david891205\par
-    作品集：\href{https://david891205.github.io/resume-site/}{david891205.github.io/resume-site}\par
-    方向：AI 應用 / LLM / RAG / NLP / ML}
+\begin{minipage}[t]{103mm}
+  {\fontsize{25}{26}\selectfont\bfseries\textcolor{ink}{呂哲言}}\par\vspace{.3mm}
+  {\fontsize{14}{16}\selectfont\bfseries\textcolor{blueA}{AI / LLM / RAG / Multimodal AI Engineer}}\par
+  {\small 淡江大學資訊工程學系 \textbf{學士畢業｜碩士畢業}}\par\vspace{1.4mm}
+  \tinyline{Email：}{a28473458@gmail.com}
+  \tinyline{LINE ID：}{david891205}
+  \tinyline{作品集：}{\href{https://david891205.github.io/resume-site/}{david891205.github.io/resume-site}}
+  \vspace{1mm}
+  {\scriptsize\bfseries
+    \textcolor{blueA}{專長大型語言模型、RAG、AI Agent、多模態 AI 與 NLP 系統開發}\par
+    \textcolor{ink}{具 \hi{產學合作}、\hi{競賽獲獎}、\hi{企業導入} 與工作坊教學經驗}
   }
+\end{minipage}\hfill
+\begin{minipage}[t]{45mm}
+  \begin{colorboxx}[height=43mm,valign=center]{purpleA}
+    \includegraphics[width=\linewidth,height=22mm,keepaspectratio]{assets/esgpb-chatbot-screenshot.png}\par\vspace{.6mm}
+    {\scriptsize\bfseries\textcolor{purpleA}{可展示系統}}\par
+    {\scriptsize ESGPB 商家推薦助理、智慧旅遊、會議秘書、醫療工作坊與鐵道 AI 技術服務。}
+  \end{colorboxx}
 \end{minipage}
 
-\vspace{1.1mm}
-\card{
-  {\small
-  \hi{重點摘要：} 具備 \hi{產學合作}、\hi{國科會 / 科技部案}、\hi{競賽獲獎}、\hi{代表領獎} 與 \hi{可展示系統} 經驗；專案橫跨 ESG 商家推薦、智慧旅遊、校園安全、語音學習、智慧照護、鐵道巡檢、醫療工作坊與會議自動化。}
-}
+\vspace{1.25mm}
+\begin{tabularx}{\linewidth}{@{}XXXX@{}}
+\begin{colorboxx}[height=14mm,valign=center]{blueA}
+  {\large\bfseries\textcolor{blueA}{2025}}\par
+  {\scriptsize 台灣服務創新獎｜\hi{代表領獎}}
+\end{colorboxx}
+&
+\begin{colorboxx}[height=14mm,valign=center]{cyanA}
+  {\large\bfseries\textcolor{cyanA}{InnoServe}}\par
+  {\scriptsize 商業發展治理創新組｜\hi{第三名}}
+\end{colorboxx}
+&
+\begin{colorboxx}[height=14mm,valign=center]{purpleA}
+  {\large\bfseries\textcolor{purpleA}{AI 應用鬥智賽}}\par
+  {\scriptsize Deep龍力｜\hi{佳作}}
+\end{colorboxx}
+&
+\begin{colorboxx}[height=14mm,valign=center]{orangeA}
+  {\large\bfseries\textcolor{orangeA}{5+}}\par
+  {\scriptsize 產學 / 研究 / 教學 AI 專案}
+\end{colorboxx}
+\end{tabularx}
 
-\vspace{1.1mm}
-\begin{minipage}[t]{60mm}
-  \card{
-    \titleline{應徵定位}
-    \role{AI 應用 / LLM / RAG 工程師}{能把模型接到資料、檢索、對話記憶、API 與使用者流程。}
-    \role{NLP / 機器學習工程師}{有對話系統、模型訓練、評估、錯誤分析與研究實作經驗。}
-    \role{後端 AI 系統整合}{熟悉 Docker、資料庫分層、RESTful API 與展示系統串接。}
-  }
+\vspace{1.25mm}
+\begin{minipage}[t]{99mm}
+  \begin{colorboxx}[height=38mm]{blueA}
+    \sect{1}{blueA}{核心技能}
+    \chip{blueA}{Python}\hspace{.6mm}
+    \chip{blueA}{PyTorch}\hspace{.6mm}
+    \chip{blueA}{Transformers}\hspace{.6mm}
+    \chip{blueA}{Hugging Face}\hspace{.6mm}
+    \chip{cyanA}{RAG}\hspace{.6mm}
+    \chip{cyanA}{LangChain}\hspace{.6mm}
+    \chip{cyanA}{LangGraph}\hspace{.6mm}
+    \chip{cyanA}{OpenAI API}\hspace{.6mm}
+    \chip{orangeA}{FastAPI}\hspace{.6mm}
+    \chip{orangeA}{Docker}\hspace{.6mm}
+    \chip{orangeA}{Qdrant}\hspace{.6mm}
+    \chip{orangeA}{Redis}\hspace{.6mm}
+    \chip{orangeA}{PostgreSQL}\hspace{.6mm}
+    \chip{purpleA}{Whisper}\hspace{.6mm}
+    \chip{purpleA}{OpenCV}\hspace{.6mm}
+    \chip{purpleA}{Blip2}\hspace{.6mm}
+    \chip{purpleA}{Pose Estimation}\hspace{.6mm}
+    \chip{purpleA}{3DCNN}\hspace{.6mm}
+    \chip{greenA}{Multimodal Fusion}\hspace{.6mm}
+    \chip{greenA}{Error Analysis}
+    \vspace{.6mm}
 
-  \vspace{0.9mm}
-  \card{
-    \titleline{技術堆疊}
-    {\tiny
-    \textbf{AI / ML：}\tag{Python}\ \tag{PyTorch}\ \tag{Transformers}\ \tag{Hugging Face}\ \tag{BERT / T5}\ \tag{DPO}\ \tag{Contrastive Learning}\par\vspace{0.65mm}
-    \textbf{LLM / RAG：}\tag{OpenAI API}\ \tag{Azure OpenAI}\ \tag{Embedding}\ \tag{Qdrant}\ \tag{LangChain}\ \tag{LangGraph}\ \tag{GPT Realtime}\par\vspace{0.65mm}
-    \textbf{資料 / 後端：}\tag{FastAPI}\ \tag{Flask}\ \tag{Docker}\ \tag{Redis}\ \tag{PostgreSQL}\ \tag{Neo4j}\ \tag{Git / Linux}\par\vspace{0.65mm}
-    \textbf{多模態視覺：}\tag{Computer Vision}\ \tag{OpenCV}\ \tag{Blip2}\ \tag{Pose Estimation}\ \tag{3DCNN}\ \tag{Multimodal Fusion}\par\vspace{0.65mm}
-    \textbf{語音與研究：}\tag{Whisper}\ \tag{Azure Speech}\ \tag{STT / TTS}\ \tag{MFCC}\ \tag{Ablation}\ \tag{Error Analysis}}
-  }
-
-  \vspace{0.9mm}
-  \card{
-    \titleline{獲獎與公開成果}
-    \proj{2025 InnoServe｜商業發展治理創新組 \hi{第三名}}{具意圖探測的多模態旅遊問答服務系統}{把旅遊資料、語音、圖片、知識庫與行程建議整合成可展示系統。}
-    \proj{2024 年度 AI 應用鬥智賽｜Deep龍力｜\hi{佳作}}{與人工智能股份有限公司合作}{以 Llama 為例處理 LLM 幻覺、成本與特殊需求。}
-    \proj{2025 第十屆台灣服務創新獎｜\hi{代表領獎}}{AIIT 淡江大學人工智慧與產業技術實驗室}{代表實驗室領取 AI 應用相關服務創新成果。}
-  }
-
-  \vspace{0.9mm}
-  \card{
-    \titleline{我能交付}
-    {\tiny
-    1. 釐清資料來源、使用者流程與現場限制。\par
-    2. 建置 RAG、向量資料庫、短期 / 長期記憶與後端 API。\par
-    3. 串接語音、影像、文字輸入，整理成可展示系統。\par
-    4. 留下架構圖、簡報、截圖、展示影片與可查連結。}
-  }
+    {\scriptsize
+    \textbf{能交付：}資料清理、向量檢索、對話記憶、語音 / 圖片輸入、後端 API、展示流程與技術文件。}
+  \end{colorboxx}
 \end{minipage}\hfill
-\begin{minipage}[t]{72mm}
-  \card{
-    \titleline{代表專案與角色}
-    \proj{好奇兄弟雲端｜ESGPB 虛擬人商家推薦助理}{\hi{產學合作}｜語音 / 文字 / 拍照互動｜商家資料與優惠推薦}{協助把合作方商家資料庫 API、Qdrant 向量檢索、Redis 即時上下文、PostgreSQL 偏好紀錄與 GPT Realtime 語音互動串成可展示流程；並以提示工程搭配 Sora 生成商家虛擬形象。}
-    \proj{2025 InnoServe｜商業發展治理創新組 \hi{第三名}｜具意圖探測的多模態旅遊問答服務系統}{多模態旅遊問答｜行程建議｜簡報可預覽}{整合 Neo4j、Qdrant、Redis、PostgreSQL、Whisper、Blip2、LLM 與外部 API，支援語音、文字與圖片查詢旅遊資訊。}
-    \proj{112年度「產學合作計畫-基於深度學習之霸凌偵測及專注力辨識系統」【科技部案】}{AIIT × 精英國際教育集團｜\hi{國科會 / 科技部案}}{使用影像、聲音、語調等多模態資料與模型融合判斷疑似霸凌與專注力狀態；涵蓋 STT、BERT、MFCC、CNN/LSTM、3DCNN 等方向。}
-    \proj{2024 AI 應用鬥智賽｜以 Llama 解決 LLM 幻覺、成本與風格需求}{Deep龍力｜人工智能股份有限公司｜\hi{佳作}}{設計 RAG、BM25、Cosine Similarity、實體 / 語意分析與交叉比對流程，讓回答回到可驗證資料並降低 API 成本壓力。}
-    \proj{委託應用AI建構鐵道專業服務及巡檢數位轉型建置之規劃、基本設計、細部設計審查、監督審驗(含鐵道領域專業顧問)技術服務}{台灣世曦工程｜標案技術服務}{協助整理鐵道知識庫、影像辨識、巡檢資料流、設計審查與顧問支援內容，轉成標案可讀架構。}
-    \proj{全域意境感知智慧會議秘書系統}{會前、會中、會後自動化｜影片可看}{使用 Whisper、說話者分離、Sentence-BERT、HDBSCAN、TextRank、LLM 摘要與 n8n / Webhook 做會議摘要與任務追蹤。}
-  }
-
-  \vspace{0.9mm}
-  \card{
-    \titleline{系統架構經驗}
-    {\tiny
-    \textbf{資料層：}Qdrant 向量檢索、Redis 短期記憶、PostgreSQL 長期紀錄、Neo4j 知識圖譜。\par
-    \textbf{互動層：}文字、語音、圖片、多語言入口與虛擬人視窗；可接商家資料庫或外部搜尋 API。\par
-    \textbf{交付層：}把研究模型、後端服務、展示流程、簡報與照片證據整理成面試可檢視成果。}
-  }
-
-  \vspace{0.9mm}
-  \card{
-    \titleline{實作責任}
-    {\tiny
-    \textbf{資料：}整理商家、旅遊、醫療、鐵道與課程資料，判斷結構化資料、向量檢索或知識圖譜的使用方式。\par
-    \textbf{模型：}依任務選擇 LLM、Embedding、語音、影像或序列模型，並設計評估與錯誤分析方式。\par
-    \textbf{系統：}把模型輸出接到 API、資料庫、使用者介面、簡報與展示影片，不只停在 Notebook。}
-  }
-  \vspace{0.9mm}
-  \card{
-    \titleline{代表專案與計畫總覽}
-    {\tiny
-    \textbf{\hi{國科會 / 科技部案}：}112 霸凌偵測及專注力辨識、113 AI 智慧英語學習、智慧居家養老規律性與異常辨識、高齡者智慧健康管理。\\[-0.25mm]
-    \textbf{\hi{產學合作}：}ESGPB 商家推薦助理、Deep 龍力 LLM 幻覺與成本議題、世曦工程鐵道巡檢數位轉型規劃。\\[-0.25mm]
-    \textbf{\hi{可展示系統}：}多模態旅遊問答、商家虛擬人推薦助理、會議秘書摘要與查詢流程、醫療工作坊 AI 流程示範。\\[-0.25mm]
-    \textbf{我在其中負責：}資料串接、模型流程、RAG / 向量檢索、語音或影像模組整合、API 與展示流程整理。
-    }
-  }
-\end{minipage}\hfill
-\begin{minipage}[t]{60mm}
-  \card{
-    \titleline{研究 / 計畫 / 教學}
-    \proj{113年度「產學合作計畫—AI智慧英語學習系統之開發及融入精準學習之成效」【科技部案】}{語音示範、發音評分、對話評分}{使用 Azure TTS、Azure Speech Service、Azure OpenAI 支援英語學習回饋。}
-    \proj{智慧居家養老~基於機器學習與深度學習的規律性分析、行為辨識及異常狀態辨識研究與實作}{國科會研究計畫}{以行為序列、規律性分析、異常偵測與照護提醒整理 AI 輔助照護流程。}
-    \proj{高齡者智慧健康管理：基於 AI 姿勢分析與知識圖譜問答【科技部案】}{姿勢分析、健康知識圖譜、RAG 問答}{把姿勢錯誤偵測與健康知識問答接到高齡者智慧健康管理場域。}
-    \proj{榮總合作工作坊｜AI 輔助預立醫療流程與醫療紀錄}{醫療工作坊｜專科護理師}{協助授課與實作，教專科護理師用 ChatGPT / 生成式 AI 撰寫預立醫療流程與醫療紀錄草稿。}
-    \proj{陽明交通大學｜半導體 AI 與 ChatGPT 應用班}{第一梯次、第二梯次}{支援課程案例整理，把生成式 AI、提示設計、資料分析與流程自動化轉成產業可操作練習。}
-    \proj{碩士論文研究}{開放域目標導向主動對話}{聚焦對話規劃、回應生成、知識選擇、模型訓練與可重現評估。}
-  }
-
-  \vspace{0.9mm}
-  \card{
-    \titleline{可查證據}
-    {\tiny
-    \textbf{公開連結：}個人網站、InnoServe 官網、ASIT 公開頁、淡江計畫頁、淡江時報、合作公司 104、標案頁。\par
-    \textbf{展示材料：}智慧旅遊 PPT 預覽、會議諸葛影片、ESGPB 截圖、榮總照片、世曦合照、獎狀與得獎名單。\par
-    \textbf{面試切入點：}可從任一專案追問資料來源、模型流程、系統架構、限制與我負責的工作。}
-  }
-
-  \vspace{0.9mm}
-  \card{
-    \titleline{面試可追問}
-    {\tiny
-    \textbf{ESGPB：}商家資料 API 如何接到推薦流程、對話記憶如何分層、語音與拍照如何進入互動。\par
-    \textbf{旅遊 AI：}Neo4j、Qdrant、Redis、PostgreSQL 各自負責什麼，以及圖片 / 語音如何轉成查詢。\par
-    \textbf{研究計畫：}多模態訊號如何融合、模型如何評估、何處是資料與場域限制。}
-  }
-
-  \vspace{0.9mm}
-  \card{
-    \titleline{面試官可快速核對}
-    {\tiny
-    \textbf{作品集：}網站內可看專案摘要、影片、PPT 預覽、PDF 與合作照片，不需要只靠口頭說明。\\[-0.25mm]
-    \textbf{現場可問：}ESGPB 如何把商家資料接到推薦流程、InnoServe 系統如何處理圖片與語音、國科會案如何做多模態判斷。\\[-0.25mm]
-    \textbf{適合職務：}AI 應用工程師、LLM / RAG 工程師、NLP 工程師、後端 AI 系統整合、Computer Vision / 多模態應用。
-    }
-  }
+\begin{minipage}[t]{94mm}
+  \begin{colorboxx}[height=38mm]{cyanA}
+    \sect{2}{cyanA}{學歷與研究}
+    {\small\bfseries 淡江大學｜資訊工程學系 學士畢業、碩士畢業}\par\vspace{.45mm}
+    {\scriptsize
+    \textbf{碩士論文方向：}開放域目標導向主動對話，研究模型如何依對話歷史、候選知識與目標推進回應。}\par\vspace{.65mm}
+    {\scriptsize
+    \textbf{研究重點：}BART、GPT-2、DPO、對比學習、Dialogue Planning、Response Generation。}\par\vspace{.65mm}
+    {\scriptsize
+    \textbf{實作重點：}資料處理、模型訓練、評估指標、錯誤分析與可重現實驗。}
+  \end{colorboxx}
 \end{minipage}
 
-\vspace{1.0mm}
-\card{
-  \titleline{作品證據與可查資料}
-  \thumb{61mm}{assets/esgpb-chatbot-screenshot.png}{ESGPB 商家推薦助理}\hfill
-  \thumb{61mm}{assets/innoserve-travel-award.jpg}{InnoServe \hi{第三名}}\hfill
-  \thumb{61mm}{assets/aigo-deeplong-award.jpg}{Deep龍力 \hi{佳作}}\par\vspace{0.45mm}
-  \thumb{61mm}{assets/service-innovation-award-list.jpg}{服務創新獎得獎名單}\hfill
-  \thumb{61mm}{assets/vgh-ai-workshop-speaking.jpg}{榮總工作坊授課}\hfill
-  \thumb{61mm}{assets/ceci-ai-railway-visit.png}{世曦工程交流}
-}
+\vspace{1.25mm}
+\begin{colorboxx}{purpleA}
+  \sect{3}{purpleA}{代表專案}
+  \begin{tabularx}{\linewidth}{@{}X X X X@{}}
+  \begin{colorboxx}[height=34mm]{blueA}
+    {\small\bfseries 全域意境感知智慧會議秘書系統}\par
+    {\scriptsize AIGO 佳作相關技術文件}\par\vspace{.8mm}
+    {\scriptsize
+    技術：Whisper、說話者分離、Sentence-BERT、TextRank、LLM、n8n / Webhook。\par
+    內容：會前資料包、會中摘要、會後任務追蹤。}
+  \end{colorboxx}
+  &
+  \begin{colorboxx}[height=34mm]{cyanA}
+    {\small\bfseries ESGPB 虛擬人商家推薦助理}\par
+    {\scriptsize 好奇兄弟雲端合作}\par\vspace{.8mm}
+    {\scriptsize
+    技術：RAG、Qdrant、Redis、PostgreSQL、GPT Realtime、Sora。\par
+    內容：商家資料 API、優惠推薦、語音 / 文字 / 拍照互動。}
+  \end{colorboxx}
+  &
+  \begin{colorboxx}[height=34mm]{purpleA}
+    {\small\bfseries InnoServe 第三名｜多模態旅遊 AI Agent}\par
+    {\scriptsize 具意圖探測的多模態旅遊問答服務系統}\par\vspace{.8mm}
+    {\scriptsize
+    技術：Neo4j、Qdrant、Redis、PostgreSQL、Whisper、Blip2、LLM。\par
+    內容：行程問答、導遊減勞、旅後分析。}
+  \end{colorboxx}
+  &
+  \begin{colorboxx}[height=34mm]{orangeA}
+    {\small\bfseries 112 霸凌偵測及專注力辨識系統}\par
+    {\scriptsize 精英國際教育集團｜科技部案}\par\vspace{.8mm}
+    {\scriptsize
+    技術：STT、BERT、MFCC、CNN/LSTM、3DCNN、多模態融合。\par
+    內容：疑似霸凌與專注力狀態偵測。}
+  \end{colorboxx}
+  \end{tabularx}
+\end{colorboxx}
 
-\vspace{0.6mm}
-{\tiny\textcolor{muted}{完整作品、影片、簡報預覽、PPT 與公開連結：\href{https://david891205.github.io/resume-site/}{https://david891205.github.io/resume-site/} \hfill Email：a28473458@gmail.com｜LINE ID：david891205}}
+\vspace{1.25mm}
+\begin{minipage}[t]{99mm}
+  \begin{colorboxx}[height=45mm]{orangeA}
+    \sect{4}{orangeA}{獲獎與成果}
+    {\scriptsize
+    \textbf{2025 InnoServe｜商業發展治理創新組 \hi{第三名}}\par
+    作品：具意圖探測的多模態旅遊問答服務系統。\par\vspace{.8mm}
+    \textbf{2024 年度 AI 應用鬥智賽｜Deep龍力 \hi{佳作}}\par
+    議題：以 Llama 為例解決 LLM 幻覺問題、節省成本及特殊需求。\par\vspace{.8mm}
+    \textbf{2025 第十屆台灣服務創新獎｜\hi{代表領獎}}\par
+    代表 AIIT 淡江大學人工智慧與產業技術實驗室領取 AI 應用相關成果。\par\vspace{.55mm}
+    \textbf{國科會 / 科技部案與產學合作 AI 專案 5+}\par
+    教育安全、英語學習、智慧照護、高齡健康、ESG 商家推薦、鐵道巡檢與醫療工作坊。\par\vspace{.55mm}
+    \textbf{面試可直接看：}獎狀、公開頁、ESGPB 截圖、PPT 預覽、展示影片、活動照片與合作連結。}
+  \end{colorboxx}
+\end{minipage}\hfill
+\begin{minipage}[t]{94mm}
+  \begin{colorboxx}[height=45mm]{greenA}
+    \sect{5}{greenA}{研究 / 計畫 / 教學}
+    {\scriptsize
+    \textbf{國科會 / 科技部案：}\par
+    112年度「產學合作計畫-基於深度學習之霸凌偵測及專注力辨識系統」【科技部案】。\par
+    113年度「產學合作計畫—AI智慧英語學習系統之開發及融入精準學習之成效」【科技部案】。\par
+    智慧居家養老~基於機器學習與深度學習的規律性分析、行為辨識及異常狀態辨識研究與實作。\par
+    高齡者智慧健康管理：基於 AI 姿勢分析與知識圖譜問答【科技部案】。\par\vspace{.45mm}
+    \textbf{工作坊與課程：}榮總 AI 輔助預立醫療流程工作坊、陽明交通大學半導體 AI 與 ChatGPT 應用班。\par\vspace{.45mm}
+    \textbf{可追問能力：}多模態資料融合、RAG 架構、語音互動、API 串接、醫療 / 教育 / 工程場域文件整理。}
+  \end{colorboxx}
+\end{minipage}
+
+\vspace{1.25mm}
+\begin{colorboxx}{blueA}
+  \sect{6}{blueA}{企業合作與證據}
+  \begin{minipage}[t]{78mm}
+    {\scriptsize
+    \textbf{台灣世曦工程：}協助「委託應用AI建構鐵道專業服務及巡檢數位轉型建置之規劃、基本設計、細部設計審查、監督審驗(含鐵道領域專業顧問)技術服務」內容整理。\par
+    \textbf{可查資料：}作品集內有獎狀、ESGPB 截圖、簡報預覽、會議諸葛影片、榮總工作坊照片、世曦工程合照與公開連結。\par\vspace{.8mm}
+    \textbf{完整作品集：}代表專案包含需求、我的角色、技術流程、Demo / 獎項 / 照片證據。}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{111mm}
+    \proofimg{34mm}{assets/innoserve-travel-award.jpg}{InnoServe}\hfill
+    \proofimg{34mm}{assets/aigo-deeplong-award.jpg}{Deep龍力}\hfill
+    \proofimg{34mm}{assets/service-award-stage.jpg}{服務創新獎}\par\vspace{.7mm}
+    \proofimg{34mm}{assets/esgpb-chatbot-screenshot.png}{ESGPB}\hfill
+    \proofimg{34mm}{assets/vgh-ai-workshop-speaking.jpg}{榮總工作坊}\hfill
+    \proofimg{34mm}{assets/ceci-ai-railway-visit.png}{世曦工程}
+  \end{minipage}
+\end{colorboxx}
+
+\vspace{1.1mm}
+\begin{tcolorbox}[
+  enhanced,
+  boxrule=0pt,
+  arc=0mm,
+  left=2mm,
+  right=2mm,
+  top=1mm,
+  bottom=1mm,
+  colback=blueA,
+  coltext=white
+]
+  {\large\bfseries 研究 × 實作 × 產學合作 × 企業導入}\hfill
+  {\small 用 AI 驅動價值，以能被展示與追問的成果說話}
+\end{tcolorbox}
+
 \end{document}
