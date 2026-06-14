@@ -1,6 +1,13 @@
 # Public site files are index.html, README.md, and assets/.
 resume-site-public.zip
 
+# LaTeX build artifacts.
+*.aux
+*.log
+*.out
+*.xdv
+*.synctex.gz
+
 # Keep raw source documents and original images local.
 *.docx
 *.pptx

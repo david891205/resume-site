@@ -74,12 +74,22 @@
       content: "";
       position: absolute;
       inset: 0;
-        background-image:
-          linear-gradient(rgba(37, 99, 235, .06) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(37, 99, 235, .045) 1px, transparent 1px);
+      background-image:
+        linear-gradient(rgba(37, 99, 235, .06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37, 99, 235, .045) 1px, transparent 1px);
       background-size: 52px 52px;
-        mask-image: linear-gradient(180deg, rgba(0, 0, 0, .55), transparent 72%);
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, .55), transparent 72%);
       animation: gridDrift 24s linear infinite;
+    }
+
+    .ambient::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(112deg, transparent 0 18%, rgba(6, 182, 212, .08) 18.2% 18.45%, transparent 18.65%),
+        linear-gradient(148deg, transparent 0 64%, rgba(249, 115, 22, .08) 64.1% 64.35%, transparent 64.55%);
+      opacity: .65;
     }
 
     .scroll-progress {
@@ -528,7 +538,7 @@
       overflow: hidden;
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 22px;
+      padding: 18px;
       background: #fff;
       box-shadow: var(--shadow-soft);
       transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
@@ -626,7 +636,7 @@
     }
 
     .section-block {
-      margin-bottom: 42px;
+      margin-bottom: 34px;
       scroll-margin-top: 92px;
     }
 
@@ -635,9 +645,9 @@
       align-items: end;
       justify-content: space-between;
       gap: 18px;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
       border-bottom: 1px solid var(--line);
-      padding-bottom: 14px;
+      padding-bottom: 12px;
     }
 
     .section-head h2 {
@@ -660,6 +670,11 @@
       margin-bottom: 10px;
       border-radius: 99px;
       background: linear-gradient(90deg, var(--blue), var(--cyan), var(--orange), var(--rose));
+    }
+
+    .mark-red {
+      color: #c0262d;
+      font-weight: 900;
     }
 
     .summary-copy {
@@ -759,7 +774,8 @@
       justify-content: center;
       gap: 6px;
       min-height: 36px;
-      border-color: rgba(37, 99, 235, .32);
+      border: 1px solid rgba(37, 99, 235, .34);
+      border-radius: var(--radius);
       padding: 8px 12px;
       color: var(--blue);
       background: linear-gradient(180deg, #fff, #eff6ff);
@@ -830,7 +846,7 @@
     .project-card {
       position: relative;
       overflow: hidden;
-      padding: 20px;
+      padding: 18px 18px 18px 20px;
       transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, opacity .2s ease;
     }
 
@@ -1108,12 +1124,13 @@
     .evidence-card img {
       width: 100%;
       aspect-ratio: 16 / 10;
-      object-fit: cover;
-      background: #e5e7eb;
+      object-fit: contain;
+      padding: 8px;
+      background: #f8fafc;
     }
 
     .evidence-card.portrait img {
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 3 / 4;
       object-fit: contain;
       padding: 10px;
       background: #f8fafc;
@@ -1159,7 +1176,7 @@
 
     .award-card img {
       width: 100%;
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 3 / 4;
       object-fit: contain;
       padding: 10px;
       background: #f8fafc;
@@ -1476,8 +1493,8 @@
           <button class="btn" type="button" onclick="window.print()">列印履歷</button>
         </div>
         <div class="proof-stats" aria-label="履歷重點">
-          <div class="proof-stat"><b>產學合作</b><span>ESG 商家、教育、鐵道、智慧照護等場域</span></div>
-          <div class="proof-stat"><b>競賽紀錄</b><span>InnoServe、AI 應用鬥智賽、台灣服務創新獎</span></div>
+          <div class="proof-stat"><b><span class="mark-red">產學合作</span></b><span>ESG 商家、教育、鐵道、智慧照護等場域</span></div>
+          <div class="proof-stat"><b>競賽紀錄</b><span>InnoServe <span class="mark-red">第三名</span>、AI 應用鬥智賽 <span class="mark-red">佳作</span>、台灣服務創新獎</span></div>
           <div class="proof-stat"><b>RAG / Agent</b><span>向量檢索、對話記憶、API 串接與任務流程</span></div>
           <div class="proof-stat"><b>教學工作坊</b><span>半導體 AI 課程、榮總醫療 AI 工作坊</span></div>
         </div>
@@ -1548,8 +1565,8 @@
           <div class="section-head">
             <div>
               <div class="accent-line" aria-hidden="true"></div>
-              <h2>技術能力</h2>
-              <p>以下整理目前最常使用的能力群，保留英文關鍵字並補上台灣職缺常見的繁體中文說法。</p>
+              <h2>技術堆疊與實作能力</h2>
+              <p>把模型、資料、API 與使用者流程接成可展示系統；同時保留研究訓練中的資料處理、模型評估與錯誤分析能力。</p>
             </div>
           </div>
           <div class="skills-grid">
@@ -1607,8 +1624,11 @@
             </article>
             <article class="skill-card">
               <div class="skill-icon" aria-hidden="true">CV</div>
-              <h3>Multimodal AI｜語音與多模態</h3>
+              <h3>Multimodal Vision / Audio｜多模態視覺與語音</h3>
               <div class="skill-tags">
+                <span class="skill-tag">Computer Vision 影像辨識</span>
+                <span class="skill-tag">OpenCV 影像處理</span>
+                <span class="skill-tag">Blip2 圖像理解</span>
                 <span class="skill-tag">Whisper 語音辨識</span>
                 <span class="skill-tag">Azure Speech 語音服務</span>
                 <span class="skill-tag">STT / TTS 語音轉文字與合成</span>
@@ -1616,6 +1636,7 @@
                 <span class="skill-tag">CNN / LSTM 序列模型</span>
                 <span class="skill-tag">3DCNN 影片動作特徵</span>
                 <span class="skill-tag">Pose Estimation 姿態估計</span>
+                <span class="skill-tag">Multimodal Fusion 多模態融合</span>
               </div>
             </article>
             <article class="skill-card">
@@ -1638,14 +1659,14 @@
             <div>
               <div class="accent-line" aria-hidden="true"></div>
               <h2>能力與實作重點</h2>
-              <p>以下整理我目前最常使用、也有實作案例支撐的能力。</p>
+              <p>保留能拿出作品、照片、簡報或文件說明的經驗，讓面試官能快速判斷我實際做過哪些事。</p>
             </div>
           </div>
           <div class="highlight-grid">
             <article class="highlight-card" style="--accent-color: var(--blue)">
               <span class="highlight-kicker">Industry AI</span>
               <h3>產學合作與場域需求</h3>
-              <p>參與精英國際教育、好奇兄弟雲端、世曦工程等合作或文件規劃，題目涵蓋教育安全、商家推薦、智慧照護與鐵道巡檢。</p>
+              <p>參與 <span class="mark-red">精英國際教育</span>、<span class="mark-red">好奇兄弟雲端</span>、<span class="mark-red">世曦工程</span>等合作或文件規劃，題目涵蓋教育安全、商家推薦、智慧照護與鐵道巡檢。</p>
             </article>
             <article class="highlight-card" style="--accent-color: var(--cyan)">
               <span class="highlight-kicker">LLM Stack</span>
@@ -1754,7 +1775,7 @@
             <div>
               <div class="accent-line" aria-hidden="true"></div>
               <h2>專案經歷</h2>
-              <p>以下以實際參與內容整理，保留合作來源與技術重點。</p>
+              <p>每張卡保留我參與的角色、接觸的資料或流程、使用技術與可查連結。</p>
             </div>
           </div>
           <div class="project-toolbar">
@@ -2023,7 +2044,7 @@
             <aside class="slide-side" aria-label="簡報控制">
               <span class="slide-counter" id="travelSlideCounter">第 1 / 40 張</span>
               <h3>智慧旅遊作品簡報</h3>
-              <p>使用下方按鈕切換投影片。此預覽由本機 PPT 匯出為圖片，訪客不下載檔案也能先查看內容。</p>
+              <p>可直接翻閱 40 張投影片，快速了解系統架構、資料流、多模態輸入與展示流程。</p>
               <div class="slide-controls">
                 <button class="slide-control" type="button" id="travelSlidePrev">上一張</button>
                 <button class="slide-control" type="button" id="travelSlideNext">下一張</button>
@@ -2073,7 +2094,7 @@
             <div>
               <div class="accent-line" aria-hidden="true"></div>
               <h2>活動與作品紀錄</h2>
-              <p>照片下方補上場合與參與內容，方便辨識每張圖的意義。</p>
+              <p>每張照片對應實際合作、授課、獲獎或系統展示，方便快速核對經歷脈絡。</p>
             </div>
           </div>
           <div class="evidence-grid">
@@ -2101,7 +2122,7 @@
             <article class="evidence-card">
               <img src="assets/service-award-stage.jpg" alt="2025 第十屆台灣服務創新獎頒獎現場照片" loading="lazy" />
               <div class="evidence-body">
-                <h3>代表 AIIT 領獎現場</h3>
+                <h3><span class="mark-red">代表 AIIT 領獎</span>現場</h3>
                 <p>頒獎現場照片。當天代表 AIIT 上台領取 AI 應用相關獎項，作為實驗室對外服務創新成果紀錄。</p>
                 <div class="source-row">
                   <a class="source-link" href="https://www.asit.org.tw/2025/10/31/12561/" target="_blank" rel="noreferrer">ASIT 公開頁</a>
@@ -2136,8 +2157,8 @@
             <article class="evidence-card portrait">
               <img src="assets/innoserve-travel-award.jpg" alt="InnoServe 2025 第三名獎狀，作品為具意圖探測的多模態旅遊問答服務系統" loading="lazy" />
               <div class="evidence-body">
-                <h3>InnoServe 第三名獎狀</h3>
-                <p>第 30 屆 InnoServe 第三名獎狀，對應「具意圖探測的多模態旅遊問答服務系統」。</p>
+                <h3>InnoServe <span class="mark-red">第三名</span>獎狀</h3>
+                <p>第 30 屆 InnoServe 商業發展治理創新組第三名，作品為「具意圖探測的多模態旅遊問答服務系統」。</p>
                 <div class="source-row">
                   <a class="source-link" href="https://innoserve.tca.org.tw/" target="_blank" rel="noreferrer">InnoServe 官網</a>
                   <a class="source-link" href="#deck">簡報預覽</a>
@@ -2152,16 +2173,16 @@
             <div>
               <div class="accent-line" aria-hidden="true"></div>
               <h2>競賽與獲獎</h2>
-              <p>以下整理競賽與領獎紀錄，搭配獎狀或公開頁面。</p>
+              <p>保留可公開查證的獎項、作品名稱與合作脈絡。</p>
             </div>
           </div>
           <div class="award-grid">
             <article class="award-card">
               <img src="assets/innoserve-travel-award.jpg" alt="InnoServe 2025 第三名獎狀" loading="lazy" />
               <div class="award-body">
-                <h3>2025 InnoServe｜商業發展治理創新組第三名</h3>
+                <h3>2025 InnoServe｜商業發展治理創新組<span class="mark-red">第三名</span></h3>
                 <p>作品：具意圖探測的多模態旅遊問答服務系統。系統結合 AI Agent、RAG 知識庫、Qdrant 向量資料庫、Redis、PostgreSQL、Whisper 語音辨識與多模態輸入。</p>
-                <div class="tag-row"><span class="tag blue">第三名</span><span class="tag cyan">Travel AI Agent 旅遊智能代理</span><span class="tag green">RAG 知識庫</span></div>
+                <div class="tag-row"><span class="tag rose">第三名</span><span class="tag cyan">Travel AI Agent 旅遊智能代理</span><span class="tag green">RAG 知識庫</span></div>
                 <div class="source-row">
                   <a class="source-link" href="https://innoserve.tca.org.tw/" target="_blank" rel="noreferrer">InnoServe 官網</a>
                   <a class="source-link" href="#deck">簡報預覽</a>
@@ -2171,7 +2192,7 @@
             <article class="award-card">
               <img src="assets/aigo-deeplong-award.jpg" alt="2024 年度 AI 應用鬥智賽 Deep龍力團隊佳作獎狀" loading="lazy" />
               <div class="award-body">
-                <h3>2024 年度 AI 應用鬥智賽｜佳作</h3>
+                <h3>2024 年度 AI 應用鬥智賽｜<span class="mark-red">佳作</span></h3>
                 <p>團隊：Deep龍力。議題：以 Llama 為例解決 LLM 幻覺問題、節省成本及特殊需求。需求單位為人工智能股份有限公司。</p>
                 <div class="tag-row"><span class="tag rose">佳作</span><span class="tag blue">Llama 開源模型</span><span class="tag orange">Cost Reduction 成本優化</span></div>
                 <div class="source-row">
@@ -2183,8 +2204,8 @@
               <img src="assets/service-innovation-award-list.jpg" alt="第十屆台灣服務創新獎得獎名單" loading="lazy" />
               <div class="award-body">
                 <h3>2025 第十屆台灣服務創新獎｜AI 應用</h3>
-                <p>代表 AIIT 淡江大學人工智慧與產業技術實驗室領取 2025 第十屆台灣服務創新獎 AI 應用相關獎項。</p>
-                <div class="tag-row"><span class="tag green">AI 應用</span><span class="tag cyan">AIIT</span><span class="tag">代表領獎</span></div>
+                <p><span class="mark-red">代表領獎</span>：AIIT 淡江大學人工智慧與產業技術實驗室，2025 第十屆台灣服務創新獎 AI 應用相關獎項。</p>
+                <div class="tag-row"><span class="tag green">AI 應用</span><span class="tag cyan">AIIT</span><span class="tag rose">代表領獎</span></div>
                 <div class="source-row">
                   <a class="source-link" href="https://www.asit.org.tw/2025/10/31/12561/" target="_blank" rel="noreferrer">ASIT 公開頁</a>
                 </div>
@@ -2210,7 +2231,7 @@
     </div>
   </main>
 
-  <footer class="container footer">© 2026 呂哲言｜Resume Website｜最後更新：2026-06-14</footer>
+  <footer class="container footer">© 2026 呂哲言｜AI / LLM / RAG 作品集</footer>
 
   <script>
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
