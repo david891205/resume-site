@@ -74,14 +74,15 @@
   {\small\textbf{#1}}\ {\small #2}\par
 }
 \newcommand{\evidence}[4]{%
-  \begin{colorboxx}[height=27mm,valign=center]{#1}
-    \begin{minipage}[c]{21mm}
+  \begin{colorboxx}[height=32mm,valign=center]{#1}
+    \begin{minipage}[c]{27mm}
       \centering
-      \includegraphics[width=21mm,height=20mm,keepaspectratio]{#2}
+      \includegraphics[width=26mm,height=25mm,keepaspectratio]{#2}
     \end{minipage}\hfill
-    \begin{minipage}[c]{\dimexpr\linewidth-25mm\relax}
-      {\footnotesize\bfseries #3}\par
-      {\scriptsize #4}
+    \begin{minipage}[c]{\dimexpr\linewidth-31mm\relax}
+      \raggedright
+      {\small\bfseries #3}\par\vspace{.5mm}
+      {\footnotesize #4}
     \end{minipage}
   \end{colorboxx}
 }
@@ -257,7 +258,7 @@
   \end{tabularx}
 \end{colorboxx}
 
-\vspace{1mm}
+\vfill
 \begin{tcolorbox}[
   enhanced,
   boxrule=0pt,
