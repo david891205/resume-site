@@ -672,6 +672,18 @@
       font-size: 14px;
     }
 
+    .case-block ul {
+      margin: 0;
+      padding-left: 1.1em;
+      color: #475569;
+      font-size: 14px;
+      line-height: 1.72;
+    }
+
+    .case-block li::marker {
+      color: var(--blue);
+    }
+
     .case-wide {
       grid-column: 1 / -1;
     }
@@ -755,6 +767,32 @@
 
     .experience-card {
       min-height: 156px;
+    }
+
+    .experience-card.wide {
+      grid-column: 1 / -1;
+      min-height: auto;
+    }
+
+    .experience-list {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding-left: 1.1em;
+      color: #475569;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .experience-list li::marker {
+      color: var(--blue);
+    }
+
+    .experience-note {
+      margin-top: 12px;
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.7;
     }
 
     .evidence-grid {
@@ -1180,10 +1218,10 @@
       <div class="featured-grid">
         <article class="project-card reveal" style="--accent: var(--cyan)">
           <h3>ESGPB 虛擬人商家推薦助理</h3>
-          <p>將商家優惠查詢轉為可對話、可推薦、可記憶的 AI 導購體驗。</p>
+          <p>把 ESGPB 商家資料、優惠查詢、虛擬人互動、語音與圖片輸入串成可展示的 AI 導購流程。</p>
           <dl class="project-meta">
-            <div><dt>Tech Stack</dt><dd>RAG、Qdrant、Redis、PostgreSQL、GPT Realtime、Docker</dd></div>
-            <div><dt>成果 / 證據</dt><dd>ESGPB 實作截圖，好奇兄弟雲端股份有限公司合作。</dd></div>
+            <div><dt>Tech Stack</dt><dd>FastAPI、OpenAI Embedding、Whisper / TTS、Qdrant、Redis、PostgreSQL、MySQL、Docker</dd></div>
+            <div><dt>成果 / 證據</dt><dd>ESGPB 實作截圖、系統架構圖，好奇兄弟雲端股份有限公司合作。</dd></div>
           </dl>
           <div class="project-links">
             <a class="text-link" href="#case-esgpb">查看案例</a>
@@ -1193,9 +1231,9 @@
 
         <article class="project-card reveal" style="--accent: var(--blue)">
           <h3>多模態旅遊 AI Agent</h3>
-          <p>以 RAG 與 Knowledge Graph 建立旅遊知識系統，支援圖文語音問答、導遊減勞與旅後偏好分析。</p>
+          <p>將旅遊手冊、景點資料、語音與圖片輸入整理成可問答的行程助理，支援旅前查詢、團體導覽與旅後偏好分析。</p>
           <dl class="project-meta">
-            <div><dt>Tech Stack</dt><dd>RAG、Qdrant、Knowledge Graph、Whisper、BLIP-2、LINE Bot</dd></div>
+            <div><dt>Tech Stack</dt><dd>Unstructured.io、Detectron2、Neo4j、Qdrant、Whisper、BLIP-2、Video-LLaMA、LINE Bot</dd></div>
             <div><dt>成果 / 證據</dt><dd>2025 InnoServe 商業發展治理創新組第三名。</dd></div>
           </dl>
           <div class="project-links">
@@ -1206,9 +1244,9 @@
 
         <article class="project-card reveal" style="--accent: var(--violet)">
           <h3>Llama 企業 AI 客服優化</h3>
-          <p>結合 RAG、BM25 / Embedding 雙路檢索與 LoRA 微調，降低幻覺、成本與客服語氣不一致問題。</p>
+          <p>針對企業客服常見的幻覺、API 成本與回答風格不一致，設計知識檢索、歷史問答重用與風格微調流程。</p>
           <dl class="project-meta">
-            <div><dt>Tech Stack</dt><dd>Llama / TAIDE、RAG、BM25、Embedding、LoRA、Cross-Similarity Retrieval</dd></div>
+            <div><dt>Tech Stack</dt><dd>Llama / TAIDE、RAG、BM25、Embedding、LoRA、Cross-Similarity Retrieval、QA Scoring</dd></div>
             <div><dt>成果 / 證據</dt><dd>2024 年度 AI 應用鬥智賽佳作，需求單位為人工智能股份有限公司。</dd></div>
           </dl>
           <div class="project-links">
@@ -1219,10 +1257,10 @@
 
         <article class="project-card reveal" style="--accent: var(--orange)">
           <h3>全域意境感知智慧會議秘書系統</h3>
-          <p>整合語音辨識、語者分離、摘要生成與任務追蹤，讓會議內容能轉成可追蹤任務。</p>
+          <p>讓會議從會前資料整理、會中紀錄到會後任務追蹤形成流程，將逐字稿轉成摘要、待辦與提醒。</p>
           <dl class="project-meta">
-            <div><dt>Tech Stack</dt><dd>Whisper、Sentence-BERT、HDBSCAN、TextRank、n8n、Webhook、Multi-Agent</dd></div>
-            <div><dt>成果 / 證據</dt><dd>展示影片，台灣服務創新獎相關成果。</dd></div>
+            <div><dt>Tech Stack</dt><dd>Whisper、ECAPA-TDNN、Sentence-BERT、HDBSCAN、TextRank、NER、n8n、Multi-Agent</dd></div>
+            <div><dt>成果 / 證據</dt><dd>展示影片，2025 第十屆台灣服務創新獎相關成果。</dd></div>
           </dl>
           <div class="project-links">
             <a class="text-link" href="#case-meeting">查看案例</a>
@@ -1256,15 +1294,27 @@
             <h3>ESGPB 商家推薦助理</h3>
             <div class="case-block">
               <h4>Problem</h4>
-              <p>商家資料分散，使用者需要更自然的優惠查詢與推薦入口。</p>
+              <p>ESGPB 有商家、優惠、影片與分類資料，但一般使用者不一定知道該怎麼搜尋。這個案例把「找優惠、找店家、問推薦」改成可用自然語言、語音與圖片互動的推薦流程。</p>
             </div>
             <div class="case-block">
-              <h4>Architecture</h4>
-              <p>Qdrant 儲存商家語意向量，Redis 保存短期對話，PostgreSQL 儲存偏好紀錄，並串接 ESGPB 商家 API。</p>
+              <h4>Data / Retrieval</h4>
+              <p>後端以 FastAPI 提供串流 API，商家資料同時查詢 ESGPB Stores API 與 Qdrant 向量資料庫。Qdrant 使用 OpenAI text-embedding-3-small 建立語意向量，並與 API 查詢結果合併、去重、排序。</p>
+            </div>
+            <div class="case-block">
+              <h4>Interaction Flow</h4>
+              <ul>
+                <li>使用者可用文字、語音或圖片描述需求，例如找餐廳、優惠、特定地區或行程安排。</li>
+                <li>意圖分析會判斷直接查詢、模糊探索、折扣需求、行程規劃、圖片上傳或閒聊，再分流到對應流程。</li>
+                <li>Redis 保存短期對話上下文，PostgreSQL 保存長期對話紀錄與偏好，MySQL `items` 資料表用來比對商家影片 URL。</li>
+              </ul>
+            </div>
+            <div class="case-block">
+              <h4>Delivery</h4>
+              <p>回覆採串流輸出，除了推薦文字，也能回傳語音、影片連結與商家推薦理由。這讓網站右下角的虛擬人不只是聊天視窗，而是可以接到商家資料與推薦流程的導購介面。</p>
             </div>
             <div class="case-block">
               <h4>Impact / Evidence</h4>
-              <p>支援文字、語音、拍照互動，將優惠查詢轉為虛擬人對話體驗。</p>
+              <p>目前網站放入 ESGPB 實作截圖與架構圖，可對應到好奇兄弟雲端股份有限公司合作專案；右下角助理支援語言選擇、對話與商家優惠推薦入口。</p>
             </div>
           </div>
         </article>
@@ -1277,15 +1327,19 @@
             <h3>多模態旅遊 AI Agent</h3>
             <div class="case-block">
               <h4>Problem</h4>
-              <p>旅遊資訊分散於手冊、行程、景點與對話紀錄中，導遊與旅客都需要更即時的問答入口。</p>
+              <p>旅行社手冊、景點介紹、行程表與售價資訊常分散在不同文件，旅客臨時提問時，導遊需要反覆查資料；旅後回饋也容易散落在聊天紀錄中，難以整理成下一次行程規劃的依據。</p>
             </div>
             <div class="case-block">
-              <h4>Architecture</h4>
-              <p>以 RAG、Knowledge Graph、Whisper 與 BLIP-2 串接文字、語音與圖片輸入，並保留旅後偏好資料。</p>
+              <h4>Document / Knowledge</h4>
+              <p>以 Unstructured.io 與 Detectron2 拆解旅遊手冊中的文字、表格與圖片，再整理成知識圖譜與向量資料庫。Neo4j 用於景點、行程與關係查詢，Qdrant 用於語意檢索，Redis / PostgreSQL 保存對話狀態與偏好。</p>
+            </div>
+            <div class="case-block">
+              <h4>Multimodal Flow</h4>
+              <p>系統支援 LINE Bot 入口，搭配 Whisper 處理語音問題，BLIP-2 / Video-LLaMA 解析圖片與影片線索，並可透過即時搜尋補足每日變動的旅遊資訊。</p>
             </div>
             <div class="case-block">
               <h4>Impact / Evidence</h4>
-              <p>作品獲 2025 InnoServe 商業發展治理創新組第三名，簡報可於下方預覽。</p>
+              <p>作品全名為「具意圖探測的多模態旅遊問答服務系統」，獲 2025 InnoServe 商業發展治理創新組第三名。下方可直接預覽完整簡報，方便面試時查看系統情境、架構與展示流程。</p>
             </div>
           </div>
         </article>
@@ -1298,15 +1352,19 @@
             <h3>Llama 企業 AI 客服優化</h3>
             <div class="case-block">
               <h4>Problem</h4>
-              <p>企業客服需要控制回答幻覺、API 成本與品牌語氣一致性。</p>
+              <p>企業客服導入 LLM 時，常遇到三個問題：回答內容可能幻覺、外部 API 成本不穩定、回答語氣不符合產業或品牌風格。這個專案以 Llama / TAIDE 為例，設計可控的知識問答流程。</p>
             </div>
             <div class="case-block">
-              <h4>Architecture</h4>
-              <p>以 RAG、BM25、Embedding 與 Cross-Similarity Retrieval 組合檢索，再搭配 LoRA 微調 Llama / TAIDE。</p>
+              <h4>Retrieval / Reuse</h4>
+              <p>檢索端結合 BM25、Embedding 與 Cross-Similarity Retrieval，讓問題能先對齊企業知識與歷史高品質問答；若已有相似答案，優先重用並降低重複呼叫模型的成本。</p>
+            </div>
+            <div class="case-block">
+              <h4>Model / Style</h4>
+              <p>模型端透過 LoRA 微調 Llama / TAIDE，使回覆更接近需求單位的客服語氣與產業用語；同時搭配 QA Scoring 檢查回答品質，避免只靠單次生成決定最終答案。</p>
             </div>
             <div class="case-block">
               <h4>Impact / Evidence</h4>
-              <p>2024 年度 AI 應用鬥智賽佳作，並保留完整提案文件供下載。</p>
+              <p>作品全名為「以 Llama 為例解決 LLM 幻覺問題、節省成本及特殊風格調整」，獲 2024 年度 AI 應用鬥智賽佳作，並保留完整提案文件供下載。</p>
             </div>
           </div>
         </article>
@@ -1319,15 +1377,19 @@
             <h3>全域意境感知智慧會議秘書系統</h3>
             <div class="case-block">
               <h4>Problem</h4>
-              <p>會議紀錄常停留在逐字稿，後續任務、重點與責任分派不容易追蹤。</p>
+              <p>會議資料常分散在 LINE、Email、雲端文件與過往決議中；會議中若只留下逐字稿，後續仍要人工整理重點、責任分派與提醒，導致會後追蹤斷掉。</p>
             </div>
             <div class="case-block">
-              <h4>Architecture</h4>
-              <p>整合 Whisper、語者分離、Sentence-BERT、NER、n8n 與 Multi-Agent 流程。</p>
+              <h4>Before / During / After</h4>
+              <p>會前彙整歷史資料與議程，會中以 Whisper 轉錄並搭配 ECAPA-TDNN / Spectral Clustering 做語者分離，會後輸出摘要、任務清單與追蹤提醒。</p>
+            </div>
+            <div class="case-block">
+              <h4>Automation</h4>
+              <p>以 Sentence-BERT、HDBSCAN、TextRank 與 NER 抽取主題、重點與行動項目，再透過 n8n、Webhook 與 Multi-Agent 串接 LINE、Email、Calendar 等通知流程。</p>
             </div>
             <div class="case-block">
               <h4>Impact / Evidence</h4>
-              <p>展示影片已嵌入下方，並以台灣服務創新獎相關成果作為公開佐證。</p>
+              <p>展示影片已嵌入下方，可看到從語音轉錄、摘要生成到任務追蹤的流程；此作品也作為 2025 第十屆台灣服務創新獎相關成果的一部分呈現。</p>
             </div>
           </div>
         </article>
@@ -1375,21 +1437,27 @@
         <div>
           <div class="accent-line" aria-hidden="true"></div>
           <h2>Other Experience｜其他產學與教學經驗</h2>
-          <p>其他經驗涵蓋國科會 / 科技部案、醫療工作坊、半導體課程與智慧工程場域。</p>
+          <p>以下列出完整計畫與標案名稱，方便面試官對照你的研究室、產學合作與實際場域經驗。</p>
         </div>
       </div>
       <div class="experience-grid">
-        <article class="experience-card reveal">
-          <h3>國科會 / 產學合作 AI 專案</h3>
-          <p>多模態霸凌偵測、AI 智慧英語學習、智慧居家養老、高齡者健康管理與知識圖譜問答。</p>
+        <article class="experience-card wide reveal">
+          <h3>國科會 / 科技部產學合作與研究計畫</h3>
+          <ul class="experience-list">
+            <li>112年度「產學合作計畫-基於深度學習之霸凌偵測及專注力辨識系統」【科技部案】：結合影像、聲音與語調等多模態資料，建立幼兒園場域的霸凌偵測與專注力辨識流程。</li>
+            <li>113年度「產學合作計畫—AI智慧英語學習系統之開發及融入精準學習之成效」【科技部案】：對應英語學習、精準學習與 AI 輔助教學場域。</li>
+            <li>「智慧居家養老~基於機器學習與深度學習的規律性分析、行為辨識及異常狀態辨識研究與實作」【國科會】：聚焦高齡者居家行為辨識、規律性分析與異常狀態判斷。</li>
+            <li>「高齡者智慧健康管理：基於 AI 姿勢分析與知識圖譜問答」【科技部案】：結合姿勢分析、知識圖譜與問答系統，支援高齡健康管理情境。</li>
+          </ul>
         </article>
         <article class="experience-card reveal">
           <h3>醫療與教育工作坊</h3>
-          <p>榮總 AI 醫療工作坊、陽明交通大學半導體 AI 與 ChatGPT 應用班。</p>
+          <p>榮總 AI 醫療工作坊面向專科護理師，示範如何用生成式 AI 輔助預立醫療流程與紀錄撰寫；陽明交通大學「半導體 AI 與 ChatGPT 應用班」則對應產業學員的 AI 工具應用與導入教學。</p>
         </article>
-        <article class="experience-card reveal">
-          <h3>鐵道 AI / 智慧工程</h3>
-          <p>協助台灣世曦工程整理鐵道 AI 巡檢、文件查詢、影像辨識與數位轉型技術服務架構。</p>
+        <article class="experience-card wide reveal">
+          <h3>委託應用AI建構鐵道專業服務及巡檢數位轉型建置之規劃、基本設計、細部設計審查、監督審驗(含鐵道領域專業顧問)技術服務</h3>
+          <p>協助台灣世曦工程整理鐵道 AI 與智慧工程標案內容，將需求拆成可執行的技術服務範圍：鐵道巡檢數位轉型、工程文件知識查詢、影像辨識、AI 對話系統、專業顧問支援、基本設計與細部設計審查，以及監督審驗流程。</p>
+          <p class="experience-note">這個案例重點不是單一模型展示，而是把工程顧問、鐵道專業知識、巡檢流程與 AI 系統建置放在同一份技術服務規劃中，讓後續審查與交付能被追蹤。</p>
         </article>
         <article class="experience-card reveal">
           <h3>研究訓練</h3>
