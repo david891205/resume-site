@@ -918,17 +918,6 @@
       white-space: nowrap;
     }
 
-    .muted { color: var(--muted); }
-
-    .role-line {
-      margin: 11px 0 0;
-      border-left: 4px solid var(--accent-color, var(--blue));
-      padding: 9px 11px;
-      background: #f8fafc;
-      color: #334155;
-      font-size: 14px;
-    }
-
     ul.clean {
       margin: 12px 0 0;
       padding-left: 20px;
@@ -1685,7 +1674,7 @@
         </div>
         <div class="cta">
           <a class="btn primary" href="mailto:a28473458@gmail.com">寄信給我</a>
-          <a class="btn" href="#case-studies">案例詳解</a>
+          <a class="btn" href="#case-studies">代表案例</a>
           <a class="btn" href="#meeting-video">會議諸葛影片</a>
           <a class="btn" href="#projects">查看專案</a>
           <a class="btn" href="#evidence">活動紀錄</a>
@@ -1703,7 +1692,6 @@
         <div class="avatar"><img src="assets/profile-photo.png" alt="呂哲言個人照片" /></div>
         <div>
           <h2>聯絡與方向</h2>
-          <p class="muted">淡江資工學士與碩士畢業，主要應徵 AI 應用工程、LLM/RAG 系統、NLP 與機器學習相關職位。</p>
         </div>
         <div class="role-switcher" aria-label="履歷重點切換">
           <button type="button" class="is-active" data-role="engineer">工程</button>
@@ -1741,7 +1729,6 @@
 
         <div class="side-card">
           <h3>目前重點</h3>
-          <p class="muted">LLM/RAG 系統、Prompt 與回答品質優化、向量資料庫、API 串接、多模態 AI 與後端部署。</p>
         </div>
       </aside>
 
@@ -1988,12 +1975,9 @@
               <div class="project-top">
                 <div>
                   <h3>ESGPB 虛擬人商家推薦助理</h3>
-                  <p class="muted">好奇兄弟雲端合作｜語音、文字、拍照互動的商家推薦系統</p>
                 </div>
                 <span class="period">2025</span>
               </div>
-              <p>以 PB 撇步平台的商家與優惠資料為基礎，讓使用者可在小視窗中選擇語言，透過虛擬人用語音、文字或照片互動，推薦餐廳與服務。</p>
-              <p class="role-line">負責內容：RAG 知識庫架構、向量資料庫、短期 / 長期記憶資料分層、語音互動與商家虛擬形象流程規劃；使用 Sora / Prompt Engineering 產出商家虛擬形象。</p>
               <ul class="clean">
                 <li>以 Docker 建立 Qdrant、Redis、PostgreSQL 等服務：向量檢索、短期對話記憶與長期偏好資料分層。</li>
                 <li>Qdrant 儲存商家語意向量，搭配 OpenAI Embedding 支援餐廳與優惠的語意搜尋。</li>
@@ -2012,13 +1996,12 @@
               <div class="project-top">
                 <div>
                   <h3>112年度「產學合作計畫-基於深度學習之霸凌偵測及專注力辨識系統」【科技部案】</h3>
-                  <p class="muted">國科會產學合作｜AIIT × 精英國際教育集團</p>
                 </div>
                 <span class="period">112/11–113/10</span>
               </div>
-              <p>結合幼兒園既有攝影設備與 AI 技術，透過影像辨識、語音訊號處理、語調分析等多模態資料，建立疑似霸凌與專注力辨識機制。</p>
-              <p class="role-line">計畫背景：由張志勇教授主持，AIIT 與精英國際教育集團合作，研究成果已陸續發表於 IEEE Transactions 等國際期刊。</p>
               <ul class="clean">
+                <li>由張志勇教授主持，AIIT 與精英國際教育集團合作，研究成果已陸續發表於 IEEE Transactions 等國際期刊。</li>
+                <li>結合幼兒園既有攝影設備與 AI 技術，透過影像辨識、語音訊號處理、語調分析等多模態資料，建立疑似霸凌與專注力辨識機制。</li>
                 <li>整合 STT 語音轉文字、BERT 文本分類、MFCC 語音特徵、CNN/LSTM 與 3DCNN/LSTM 等模型方向，分析攻擊性語句、威脅性語音與異常動作。</li>
                 <li>以多模型融合判斷疑似霸凌情境，一旦偵測到風險，可通知班級教師或家長介入。</li>
                 <li>使用多模態視覺化與特徵分析，輔助事件判讀與系統改善。</li>
@@ -2034,13 +2017,11 @@
               <div class="project-top">
                 <div>
                   <h3>多模態意圖驅動旅遊 AI Agent 系統</h3>
-                  <p class="muted">InnoServe 2025 商業發展治理創新組第三名</p>
                 </div>
                 <span class="period">2025</span>
               </div>
-              <p>將旅遊手冊、景點、行程、常見問題與詐騙警示轉成互動式問答，支援導遊即時資訊推送、旅客問答與旅後資料沉澱。</p>
-              <p class="role-line">技術重點：以 Docker 承載 Neo4j、Qdrant、Redis、PostgreSQL，並結合 Whisper 語音辨識、Blip2 圖像理解、LLM、Embedding 與外部 API 檢索。</p>
               <ul class="clean">
+                <li>將旅遊手冊、景點、行程、常見問題與詐騙警示轉成互動式問答，支援導遊即時資訊推送、旅客問答與旅後資料沉澱。</li>
                 <li>以知識圖譜管理地點、景點與活動關係，並把旅遊資料轉為 Embedding 存入 Qdrant 向量資料庫。</li>
                 <li>Redis 保存即時互動短期記憶，PostgreSQL 管理旅遊紀錄與行程資訊。</li>
                 <li>Whisper 搭配 LoRA 微調改善方言與旅遊口語辨識；Blip2 支援圖片語意理解。</li>
@@ -2059,13 +2040,12 @@
               <div class="project-top">
                 <div>
                   <h3>2024 AI 應用鬥智賽｜以 Llama 解決 LLM 幻覺、成本與風格需求</h3>
-                  <p class="muted">Deep龍力團隊｜與人工智能股份有限公司合作</p>
                 </div>
                 <span class="period">2024</span>
               </div>
-              <p>針對企業導入 LLM 的三個痛點：幻覺內容、OpenAI API 成本壓力、特定產業語氣與風格不適配，提出以 Llama 為例的解法設計。</p>
-              <p class="role-line">技術重點：設計三階段知識檢索流程，結合 BM25、Cosine 語意相似度、實體 / 語意分析與交叉比對，降低 LLM 幻覺風險。</p>
               <ul class="clean">
+                <li>針對企業導入 LLM 的三個痛點：幻覺內容、OpenAI API 成本壓力、特定產業語氣與風格不適配，提出以 Llama 為例的解法設計。</li>
+                <li>設計三階段知識檢索流程，結合 BM25、Cosine 語意相似度、實體 / 語意分析與交叉比對，降低 LLM 幻覺風險。</li>
                 <li>以 RAG 檢索流程與知識庫查詢降低模型憑空生成風險，讓回答能回到可驗證資料。</li>
                 <li>透過本地或替代模型架構降低頻繁呼叫大型 API 的成本壓力。</li>
                 <li>針對特定產業人員語氣與品牌風格進行調整，補足通用模型難以貼合場景的問題。</li>
@@ -2083,16 +2063,14 @@
               <div class="project-top">
                 <div>
                   <h3>委託應用AI建構鐵道專業服務及巡檢數位轉型建置之規劃、基本設計、細部設計審查、監督審驗(含鐵道領域專業顧問)技術服務</h3>
-                  <p class="muted">標案技術服務｜AI 建構、設計審查、監督審驗與顧問支援</p>
                 </div>
                 <span class="period">2025</span>
               </div>
-              <p>協助世曦工程撰寫該標案相關規劃、基本設計、細部設計審查、監督審驗與鐵道專業顧問技術服務內容。</p>
-              <p class="role-line">相關資料包含標案頁、決標資訊、世曦公司頁面與淡江時報交流新聞。</p>
               <ul class="clean">
+                <li>協助世曦工程撰寫該標案相關規劃、基本設計、細部設計審查、監督審驗與鐵道專業顧問技術服務內容。</li>
                 <li>將鐵道巡檢、專業知識、影像辨識、文件查詢與數位轉型流程轉成可描述的 AI 技術服務架構。</li>
                 <li>整理規劃、設計審查與監督審驗可對應的資料流、模型流與顧問支援範圍。</li>
-                <li>以文件、合照與公開資料呈現合作與交流脈絡，重點放在技術服務架構與文件規劃。</li>
+                <li>公開資料包含標案頁、世曦公司頁面、淡江時報交流新聞與合照。</li>
               </ul>
               <div class="tag-row"><span class="tag green">Railway AI 鐵道應用</span><span class="tag blue">RAG 知識庫</span><span class="tag cyan">Computer Vision 影像辨識</span><span class="tag orange">Digital Inspection 數位巡檢</span><span class="tag">Technical Proposal 技術服務文件</span></div>
               <div class="source-row">
@@ -2107,13 +2085,12 @@
               <div class="project-top">
                 <div>
                   <h3>榮總合作工作坊｜AI 輔助預立醫療流程與醫療紀錄</h3>
-                  <p class="muted">教專科護理師使用 AI 撰寫預立醫療流程</p>
                 </div>
                 <span class="period">工作坊</span>
               </div>
-              <p>依現場流程表，工作坊包含生成式 AI 應用全攻略、實作演練、運用 AI 建立預立醫療流程，以及運用 AI 建立醫療紀錄。</p>
-              <p class="role-line">實作內容：協助授課與實作，將 ChatGPT / 生成式 AI 轉成醫療流程撰寫、文字整理與紀錄草稿產出的操作流程。</p>
               <ul class="clean">
+                <li>依現場流程表，工作坊包含生成式 AI 應用全攻略、實作演練、運用 AI 建立預立醫療流程，以及運用 AI 建立醫療紀錄。</li>
+                <li>協助授課與實作，將 ChatGPT / 生成式 AI 轉成醫療流程撰寫、文字整理與紀錄草稿產出的操作流程。</li>
                 <li>面向專科護理師，重點不是模型炫技，而是把 AI 用在可操作的醫療流程撰寫與紀錄整理。</li>
                 <li>透過實作與小組分享，協助學員把 AI 輸出轉成符合工作情境的文件草稿。</li>
               </ul>
@@ -2128,12 +2105,11 @@
               <div class="project-top">
                 <div>
                   <h3>陽明交通大學｜半導體 AI 與 ChatGPT 應用班</h3>
-                  <p class="muted">第一梯次、第二梯次｜AI 教學支援與產業案例整理</p>
                 </div>
                 <span class="period">課程支援</span>
               </div>
-              <p>協助半導體產業情境下的 AI 與 ChatGPT 應用規劃，課程涵蓋半導體概念、Python、資料處理、ML/DL、NLP、ChatGPT 與專題實作。</p>
               <ul class="clean">
+                <li>協助半導體產業情境下的 AI 與 ChatGPT 應用規劃，課程涵蓋半導體概念、Python、資料處理、ML/DL、NLP、ChatGPT 與專題實作。</li>
                 <li>整理生成式 AI、Prompt Engineering 提示工程、資料分析、文件整理與流程自動化案例。</li>
                 <li>協助把 ChatGPT 應用轉化為具體操作任務，支援非資訊背景學員理解與實作。</li>
               </ul>
@@ -2148,12 +2124,11 @@
               <div class="project-top">
                 <div>
                   <h3>113年度「產學合作計畫—AI智慧英語學習系統之開發及融入精準學習之成效」【科技部案】</h3>
-                  <p class="muted">國科會產學合作｜語音示範、發音評分、對話評分</p>
                 </div>
                 <span class="period">113/11–114/10</span>
               </div>
-              <p>參與 AI 智慧英語學習平台開發，改善口說訓練不足、評量主觀性高與缺乏即時回饋問題。</p>
               <ul class="clean">
+                <li>參與 AI 智慧英語學習平台開發，改善口說訓練不足、評量主觀性高與缺乏即時回饋問題。</li>
                 <li>使用 Azure TTS 建立標準語音示範，讓學生可聆聽與模仿。</li>
                 <li>使用 Azure Speech Service 分析錄音，提供流暢度、準確度、完整度與發音精確度等分數。</li>
                 <li>使用 Azure OpenAI 建立對話評分模組，提供語意理解、語法建議與內容評價。</li>
@@ -2168,12 +2143,11 @@
               <div class="project-top">
                 <div>
                   <h3>智慧居家養老~基於機器學習與深度學習的規律性分析、行為辨識及異常狀態辨識研究與實作</h3>
-                  <p class="muted">國科會研究計畫｜IoT 行為建模、規律性分析與異常偵測</p>
                 </div>
                 <span class="period">112/08–113/07</span>
               </div>
-              <p>參與智慧居家養老系統規劃，將感測資料、行為序列與異常狀態辨識整合到 AI 輔助照護流程。</p>
               <ul class="clean">
+                <li>參與智慧居家養老系統規劃，將感測資料、行為序列與異常狀態辨識整合到 AI 輔助照護流程。</li>
                 <li>以 LSTM、Transformer、Autoencoder、Isolation Forest 分析行為規律性與異常。</li>
                 <li>以機器學習與深度學習方法分析居家場域中的行為辨識與異常狀態。</li>
                 <li>將規律性分析結果轉成可用於照護提醒與風險判斷的資料流程。</li>
@@ -2188,12 +2162,11 @@
               <div class="project-top">
                 <div>
                   <h3>高齡者智慧健康管理：基於 AI 姿勢分析與知識圖譜問答【科技部案】</h3>
-                  <p class="muted">國科會研究計畫｜AI 姿勢分析、知識圖譜與健康問答</p>
                 </div>
                 <span class="period">114/08–115/07</span>
               </div>
-              <p>參與高齡者智慧健康管理系統規劃，將姿勢分析、健康知識庫、知識圖譜與 RAG 問答整合到 AI 輔助健康管理流程。</p>
               <ul class="clean">
+                <li>參與高齡者智慧健康管理系統規劃，將姿勢分析、健康知識庫、知識圖譜與 RAG 問答整合到 AI 輔助健康管理流程。</li>
                 <li>透過 AI 姿勢分析偵測運動姿勢錯誤，降低高齡者受傷風險。</li>
                 <li>整合健康、營養、運動與醫療知識，結合知識圖譜與 RAG 技術提供個人化問答。</li>
                 <li>將姿勢分析結果與問答流程連接，支援高齡者健康管理與照護回饋。</li>
@@ -2208,13 +2181,11 @@
               <div class="project-top">
                 <div>
                   <h3>全域意境感知智慧會議秘書系統</h3>
-                  <p class="muted">AIGO 佳作相關技術文件｜會前、會中、會後自動化</p>
                 </div>
                 <span class="period">2025</span>
               </div>
-              <p>系統定位為能「聽得懂會議、記得住內容、推得動行動」的 AI 智慧助理，整合會前資料包、會中逐字稿摘要與會後任務追蹤。</p>
-              <p class="role-line">技術內容：會議前整合資料，會中產出逐字稿與摘要，會後推播任務與追蹤進度。</p>
               <ul class="clean">
+                <li>整合會前資料包、會中逐字稿摘要與會後任務追蹤，讓會議內容能轉成可追蹤任務。</li>
                 <li>Whisper 即時語音辨識，ECAPA-TDNN / Spectral Clustering 區分發言者。</li>
                 <li>Sentence-BERT、HDBSCAN、TextRank 與 LLM 提示工程產出決策、任務與討論摘要。</li>
                 <li>n8n × Webhook 串接 LINE、Email、Google Calendar 進行推播、提醒與進度追蹤。</li>
@@ -2234,7 +2205,7 @@
           <div class="section-head">
             <div>
               <div class="accent-line" aria-hidden="true"></div>
-              <h2>案例詳解</h2>
+              <h2>代表案例</h2>
             </div>
           </div>
 
@@ -2245,9 +2216,7 @@
                 <figcaption>ESGPB 網站右下角可見商家推薦助理入口，包含語言選擇、對話視窗與輸入按鈕。</figcaption>
               </figure>
               <div class="case-body">
-                <span class="case-label">Case 01｜好奇兄弟雲端合作</span>
                 <h3>ESGPB 虛擬人商家推薦助理</h3>
-                <p>把 PB 撇步平台的商家與優惠資料接進對話式推薦流程，讓使用者用文字、語音或拍照詢問附近餐廳、優惠與服務。</p>
                 <div class="case-columns">
                   <div>
                     <h4>重點</h4>
@@ -2287,9 +2256,7 @@
                 <figcaption>智慧旅遊簡報可在網站中直接翻閱 40 張投影片，對應 InnoServe 第三名作品。</figcaption>
               </figure>
               <div class="case-body">
-                <span class="case-label">Case 02｜InnoServe 第三名</span>
                 <h3>具意圖探測的多模態旅遊問答服務系統</h3>
-                <p>把旅遊手冊、景點、活動、常見問題與即時資訊整理成可問答的旅遊 AI Agent，支援導遊、旅客與旅後資料沉澱。</p>
                 <div class="case-columns">
                   <div>
                     <h4>重點</h4>
@@ -2330,9 +2297,7 @@
                 <figcaption>Deep龍力團隊獲 2024 年度 AI 應用鬥智賽佳作，需求單位為人工智能股份有限公司。</figcaption>
               </figure>
               <div class="case-body">
-                <span class="case-label">Case 04｜AI 應用鬥智賽佳作</span>
                 <h3>以 Llama 解決 LLM 幻覺、成本與風格需求</h3>
-                <p>針對企業導入 LLM 時常見的幻覺、API 成本與產業語氣不貼合問題，提出以 Llama 為核心的檢索與生成流程。</p>
                 <div class="case-columns">
                   <div>
                     <h4>痛點</h4>
@@ -2373,9 +2338,7 @@
                 <figcaption>世曦工程拜訪淡江 AI 創智場域，交流智慧工程、影像處理、NLP 與鐵道安全。</figcaption>
               </figure>
               <div class="case-body">
-                <span class="case-label">Case 05｜工程顧問 / 鐵道 AI</span>
                 <h3>鐵道專業服務與巡檢數位轉型技術服務</h3>
-                <p>協助整理鐵道巡檢、專業知識、影像辨識、文件查詢與數位轉型流程，轉成標案可讀的 AI 技術服務架構。</p>
                 <div class="case-columns">
                   <div>
                     <h4>內容</h4>
@@ -2416,9 +2379,7 @@
                 <figcaption>榮總合作工作坊現場，主題為生成式 AI 實作與預立醫療流程、醫療紀錄撰寫。</figcaption>
               </figure>
               <div class="case-body">
-                <span class="case-label">Case 06｜醫療工作坊</span>
                 <h3>榮總 AI 輔助預立醫療流程與醫療紀錄</h3>
-                <p>協助專科護理師把生成式 AI 用在預立醫療流程與醫療紀錄草稿撰寫，重點是把工具轉成可操作的工作流程。</p>
                 <div class="case-columns">
                   <div>
                     <h4>實作內容</h4>
@@ -2457,9 +2418,7 @@
                 <figcaption>會議諸葛展示影片已嵌入網站，可直接觀看整體功能流程。</figcaption>
               </figure>
               <div class="case-body">
-                <span class="case-label">Case 07｜會議自動化 / 展示影片</span>
                 <h3>全域意境感知智慧會議秘書系統</h3>
-                <p>以會議情境為核心，整理會前資料、會中逐字稿與摘要、會後任務追蹤，讓會議決策與後續行動能被系統化管理。</p>
                 <div class="case-columns">
                   <div>
                     <h4>流程</h4>
@@ -2499,9 +2458,7 @@
                 <figcaption>教學與工作坊經驗包含榮總醫療 AI 工作坊，以及陽明交通大學半導體 AI 與 ChatGPT 應用班。</figcaption>
               </figure>
               <div class="case-body">
-                <span class="case-label">Case 10｜AI 課程與工作坊</span>
                 <h3>把 AI 工具轉成不同場域能操作的流程</h3>
-                <p>協助半導體與醫療場域的 AI 課程 / 工作坊，將 ChatGPT、提示設計、資料分析與流程自動化整理成可實作的練習。</p>
                 <div class="case-columns">
                   <div>
                     <h4>半導體課程</h4>
