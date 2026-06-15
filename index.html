@@ -1113,15 +1113,6 @@
       line-height: 1.62;
     }
 
-    .case-note {
-      margin-top: 14px;
-      border-left: 4px solid var(--accent-color, var(--blue));
-      padding: 10px 12px;
-      background: rgba(248, 250, 252, .86);
-      color: #334155;
-      font-size: 14px;
-    }
-
     .case-actions {
       display: flex;
       flex-wrap: wrap;
@@ -1673,7 +1664,7 @@
         <a href="#evidence">紀錄</a>
         <a href="#awards">獲獎</a>
         <a href="#selfintro">自傳</a>
-        <button type="button" onclick="window.print()">匯出 PDF</button>
+        <button type="button" onclick="window.print()">列印頁面</button>
       </div>
     </nav>
   </div>
@@ -1694,7 +1685,6 @@
         </div>
         <div class="cta">
           <a class="btn primary" href="mailto:a28473458@gmail.com">寄信給我</a>
-          <a class="btn" href="assets/lv-che-yen-onepage-resume.pdf" target="_blank" rel="noreferrer">一頁式 PDF</a>
           <a class="btn" href="#case-studies">案例詳解</a>
           <a class="btn" href="#meeting-video">會議諸葛影片</a>
           <a class="btn" href="#projects">查看專案</a>
@@ -1761,7 +1751,6 @@
             <div>
               <div class="accent-line" aria-hidden="true"></div>
               <h2>個人摘要</h2>
-              <p>主要方向是 LLM/RAG、NLP 對話系統與多模態 AI，並把這些技術放進旅遊、教育、醫療、商家推薦與工程顧問等場域。</p>
             </div>
           </div>
           <div class="summary-copy">
@@ -1775,7 +1764,6 @@
             <div>
               <div class="accent-line" aria-hidden="true"></div>
               <h2>技術堆疊與實作能力</h2>
-              <p>把模型、資料、API 與使用者流程接成可展示系統；同時保留研究訓練中的資料處理、模型評估與錯誤分析能力。</p>
             </div>
           </div>
           <div class="skills-grid">
@@ -1868,7 +1856,6 @@
             <div>
               <div class="accent-line" aria-hidden="true"></div>
               <h2>成果亮點</h2>
-              <p>從合作場域、系統整合、語音視覺互動與教學經驗四個角度，看我實際參與過的 AI 應用。</p>
             </div>
           </div>
           <div class="highlight-grid">
@@ -1919,7 +1906,6 @@
             <div>
               <div class="accent-line" aria-hidden="true"></div>
               <h2>合作與公開資料</h2>
-              <p>部分合作、課程、標案與活動有公開頁面或本機文件可對照。</p>
             </div>
           </div>
           <div class="collab-grid">
@@ -1984,7 +1970,6 @@
             <div>
               <div class="accent-line" aria-hidden="true"></div>
               <h2>專案經歷</h2>
-              <p>每張卡保留我參與的角色、接觸的資料或流程、使用技術與可查連結。</p>
             </div>
           </div>
           <div class="project-toolbar">
@@ -2040,7 +2025,6 @@
               </ul>
               <div class="tag-row"><span class="tag orange">BERT 文本分類</span><span class="tag cyan">STT 語音轉文字</span><span class="tag">MFCC 語音特徵</span><span class="tag green">CNN / LSTM</span><span class="tag rose">3DCNN 動作辨識</span><span class="tag">多模態融合</span></div>
               <div class="source-row">
-                <a class="source-link case-link" href="#case-bullying">查看完整案例</a>
                 <a class="source-link" href="https://web335s00.emis.tku.edu.tw/research/query-nati-sci-detail.asp?code=1210302" target="_blank" rel="noreferrer">淡江計畫頁</a>
                 <a class="source-link" href="https://www.104.com.tw/company/d17r2nc?jobsource=index_s_ac" target="_blank" rel="noreferrer">精英國際教育 104</a>
               </div>
@@ -2091,6 +2075,7 @@
                 <a class="source-link case-link" href="#case-llama">查看完整案例</a>
                 <a class="source-link" href="https://www.104.com.tw/company/1a2x6bkz59?jobsource=index_s_ac" target="_blank" rel="noreferrer">人工智能 104</a>
                 <a class="source-link" href="assets/aigo-deeplong-award.pdf" target="_blank">獎狀 PDF</a>
+                <a class="source-link" href="assets/aigo-llama-hallucination-cost-style.docx" download>AIGO 文件</a>
               </div>
             </article>
 
@@ -2127,7 +2112,7 @@
                 <span class="period">工作坊</span>
               </div>
               <p>依現場流程表，工作坊包含生成式 AI 應用全攻略、實作演練、運用 AI 建立預立醫療流程，以及運用 AI 建立醫療紀錄。</p>
-              <p class="role-line">我的角色：協助授課與實作，將 ChatGPT / 生成式 AI 轉成醫療流程撰寫、文字整理與紀錄草稿產出的操作流程。</p>
+              <p class="role-line">實作內容：協助授課與實作，將 ChatGPT / 生成式 AI 轉成醫療流程撰寫、文字整理與紀錄草稿產出的操作流程。</p>
               <ul class="clean">
                 <li>面向專科護理師，重點不是模型炫技，而是把 AI 用在可操作的醫療流程撰寫與紀錄整理。</li>
                 <li>透過實作與小組分享，協助學員把 AI 輸出轉成符合工作情境的文件草稿。</li>
@@ -2175,7 +2160,6 @@
               </ul>
               <div class="tag-row"><span class="tag cyan">Azure TTS 語音合成</span><span class="tag blue">Azure Speech 語音評分</span><span class="tag green">Azure OpenAI 對話評分</span><span class="tag">NLP 自然語言處理</span></div>
               <div class="source-row">
-                <a class="source-link case-link" href="#case-english">查看完整案例</a>
                 <a class="source-link" href="https://web335s00.emis.tku.edu.tw/research/query-nati-sci-detail.asp?code=1310301" target="_blank" rel="noreferrer">淡江計畫頁</a>
               </div>
             </article>
@@ -2196,7 +2180,6 @@
               </ul>
               <div class="tag-row"><span class="tag green">IoT 感測資料</span><span class="tag blue">Transformer 序列建模</span><span class="tag cyan">Behavior Recognition 行為辨識</span><span class="tag orange">Anomaly Detection 異常偵測</span></div>
               <div class="source-row">
-                <a class="source-link case-link" href="#case-healthcare">查看完整案例</a>
                 <a class="source-link" href="https://teacher.tku.edu.tw/StfFdDtl.aspx?tid=7142586" target="_blank" rel="noreferrer">淡江教師歷程</a>
               </div>
             </article>
@@ -2217,7 +2200,6 @@
               </ul>
               <div class="tag-row"><span class="tag cyan">Pose Estimation 姿態估計</span><span class="tag orange">Knowledge Graph 知識圖譜</span><span class="tag">RAG 健康知識問答</span><span class="tag green">Smart Healthcare 智慧健康管理</span></div>
               <div class="source-row">
-                <a class="source-link case-link" href="#case-healthcare">查看完整案例</a>
                 <a class="source-link" href="https://web335s00.emis.tku.edu.tw/research/query-nati-sci-detail.asp?code=1410166" target="_blank" rel="noreferrer">淡江計畫頁</a>
               </div>
             </article>
@@ -2253,7 +2235,6 @@
             <div>
               <div class="accent-line" aria-hidden="true"></div>
               <h2>案例詳解</h2>
-              <p>代表專案不只列名稱，每個案例都包含需求、我的角色、技術流程與可查看的 Demo / 獎項 / 照片證據。</p>
             </div>
           </div>
 
@@ -2269,7 +2250,7 @@
                 <p>把 PB 撇步平台的商家與優惠資料接進對話式推薦流程，讓使用者用文字、語音或拍照詢問附近餐廳、優惠與服務。</p>
                 <div class="case-columns">
                   <div>
-                    <h4>我負責</h4>
+                    <h4>重點</h4>
                     <ul>
                       <li>RAG 與資料分層規劃</li>
                       <li>商家資料 API 串接流程</li>
@@ -2293,7 +2274,6 @@
                     </ul>
                   </div>
                 </div>
-                <p class="case-note">這個案例的重點不是單純聊天，而是把商家資料、優惠查詢、對話記憶與語音互動串成可展示的推薦流程。</p>
                 <div class="case-actions">
                   <a class="source-link" href="https://esgpaybonus.tw/" target="_blank" rel="noreferrer">ESGPB 網站</a>
                   <a class="source-link" href="https://www.104.com.tw/company/1a2x6bm2kw?jobsource=google" target="_blank" rel="noreferrer">好奇兄弟 104</a>
@@ -2312,7 +2292,7 @@
                 <p>把旅遊手冊、景點、活動、常見問題與即時資訊整理成可問答的旅遊 AI Agent，支援導遊、旅客與旅後資料沉澱。</p>
                 <div class="case-columns">
                   <div>
-                    <h4>我負責</h4>
+                    <h4>重點</h4>
                     <ul>
                       <li>資料庫與檢索流程整理</li>
                       <li>語音 / 圖片輸入流程規劃</li>
@@ -2336,58 +2316,10 @@
                     </ul>
                   </div>
                 </div>
-                <p class="case-note">面試時可追問：圖像理解如何進入查詢流程、短期記憶與長期資料如何分層、旅遊知識圖譜如何支援問答。</p>
                 <div class="case-actions">
                   <a class="source-link" href="#deck">看簡報預覽</a>
                   <a class="source-link" href="assets/smart-travel-demo.pptx" download>下載 PPT</a>
                   <a class="source-link" href="https://innoserve.tca.org.tw/" target="_blank" rel="noreferrer">InnoServe 官網</a>
-                </div>
-              </div>
-            </article>
-
-            <article id="case-bullying" class="case-study" style="--accent-color: var(--orange)">
-              <figure class="case-media">
-                <div class="case-diagram" aria-label="霸凌偵測與專注力辨識多模態流程">
-                  <div class="case-flow"><span>影像</span><span>聲音</span><span>語調</span></div>
-                  <strong>多模型融合判斷</strong>
-                  <span>疑似霸凌 / 專注力狀態 → 通知教師或家長</span>
-                </div>
-                <figcaption>112 年度科技部案，合作方為精英國際教育集團；系統重點是校園安全與多模態辨識。</figcaption>
-              </figure>
-              <div class="case-body">
-                <span class="case-label">Case 03｜科技部案 / 國科會產學合作</span>
-                <h3>基於深度學習之霸凌偵測及專注力辨識系統</h3>
-                <p>結合幼兒園既有攝影設備與 AI 技術，透過影像、聲音與語調等多模態資料判斷疑似霸凌情境與專注力狀態。</p>
-                <div class="case-columns">
-                  <div>
-                    <h4>場域問題</h4>
-                    <ul>
-                      <li>校園安全事件需要即時介入</li>
-                      <li>單一影像或語音容易誤判</li>
-                      <li>需要能通知教師或家長的流程</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4>技術</h4>
-                    <ul>
-                      <li>STT / BERT / MFCC</li>
-                      <li>CNN / LSTM / 3DCNN</li>
-                      <li>多模型融合判斷</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4>合作</h4>
-                    <ul>
-                      <li>AIIT 實驗室</li>
-                      <li>精英國際教育集團</li>
-                      <li>淡江計畫公開頁</li>
-                    </ul>
-                  </div>
-                </div>
-                <p class="case-note">這個案例適合展示 Computer Vision、語音特徵、NLP 文本判斷與多模態融合，不把它包裝成單一模型能解決全部問題。</p>
-                <div class="case-actions">
-                  <a class="source-link" href="https://web335s00.emis.tku.edu.tw/research/query-nati-sci-detail.asp?code=1210302" target="_blank" rel="noreferrer">淡江計畫頁</a>
-                  <a class="source-link" href="https://www.104.com.tw/company/d17r2nc?jobsource=index_s_ac" target="_blank" rel="noreferrer">精英國際教育 104</a>
                 </div>
               </div>
             </article>
@@ -2427,9 +2359,9 @@
                     </ul>
                   </div>
                 </div>
-                <p class="case-note">這裡可追問的是回答品質控管與系統設計，而不是只把開源模型名稱放進履歷。</p>
                 <div class="case-actions">
                   <a class="source-link" href="assets/aigo-deeplong-award.pdf" target="_blank">獎狀 PDF</a>
+                  <a class="source-link" href="assets/aigo-llama-hallucination-cost-style.docx" download>AIGO 文件</a>
                   <a class="source-link" href="https://www.104.com.tw/company/1a2x6bkz59?jobsource=index_s_ac" target="_blank" rel="noreferrer">人工智能 104</a>
                 </div>
               </div>
@@ -2470,7 +2402,6 @@
                     </ul>
                   </div>
                 </div>
-                <p class="case-note">這個案例呈現技術服務與文件規劃支援，重點是把鐵道巡檢、專業知識與 AI 應用整理成可討論的架構。</p>
                 <div class="case-actions">
                   <a class="source-link" href="https://ezbid.tw/detail/3.15.29/114CZ016" target="_blank" rel="noreferrer">標案頁</a>
                   <a class="source-link" href="https://tkutimes.tku.edu.tw/dtl.aspx?no=59619" target="_blank" rel="noreferrer">淡江時報</a>
@@ -2490,7 +2421,7 @@
                 <p>協助專科護理師把生成式 AI 用在預立醫療流程與醫療紀錄草稿撰寫，重點是把工具轉成可操作的工作流程。</p>
                 <div class="case-columns">
                   <div>
-                    <h4>我的角色</h4>
+                    <h4>實作內容</h4>
                     <ul>
                       <li>協助授課與實作</li>
                       <li>提示設計與流程整理</li>
@@ -2514,7 +2445,6 @@
                     </ul>
                   </div>
                 </div>
-                <p class="case-note">這類經驗能證明我不是只做工程端，也能把 AI 轉成非資訊背景使用者聽得懂、做得到的流程。</p>
                 <div class="case-actions">
                   <a class="source-link" href="#evidence">看工作坊照片</a>
                 </div>
@@ -2556,103 +2486,9 @@
                     </ul>
                   </div>
                 </div>
-                <p class="case-note">這個案例可以展示語音辨識、摘要生成、任務追蹤與外部通知串接，適合面試 LLM 應用或 AI 系統整合職缺。</p>
                 <div class="case-actions">
                   <a class="source-link" href="#meeting-video">觀看展示影片</a>
                   <a class="source-link" href="https://drive.google.com/file/d/13D-BYGdDgXNsK3xFbfcFx9DEyhXHfPki/view?usp=drive_link" target="_blank" rel="noreferrer">Google Drive 原始影片</a>
-                </div>
-              </div>
-            </article>
-
-            <article id="case-healthcare" class="case-study" style="--accent-color: var(--green)">
-              <figure class="case-media">
-                <div class="case-diagram" aria-label="智慧照護與高齡健康管理流程">
-                  <div class="case-flow"><span>感測資料</span><span>姿勢影像</span><span>健康知識</span></div>
-                  <strong>行為辨識 / 姿勢分析 / 知識圖譜</strong>
-                  <span>異常提醒與 RAG 健康問答</span>
-                </div>
-                <figcaption>智慧居家養老與高齡健康管理相關計畫，對應智慧照護、姿勢分析與知識問答場域。</figcaption>
-              </figure>
-              <div class="case-body">
-                <span class="case-label">Case 08｜智慧照護研究計畫</span>
-                <h3>智慧居家養老與高齡者智慧健康管理</h3>
-                <p>兩個計畫分別聚焦居家行為規律、異常狀態辨識，以及高齡者姿勢分析與知識圖譜問答。</p>
-                <div class="case-columns">
-                  <div>
-                    <h4>智慧居家養老</h4>
-                    <ul>
-                      <li>規律性分析</li>
-                      <li>行為辨識</li>
-                      <li>異常狀態辨識</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4>高齡健康管理</h4>
-                    <ul>
-                      <li>AI 姿勢分析</li>
-                      <li>知識圖譜問答</li>
-                      <li>RAG 健康知識問答</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4>可查資料</h4>
-                    <ul>
-                      <li>淡江教師歷程</li>
-                      <li>淡江計畫頁</li>
-                      <li>計畫名稱完整列出</li>
-                    </ul>
-                  </div>
-                </div>
-                <p class="case-note">這裡補足多模態視覺、姿態估計、序列分析、知識圖譜與 RAG 問答的技能脈絡。</p>
-                <div class="case-actions">
-                  <a class="source-link" href="https://teacher.tku.edu.tw/StfFdDtl.aspx?tid=7142586" target="_blank" rel="noreferrer">智慧居家養老</a>
-                  <a class="source-link" href="https://web335s00.emis.tku.edu.tw/research/query-nati-sci-detail.asp?code=1410166" target="_blank" rel="noreferrer">高齡健康管理</a>
-                </div>
-              </div>
-            </article>
-
-            <article id="case-english" class="case-study" style="--accent-color: var(--cyan)">
-              <figure class="case-media">
-                <div class="case-diagram" aria-label="AI 智慧英語學習系統流程">
-                  <div class="case-flow"><span>Azure TTS</span><span>Azure Speech</span><span>Azure OpenAI</span></div>
-                  <strong>發音示範 / 錄音評分 / 對話回饋</strong>
-                  <span>口說訓練與精準學習回饋</span>
-                </div>
-                <figcaption>AI 智慧英語學習系統為 113 年度科技部案，重點在語音示範、發音評分與對話評分。</figcaption>
-              </figure>
-              <div class="case-body">
-                <span class="case-label">Case 09｜AI 英語學習科技部案</span>
-                <h3>AI 智慧英語學習系統之開發及融入精準學習之成效</h3>
-                <p>針對英語口說訓練與即時回饋，使用語音服務與大型語言模型協助發音評估、對話評分與學習建議。</p>
-                <div class="case-columns">
-                  <div>
-                    <h4>需求</h4>
-                    <ul>
-                      <li>標準語音示範</li>
-                      <li>錄音後發音評分</li>
-                      <li>對話與內容回饋</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4>技術</h4>
-                    <ul>
-                      <li>Azure TTS</li>
-                      <li>Azure Speech Service</li>
-                      <li>Azure OpenAI</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4>可查資料</h4>
-                    <ul>
-                      <li>完整計畫名稱</li>
-                      <li>淡江計畫公開頁</li>
-                      <li>語音與 NLP 能力脈絡</li>
-                    </ul>
-                  </div>
-                </div>
-                <p class="case-note">這個案例把語音模型、NLP 回饋與教育場域結合，適合用來說明語音互動與 AI 學習系統能力。</p>
-                <div class="case-actions">
-                  <a class="source-link" href="https://web335s00.emis.tku.edu.tw/research/query-nati-sci-detail.asp?code=1310301" target="_blank" rel="noreferrer">淡江計畫頁</a>
                 </div>
               </div>
             </article>
@@ -2692,7 +2528,6 @@
                     </ul>
                   </div>
                 </div>
-                <p class="case-note">這些經驗讓履歷不只呈現模型技能，也呈現把 AI 導入實際使用者工作流程的能力。</p>
                 <div class="case-actions">
                   <a class="source-link" href="https://it.stem.lasercenter.nycu.edu.tw/" target="_blank" rel="noreferrer">陽明交通大學課程</a>
                   <a class="source-link" href="#evidence">查看活動照片</a>
@@ -2707,7 +2542,6 @@
             <div>
               <div class="accent-line" aria-hidden="true"></div>
               <h2>多模態意圖驅動旅遊 AI Agent 簡報預覽</h2>
-              <p>這份簡報對應 InnoServe 2025 第三名作品，可直接在網頁中翻閱，也可下載原始 PPT。</p>
             </div>
             <div class="source-row">
               <a class="source-link" href="assets/smart-travel-demo.pptx" download>下載 PPT</a>
@@ -2736,7 +2570,6 @@
             <div>
               <div class="accent-line" aria-hidden="true"></div>
               <h2>會議諸葛展示影片</h2>
-              <p>這段影片展示全域意境感知智慧會議秘書系統的整體功能，包含會前資料整理、會中逐字稿與摘要、會後任務追蹤等流程。</p>
             </div>
             <div class="source-row">
               <a class="source-link" href="https://drive.google.com/file/d/13D-BYGdDgXNsK3xFbfcFx9DEyhXHfPki/view?usp=drive_link" target="_blank" rel="noreferrer">開啟原始影片</a>
@@ -2771,7 +2604,6 @@
             <div>
               <div class="accent-line" aria-hidden="true"></div>
               <h2>活動與作品紀錄</h2>
-              <p>每張照片對應實際合作、授課、獲獎或系統展示，方便快速核對經歷脈絡。</p>
             </div>
           </div>
           <div class="evidence-grid">
@@ -2850,7 +2682,6 @@
             <div>
               <div class="accent-line" aria-hidden="true"></div>
               <h2>競賽與獲獎</h2>
-              <p>保留可公開查證的獎項、作品名稱與合作脈絡。</p>
             </div>
           </div>
           <div class="award-grid">
@@ -2874,6 +2705,7 @@
                 <div class="tag-row"><span class="tag rose">佳作</span><span class="tag blue">Llama 開源模型</span><span class="tag orange">Cost Reduction 成本優化</span></div>
                 <div class="source-row">
                   <a class="source-link" href="https://www.104.com.tw/company/1a2x6bkz59?jobsource=index_s_ac" target="_blank" rel="noreferrer">人工智能 104</a>
+                  <a class="source-link" href="assets/aigo-llama-hallucination-cost-style.docx" download>AIGO 文件</a>
                 </div>
               </div>
             </article>
