@@ -13,10 +13,11 @@
       --cyan: #06b6d4;
       --violet: #7c3aed;
       --orange: #f97316;
+      --red: #dc2626;
       --paper: #f8fafc;
       --surface: #ffffff;
-      --text: #111827;
-      --muted: #64748b;
+      --text: #050505;
+      --muted: #050505;
       --line: rgba(148, 163, 184, .22);
       --line-strong: rgba(100, 116, 139, .34);
       --radius: 18px;
@@ -40,7 +41,7 @@
         radial-gradient(circle at 88% 12%, rgba(6, 182, 212, .10), transparent 30%),
         linear-gradient(180deg, #ffffff 0%, var(--paper) 38%, #ffffff 100%);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
-      line-height: 1.65;
+      line-height: 1.5;
       letter-spacing: 0;
       overflow-x: hidden;
     }
@@ -56,6 +57,20 @@
         linear-gradient(90deg, rgba(37, 99, 235, .045) 1px, transparent 1px);
       background-size: 56px 56px;
       mask-image: linear-gradient(180deg, rgba(0, 0, 0, .72), transparent 76%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image:
+        linear-gradient(135deg, transparent 0 48%, rgba(6, 182, 212, .12) 49%, transparent 51%),
+        radial-gradient(circle, rgba(37, 99, 235, .14) 1px, transparent 1.6px);
+      background-size: 180px 180px, 28px 28px;
+      opacity: .42;
+      mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, .72) 12%, rgba(0, 0, 0, .28) 72%, transparent 100%);
     }
 
     a { color: inherit; text-decoration: none; }
@@ -126,7 +141,7 @@
       border: 1px solid transparent;
       border-radius: 999px;
       padding: 8px 12px;
-      color: #475569;
+      color: var(--text);
       font-size: 14px;
       font-weight: 760;
       line-height: 1.25;
@@ -214,7 +229,7 @@
 
     .title {
       margin-bottom: 18px;
-      color: #1e293b;
+      color: var(--text);
       font-size: 24px;
       font-weight: 820;
       line-height: 1.35;
@@ -223,8 +238,9 @@
 
     .lead {
       max-width: 760px;
-      color: #475569;
-      font-size: 17px;
+      color: var(--text);
+      font-size: 18px;
+      line-height: 1.5;
     }
 
     .hero-tags,
@@ -392,9 +408,9 @@
     .proof-card span {
       display: block;
       margin-top: 8px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.45;
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.5;
     }
 
     main {
@@ -424,11 +440,19 @@
       letter-spacing: 0;
     }
 
+    .section-head h3 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 24px;
+      line-height: 1.25;
+    }
+
     .section-head p {
       max-width: 66ch;
       margin: 8px 0 0;
-      color: var(--muted);
-      font-size: 15px;
+      color: var(--text);
+      font-size: 18px;
+      line-height: 1.5;
     }
 
     .accent-line {
@@ -478,8 +502,8 @@
     .evidence-card h3 {
       margin-bottom: 10px;
       color: var(--navy);
-      font-size: 20px;
-      line-height: 1.35;
+      font-size: 24px;
+      line-height: 1.25;
     }
 
     .value-card p,
@@ -488,8 +512,9 @@
     .experience-card p,
     .evidence-card p {
       margin-bottom: 0;
-      color: #475569;
-      font-size: 15px;
+      color: var(--text);
+      font-size: 18px;
+      line-height: 1.5;
     }
 
     .skills-grid {
@@ -499,6 +524,7 @@
     }
 
     .skill-group {
+      position: relative;
       display: grid;
       gap: 13px;
     }
@@ -538,8 +564,9 @@
 
     .lab-card p {
       margin: 0;
-      color: #475569;
-      font-size: 15px;
+      color: var(--text);
+      font-size: 18px;
+      line-height: 1.5;
     }
 
     .lab-points {
@@ -558,16 +585,16 @@
     .lab-point strong {
       display: block;
       color: var(--navy);
-      font-size: 15px;
+      font-size: 18px;
       line-height: 1.3;
     }
 
     .lab-point span {
       display: block;
       margin-top: 4px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.45;
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.5;
     }
 
     .lab-photo {
@@ -587,9 +614,9 @@
     .case-media figcaption {
       border-top: 1px solid var(--line);
       padding: 12px 14px;
-      color: #475569;
-      font-size: 14px;
-      line-height: 1.55;
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.5;
     }
 
     .featured-grid,
@@ -620,15 +647,16 @@
     }
 
     .project-meta dt {
-      color: var(--muted);
-      font-size: 13px;
+      color: var(--text);
+      font-size: 15px;
       font-weight: 840;
     }
 
     .project-meta dd {
       margin: 0;
-      color: #334155;
-      font-size: 15px;
+      color: var(--text);
+      font-size: 18px;
+      line-height: 1.5;
     }
 
     .text-link {
@@ -645,6 +673,7 @@
     }
 
     .case-card {
+      position: relative;
       display: grid;
       grid-template-columns: 1fr;
       gap: 22px;
@@ -668,6 +697,23 @@
       border: 1px solid var(--line);
       border-radius: 16px;
       background: #f8fafc;
+    }
+
+    .case-card::after,
+    .project-card::after,
+    .experience-card::after,
+    .evidence-card::after,
+    .skill-group::after,
+    .value-card::after {
+      content: "";
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 28px;
+      height: 28px;
+      border-top: 2px solid rgba(6, 182, 212, .35);
+      border-right: 2px solid rgba(37, 99, 235, .35);
+      pointer-events: none;
     }
 
     .case-media img {
@@ -698,31 +744,50 @@
     }
 
     .case-block {
+      position: relative;
+      overflow: hidden;
       border: 1px solid var(--line);
       border-radius: 14px;
-      padding: 14px;
-      background: #f8fafc;
+      padding: 16px 16px 16px 18px;
+      background:
+        linear-gradient(135deg, rgba(37, 99, 235, .055), transparent 52%),
+        #ffffff;
+    }
+
+    .case-block::before {
+      content: "";
+      position: absolute;
+      inset: 14px auto 14px 0;
+      width: 4px;
+      border-radius: 999px;
+      background: var(--red);
     }
 
     .case-block h4 {
-      margin: 0 0 6px;
-      color: var(--blue);
-      font-size: 16px;
-      line-height: 1.3;
+      margin: 0 0 8px;
+      color: var(--red);
+      font-size: 24px;
+      line-height: 1.25;
     }
 
     .case-block p {
       margin: 0;
-      color: #475569;
-      font-size: 15px;
+      color: var(--text);
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    .case-block strong {
+      color: var(--red);
+      font-weight: 850;
     }
 
     .case-block ul {
       margin: 0;
       padding-left: 1.1em;
-      color: #475569;
-      font-size: 15px;
-      line-height: 1.72;
+      color: var(--text);
+      font-size: 18px;
+      line-height: 1.5;
     }
 
     .case-block li::marker {
@@ -783,7 +848,7 @@
       border: 1px solid var(--line);
       border-radius: 9px;
       background: #fff;
-      color: #475569;
+      color: var(--text);
       font: inherit;
       font-size: 12px;
       font-weight: 760;
@@ -811,6 +876,7 @@
     }
 
     .experience-card {
+      position: relative;
       min-height: 156px;
     }
 
@@ -824,9 +890,9 @@
       gap: 8px;
       margin: 0;
       padding-left: 1.1em;
-      color: #475569;
-      font-size: 15px;
-      line-height: 1.7;
+      color: var(--text);
+      font-size: 18px;
+      line-height: 1.5;
     }
 
     .experience-list li::marker {
@@ -835,9 +901,9 @@
 
     .experience-note {
       margin-top: 12px;
-      color: #334155;
-      font-size: 15px;
-      line-height: 1.7;
+      color: var(--text);
+      font-size: 18px;
+      line-height: 1.5;
     }
 
     .evidence-grid {
@@ -845,6 +911,7 @@
     }
 
     .evidence-card {
+      position: relative;
       overflow: hidden;
       transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
     }
@@ -873,11 +940,13 @@
     }
 
     .evidence-body h3 {
-      font-size: 22px;
+      font-size: 24px;
     }
 
     .evidence-body p {
-      font-size: 16px;
+      color: var(--text);
+      font-size: 18px;
+      line-height: 1.5;
     }
 
     .contact-grid {
@@ -892,19 +961,23 @@
     }
 
     .contact-card p {
-      color: #475569;
+      color: var(--text);
+      font-size: 18px;
+      line-height: 1.5;
     }
 
     .note {
-      color: var(--muted);
-      font-size: 13px;
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.5;
     }
 
     .footer {
       border-top: 1px solid var(--line);
       padding: 26px 0 34px;
-      color: var(--muted);
-      font-size: 14px;
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.5;
     }
 
     .reveal {
@@ -1119,11 +1192,13 @@
       </a>
       <nav class="navlinks" aria-label="主要導覽">
         <a href="#top">首頁</a>
-        <a href="#lab-aiit">AIIT</a>
+        <a href="#value">能力</a>
         <a href="#skills">技能</a>
         <a href="#featured-projects">代表專案</a>
-        <a href="#case-studies">案例</a>
+        <a href="#case-studies">深度案例</a>
+        <a href="#other-experience">產學教學</a>
         <a href="#evidence">佐證</a>
+        <a href="#lab-aiit">AIIT</a>
         <a href="#contact">聯絡</a>
       </nav>
     </div>
@@ -1292,7 +1367,6 @@
         <div>
           <div class="accent-line" aria-hidden="true"></div>
           <h2>代表專案</h2>
-          <p>代表作品涵蓋商家推薦、旅遊問答、企業客服與會議秘書，重點在模型、資料庫、API 與場域流程整合。</p>
         </div>
       </div>
       <div class="featured-grid">
@@ -1355,7 +1429,6 @@
         <div>
           <div class="accent-line" aria-hidden="true"></div>
           <h2>深度案例</h2>
-          <p>每個案例用一整列呈現圖片、場域問題、系統流程與可追問的技術細節，讓面試官能快速看懂你實際做過什麼。</p>
         </div>
       </div>
       <div class="case-grid">
@@ -1367,7 +1440,7 @@
             </figure>
             <figure class="case-media diagram">
               <img src="assets/esgpb-architecture.png" alt="ESGPB 商家推薦助理系統架構圖" loading="lazy" />
-              <figcaption>系統架構包含虛擬人互動、語音 / 文字 / 圖片輸入、商家資料 API、RAG 檢索與記憶資料庫。</figcaption>
+              <figcaption>系統架構包含虛擬人互動、語音/文字/圖片輸入、商家資料API、RAG檢索與記憶資料庫。</figcaption>
             </figure>
           </div>
           <div class="case-body">
@@ -1386,7 +1459,7 @@
             </div>
             <div class="case-block">
               <h4>應用價值</h4>
-              <p>讓網站右下角虛擬人不只是聊天視窗，而是能接到商家資料、優惠推薦、語音回覆與影片連結的導購介面，可展示 AI Agent 與商業資料整合能力。</p>
+              <p>企業能把商家資料、優惠與影片轉成可被詢問的服務入口；使用者不用猜關鍵字也能快速找到合適店家，平台可累積偏好資料，<strong>提升推薦精準度與轉換機會</strong>。</p>
             </div>
           </div>
         </article>
@@ -1418,7 +1491,7 @@
             </div>
             <div class="case-block">
               <h4>應用價值</h4>
-              <p>作品全名為「具意圖探測的多模態旅遊問答服務系統」，獲 2025 InnoServe 商業發展治理創新組第三名。下方可直接預覽完整簡報，方便面試時查看系統情境、架構與展示流程。</p>
+              <p>旅行社可降低導遊與客服反覆查資料的負擔，旅客在旅前、旅中都能快速取得行程答案；旅後偏好也能回饋下一次行程設計，<strong>提高服務效率與旅客體驗</strong>。</p>
             </div>
           </div>
         </article>
@@ -1431,14 +1504,14 @@
             </figure>
             <figure class="case-media diagram">
               <img src="assets/llama-ai-architecture.png" alt="Llama 企業 AI 客服優化系統架構圖" loading="lazy" />
-              <figcaption>Llama 企業 AI 客服優化架構，將知識檢索、答案重用、品質評估與風格調整放進同一個流程。</figcaption>
+              <figcaption>企業AI客服優化架構，知識檢索、QA訓練、品質評估與風格調整。</figcaption>
             </figure>
           </div>
           <div class="case-body">
             <h3>Llama 企業 AI 客服優化</h3>
             <div class="case-block">
               <h4>場域問題背景</h4>
-              <p>企業客服導入 LLM 時，常遇到三個問題：回答內容可能幻覺、外部 API 成本不穩定、回答語氣不符合產業或品牌風格。這個專案以 Llama / TAIDE 為例，設計可控的知識問答流程。</p>
+              <p>企業客服導入 LLM 時，常遇到三個問題：回答內容可能幻覺、外部API成本不穩定、回答語氣不符合產業或品牌風格。這個專案以 Llama / TAIDE 為例，設計可控的知識問答流程。</p>
             </div>
             <div class="case-block">
               <h4>情境說明</h4>
@@ -1450,7 +1523,7 @@
             </div>
             <div class="case-block">
               <h4>應用價值</h4>
-              <p>作品全名為「以 Llama 為例解決 LLM 幻覺問題、節省成本及特殊風格調整」，獲 2024 年度 AI 應用鬥智賽佳作，並保留完整提案文件供下載。</p>
+              <p>企業可用既有知識庫降低無根據回答與重複生成成本，客服回覆更一致、可追溯，也更容易維持品牌語氣與內部服務標準，<strong>降低導入 LLM 的營運風險</strong>。</p>
             </div>
           </div>
         </article>
@@ -1475,7 +1548,7 @@
             </div>
             <div class="case-block">
               <h4>應用價值</h4>
-              <p>展示影片已嵌入下方，可看到從語音轉錄、摘要生成到任務追蹤的流程；此作品也作為 2025 第十屆台灣服務創新獎相關成果的一部分呈現。</p>
+              <p>把錄音與逐字稿轉成摘要、待辦與追蹤提醒，可減少會後人工整理時間，讓責任分派更清楚，跨部門會議不容易因資訊散落而中斷，<strong>提升會議後續執行率</strong>。</p>
             </div>
           </div>
         </article>
@@ -1483,13 +1556,13 @@
         <article id="case-railway" class="case-card reveal">
           <figure class="case-media">
             <img src="assets/ceci-ai-railway-visit.png" alt="世曦工程與淡江 AI 創智場域交流合照" loading="lazy" />
-            <figcaption>世曦工程拜訪淡江 AI 創智場域。此處只呈現公開可說明的 AI 規劃協助方向，不揭露內部文件細節。</figcaption>
+            <figcaption>世曦工程拜訪淡江AI創智場域。</figcaption>
           </figure>
           <div class="case-body">
             <h3>鐵道專用交談式專家系統與巡檢數位轉型規劃</h3>
             <div class="case-block">
               <h4>場域問題背景</h4>
-              <p>鐵道工程與巡檢場域涉及大量規範、圖文資料、審查流程與專業術語。公開履歷僅描述技術規劃層級，不揭露標案細節、內部文件內容或驗收條件。</p>
+              <p>鐵道工程與巡檢場域涉及大量規範、圖文資料、審查流程與專業術語，即時的影像偵測在特殊環境（如夜間低照度、天候不佳）等問題。</p>
             </div>
             <div class="case-block">
               <h4>情境說明</h4>
@@ -1501,7 +1574,7 @@
             </div>
             <div class="case-block">
               <h4>應用價值</h4>
-              <p>這個案例重點是把 AI 技術轉成工程顧問可以審查、討論與分階段交付的規劃語言，展現我能理解產業文件、技術服務範圍與落地限制。</p>
+              <p>工程團隊能用更一致的方式整理規範、文件與巡檢紀錄，查詢與審查討論更快回到來源依據；同時保留權限與追溯設計，<strong>降低 AI 導入專業場域的風險</strong>。</p>
             </div>
           </div>
         </article>
@@ -1531,7 +1604,7 @@
           <div id="meeting-video" class="video-panel" aria-labelledby="meeting-video-title">
             <div class="section-head" style="margin:0; padding:18px 18px 14px;">
               <div>
-                <h3 id="meeting-video-title" style="margin:0;">會議諸葛展示影片</h3>
+                <h3 id="meeting-video-title" style="margin:0;">全域意境感知智慧會議秘書系統展示影片</h3>
                 <p>展示語音辨識、會議摘要、任務抽取與後續追蹤流程。</p>
               </div>
               <a class="text-link" href="https://drive.google.com/file/d/13D-BYGdDgXNsK3xFbfcFx9DEyhXHfPki/view?usp=drive_link" target="_blank" rel="noreferrer">Google Drive 原始影片</a>
@@ -1548,32 +1621,27 @@
       <div class="section-head">
         <div>
           <div class="accent-line" aria-hidden="true"></div>
-          <h2>其他產學與教學經驗</h2>
-          <p>以下列出完整計畫與標案名稱，方便面試官對照你的研究室、產學合作與實際場域經驗。</p>
+          <h2>產學合作與研究計畫與教學經驗</h2>
         </div>
       </div>
       <div class="experience-grid">
         <article class="experience-card wide reveal">
           <h3>國科會 / 科技部產學合作與研究計畫</h3>
           <ul class="experience-list">
-            <li>112年度「產學合作計畫-基於深度學習之霸凌偵測及專注力辨識系統」【科技部案】：結合影像、聲音與語調等多模態資料，建立幼兒園場域的霸凌偵測與專注力辨識流程。</li>
+            <li>112年度「產學合作計畫-基於深度學習之霸凌偵測及專注力辨識系統」【科技部案】：結合影像、聲音等多模態資料，建立幼兒園場域的霸凌偵測與專注力辨識流程。</li>
             <li>113年度「產學合作計畫—AI智慧英語學習系統之開發及融入精準學習之成效」【科技部案】：對應英語學習、精準學習與 AI 輔助教學場域。</li>
             <li>「智慧居家養老~基於機器學習與深度學習的規律性分析、行為辨識及異常狀態辨識研究與實作」【國科會】：聚焦高齡者居家行為辨識、規律性分析與異常狀態判斷。</li>
             <li>「高齡者智慧健康管理：基於 AI 姿勢分析與知識圖譜問答」【科技部案】：結合姿勢分析、知識圖譜與問答系統，支援高齡健康管理情境。</li>
           </ul>
         </article>
-        <article class="experience-card reveal">
+        <article class="experience-card wide reveal">
           <h3>醫療與教育工作坊</h3>
-          <p>榮總 AI 醫療工作坊面向專科護理師，示範如何用生成式 AI 輔助預立醫療流程與紀錄撰寫；陽明交通大學「半導體 AI 與 ChatGPT 應用班」則對應產業學員的 AI 工具應用與導入教學。</p>
+          <p>榮總 AI 醫療工作坊面向專科護理師，示範如何用生成式 AI 輔助預立醫療流程與紀錄撰寫</p>
+          <p>陽明交通大學「半導體AI與ChatGPT應用班」則對應產業學員的AI工具應用與導入教學。</p>
         </article>
         <article class="experience-card wide reveal">
           <h3>委託應用AI建構鐵道專業服務及巡檢數位轉型建置之規劃、基本設計、細部設計審查、監督審驗(含鐵道領域專業顧問)技術服務</h3>
-          <p>協助台灣世曦工程整理鐵道 AI 與智慧工程標案內容，將需求拆成可執行的技術服務範圍：鐵道巡檢數位轉型、工程文件知識查詢、影像辨識、AI 對話系統、專業顧問支援、基本設計與細部設計審查，以及監督審驗流程。</p>
-          <p class="experience-note">這個案例重點不是單一模型展示，而是把工程顧問、鐵道專業知識、巡檢流程與 AI 系統建置放在同一份技術服務規劃中，讓後續審查與交付能被追蹤。</p>
-        </article>
-        <article class="experience-card reveal">
-          <h3>研究訓練</h3>
-          <p>碩士論文方向為開放域目標導向主動對話，熟悉資料處理、模型訓練、偏好優化與錯誤分析。</p>
+          <p>協助台灣世曦工程整理鐵道 AI 與智慧工程標案內容，將需求拆成可執行的技術服務範圍：鐵道巡檢數位轉型、工程文件知識查詢、影像辨識、AI 對話系統、專業顧問支援、基本設計與細部設計審查，以及監督審驗流程。標案案號:114CZ016</p>
         </article>
       </div>
     </section>
@@ -1583,7 +1651,6 @@
         <div>
           <div class="accent-line" aria-hidden="true"></div>
           <h2>佐證與獲獎</h2>
-          <p>公開獎狀、合作截圖與現場照片可對應到上方代表作品與實際參與紀錄。</p>
         </div>
       </div>
       <div class="evidence-grid">
@@ -1598,14 +1665,14 @@
           <img src="assets/aigo-deeplong-award.jpg" alt="AI 應用鬥智賽佳作獎狀" loading="lazy" />
           <div class="evidence-body">
             <h3>AI 應用鬥智賽佳作</h3>
-            <p>Deep龍力團隊，以 Llama 為例處理幻覺、成本與企業風格需求。</p>
+            <p>Deep龍力團隊，作品為以 Llama 為例處理幻覺、成本與企業風格需求。</p>
           </div>
         </article>
         <article class="evidence-card reveal">
           <img src="assets/service-award-stage.jpg" alt="台灣服務創新獎合照" loading="lazy" />
           <div class="evidence-body">
             <h3>台灣服務創新獎合照</h3>
-            <p>代表 AIIT 淡江大學人工智慧與產業技術實驗室上台領獎。</p>
+            <p>代表 AIIT 淡江大學人工智慧與產業技術實驗室上台領獎，作品為全域意境感知智慧會議秘書系統。</p>
           </div>
         </article>
         <article class="evidence-card reveal">
@@ -1619,7 +1686,7 @@
           <img src="assets/vgh-ai-workshop-speaking.jpg" alt="榮總 AI 工作坊教課照" loading="lazy" />
           <div class="evidence-body">
             <h3>榮總 AI 工作坊教課照</h3>
-            <p>面向專科護理師，示範生成式 AI 輔助預立醫療流程與紀錄撰寫。</p>
+            <p>面向專科護理師，示範使用生成式 AI輔助預立醫療流程與紀錄撰寫。</p>
           </div>
         </article>
         <article class="evidence-card reveal">
