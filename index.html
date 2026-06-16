@@ -1591,14 +1591,14 @@
             <div class="section-head" style="margin:0; padding:18px 18px 14px;">
               <div>
                 <h3 id="travel-deck-title" style="margin:0;">多模態旅遊 AI Agent 簡報預覽</h3>
-                <p>可直接翻閱 40 張投影片，對應 InnoServe 第三名作品。</p>
+                <p>可直接翻閱 36 張投影片，對應 InnoServe 第三名作品。</p>
               </div>
             </div>
             <div class="slide-frame">
               <img id="travelSlideImage" src="assets/smart-travel-slides/slide-01.png" alt="多模態意圖驅動旅遊 AI Agent 簡報第 1 張" loading="lazy" />
             </div>
             <div class="slide-tools">
-              <strong id="travelSlideCounter">第 1 / 40 張</strong>
+              <strong id="travelSlideCounter">第 1 / 36 張</strong>
               <div class="slide-actions">
                 <button class="slide-btn" type="button" id="travelSlidePrev">上一張</button>
                 <button class="slide-btn" type="button" id="travelSlideNext">下一張</button>
@@ -1815,7 +1815,7 @@
     const travelSlidePrev = document.getElementById('travelSlidePrev');
     const travelSlideNext = document.getElementById('travelSlideNext');
     const travelSlideThumbs = document.getElementById('travelSlideThumbs');
-    const travelSlides = Array.from({ length: 40 }, (_, index) => {
+    const travelSlides = Array.from({ length: 36 }, (_, index) => {
       const number = String(index + 1).padStart(2, '0');
       return `assets/smart-travel-slides/slide-${number}.png`;
     });
