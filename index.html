@@ -186,6 +186,17 @@
       background: linear-gradient(90deg, var(--blue), var(--cyan), var(--violet), var(--orange));
     }
 
+    .hero-heading {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin-bottom: 16px;
+    }
+
+    .hero-name {
+      min-width: 0;
+    }
+
     h1,
     h2,
     h3,
@@ -302,6 +313,7 @@
       display: flex;
       flex-direction: column;
       gap: 18px;
+      justify-content: center;
       padding: 24px;
     }
 
@@ -320,6 +332,14 @@
       object-fit: cover;
     }
 
+    .hero-avatar {
+      flex: 0 0 128px;
+      width: 128px;
+      height: 128px;
+      border-radius: 20px;
+      box-shadow: 0 18px 38px rgba(15, 23, 42, .12);
+    }
+
     .profile-list {
       display: grid;
       gap: 12px;
@@ -329,6 +349,11 @@
     .profile-list div {
       border-top: 1px solid var(--line);
       padding-top: 12px;
+    }
+
+    .profile-list div:first-child {
+      border-top: 0;
+      padding-top: 0;
     }
 
     .profile-list dt {
@@ -615,20 +640,26 @@
       box-shadow: none;
     }
 
+    .case-grid {
+      grid-template-columns: 1fr;
+    }
+
     .case-card {
       display: grid;
-      grid-template-columns: 210px minmax(0, 1fr);
-      gap: 18px;
+      grid-template-columns: 1fr;
+      gap: 22px;
       align-items: start;
+      padding: 24px;
     }
 
     .case-card.case-featured {
       grid-column: 1 / -1;
-      grid-template-columns: minmax(320px, .95fr) minmax(0, 1fr);
+      grid-template-columns: 1fr;
     }
 
     .case-media-stack {
       display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
 
@@ -641,42 +672,56 @@
 
     .case-media img {
       width: 100%;
-      height: 180px;
+      height: 320px;
       object-fit: contain;
-      padding: 10px;
+      padding: 12px;
     }
 
     .case-card.case-featured .case-media img {
-      height: 220px;
+      height: 360px;
     }
 
     .case-card.case-featured .case-media.diagram img {
-      height: 260px;
+      height: 360px;
     }
 
     .case-body {
       display: grid;
-      gap: 13px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .case-body h3 {
+      grid-column: 1 / -1;
+      margin-bottom: 2px;
+      font-size: 24px;
+    }
+
+    .case-block {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: #f8fafc;
     }
 
     .case-block h4 {
-      margin: 0 0 4px;
+      margin: 0 0 6px;
       color: var(--blue);
-      font-size: 14px;
+      font-size: 16px;
       line-height: 1.3;
     }
 
     .case-block p {
       margin: 0;
       color: #475569;
-      font-size: 14px;
+      font-size: 15px;
     }
 
     .case-block ul {
       margin: 0;
       padding-left: 1.1em;
       color: #475569;
-      font-size: 14px;
+      font-size: 15px;
       line-height: 1.72;
     }
 
@@ -796,7 +841,7 @@
     }
 
     .evidence-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .evidence-card {
@@ -816,15 +861,23 @@
 
     .evidence-card img {
       width: 100%;
-      height: 220px;
+      height: 320px;
       object-fit: contain;
-      padding: 12px;
+      padding: 16px;
       background: #f8fafc;
       border-bottom: 1px solid var(--line);
     }
 
     .evidence-body {
-      padding: 18px;
+      padding: 22px;
+    }
+
+    .evidence-body h3 {
+      font-size: 22px;
+    }
+
+    .evidence-body p {
+      font-size: 16px;
     }
 
     .contact-grid {
@@ -882,7 +935,9 @@
 
       .featured-grid,
       .case-grid,
-      .experience-grid {
+      .experience-grid,
+      .case-media-stack,
+      .case-body {
         grid-template-columns: 1fr;
       }
     }
@@ -931,6 +986,18 @@
         max-width: 100%;
       }
 
+      .hero-heading {
+        align-items: center;
+        flex-direction: row;
+        gap: 12px;
+      }
+
+      .hero-avatar {
+        width: 84px;
+        height: 84px;
+        flex-basis: 84px;
+      }
+
       .profile-card,
       .proof-card,
       .value-card,
@@ -947,11 +1014,11 @@
       }
 
       h1 {
-        font-size: 42px;
+        font-size: 38px;
       }
 
       .title {
-        font-size: 20px;
+        font-size: 17px;
       }
 
       .lead,
@@ -987,9 +1054,18 @@
         grid-column: auto;
       }
 
+      .case-card {
+        padding: 16px;
+      }
+
       .case-media img,
+      .case-card.case-featured .case-media img,
+      .case-card.case-featured .case-media.diagram img {
+        height: 260px;
+      }
+
       .evidence-card img {
-        height: 190px;
+        height: 260px;
       }
     }
 
@@ -1057,8 +1133,15 @@
     <div class="container">
       <div class="hero-grid">
         <div class="hero-card reveal">
-          <h1 id="hero-title">呂哲言</h1>
-          <p class="title">AI / LLM / RAG / Multimodal AI Engineer</p>
+          <div class="hero-heading">
+            <div class="avatar hero-avatar">
+              <img src="assets/profile-photo.png" alt="呂哲言個人照片" />
+            </div>
+            <div class="hero-name">
+              <h1 id="hero-title">呂哲言</h1>
+              <p class="title">AI / LLM / RAG / Multimodal AI Engineer</p>
+            </div>
+          </div>
           <p class="lead">淡江資工碩士班準畢業生，主攻 LLM、RAG、AI Agent 與多模態 AI 系統開發。具備從模型應用、向量資料庫、後端 API、語音 / 視覺模型到產業場域導入的完整實作經驗。</p>
           <div class="hero-tags" aria-label="核心方向">
             <span class="tag">LLM Application</span>
@@ -1080,9 +1163,6 @@
         </div>
 
         <aside class="profile-card reveal" aria-label="個人資訊">
-          <div class="avatar">
-            <img src="assets/profile-photo.png" alt="呂哲言個人照片" />
-          </div>
           <dl class="profile-list">
             <div>
               <dt>求職方向</dt>
@@ -1139,7 +1219,7 @@
       <div class="section-head">
         <div>
           <div class="accent-line" aria-hidden="true"></div>
-          <h2>Core Skills｜核心技能</h2>
+          <h2>核心技能</h2>
           <p>熟悉 LLM、RAG、Agent、後端整合與多模態應用，能從資料處理一路接到可展示的系統流程。</p>
         </div>
       </div>
@@ -1211,7 +1291,7 @@
       <div class="section-head">
         <div>
           <div class="accent-line" aria-hidden="true"></div>
-          <h2>Featured Projects｜代表專案</h2>
+          <h2>代表專案</h2>
           <p>代表作品涵蓋商家推薦、旅遊問答、企業客服與會議秘書，重點在模型、資料庫、API 與場域流程整合。</p>
         </div>
       </div>
@@ -1274,8 +1354,8 @@
       <div class="section-head">
         <div>
           <div class="accent-line" aria-hidden="true"></div>
-          <h2>Case Studies｜深度案例</h2>
-          <p>以下案例整理問題背景、系統架構與公開佐證，方便面試時延伸討論技術細節。</p>
+          <h2>深度案例</h2>
+          <p>每個案例用一整列呈現圖片、場域問題、系統流程與可追問的技術細節，讓面試官能快速看懂你實際做過什麼。</p>
         </div>
       </div>
       <div class="case-grid">
@@ -1293,27 +1373,35 @@
           <div class="case-body">
             <h3>ESGPB 商家推薦助理</h3>
             <div class="case-block">
-              <h4>Problem</h4>
+              <h4>問題背景</h4>
               <p>ESGPB 有商家、優惠、影片與分類資料，但一般使用者不一定知道該怎麼搜尋。這個案例把「找優惠、找店家、問推薦」改成可用自然語言、語音與圖片互動的推薦流程。</p>
             </div>
             <div class="case-block">
-              <h4>Data / Retrieval</h4>
+              <h4>資料與檢索</h4>
               <p>後端以 FastAPI 提供串流 API，商家資料同時查詢 ESGPB Stores API 與 Qdrant 向量資料庫。Qdrant 使用 OpenAI text-embedding-3-small 建立語意向量，並與 API 查詢結果合併、去重、排序。</p>
             </div>
             <div class="case-block">
-              <h4>Interaction Flow</h4>
+              <h4>互動流程</h4>
               <ul>
                 <li>使用者可用文字、語音或圖片描述需求，例如找餐廳、優惠、特定地區或行程安排。</li>
                 <li>意圖分析會判斷直接查詢、模糊探索、折扣需求、行程規劃、圖片上傳或閒聊，再分流到對應流程。</li>
-                <li>Redis 保存短期對話上下文，PostgreSQL 保存長期對話紀錄與偏好，MySQL `items` 資料表用來比對商家影片 URL。</li>
+                <li>Redis 保存短期對話上下文，PostgreSQL 保存長期對話紀錄與偏好，MySQL items 資料表用來比對商家影片 URL。</li>
               </ul>
             </div>
             <div class="case-block">
-              <h4>Delivery</h4>
+              <h4>交付方式</h4>
               <p>回覆採串流輸出，除了推薦文字，也能回傳語音、影片連結與商家推薦理由。這讓網站右下角的虛擬人不只是聊天視窗，而是可以接到商家資料與推薦流程的導購介面。</p>
             </div>
             <div class="case-block">
-              <h4>Impact / Evidence</h4>
+              <h4>技術亮點</h4>
+              <ul>
+                <li>將商家資料、優惠、影片與分類欄位整理成可檢索資料來源。</li>
+                <li>用意圖分類讓使用者不用先知道資料欄位，也能用自然語言問出需求。</li>
+                <li>把推薦、語音回覆與虛擬人介面串成同一個使用者流程。</li>
+              </ul>
+            </div>
+            <div class="case-block">
+              <h4>成果與佐證</h4>
               <p>目前網站放入 ESGPB 實作截圖與架構圖，可對應到好奇兄弟雲端股份有限公司合作專案；右下角助理支援語言選擇、對話與商家優惠推薦入口。</p>
             </div>
           </div>
@@ -1326,19 +1414,27 @@
           <div class="case-body">
             <h3>多模態旅遊 AI Agent</h3>
             <div class="case-block">
-              <h4>Problem</h4>
+              <h4>問題背景</h4>
               <p>旅行社手冊、景點介紹、行程表與售價資訊常分散在不同文件，旅客臨時提問時，導遊需要反覆查資料；旅後回饋也容易散落在聊天紀錄中，難以整理成下一次行程規劃的依據。</p>
             </div>
             <div class="case-block">
-              <h4>Document / Knowledge</h4>
+              <h4>文件與知識庫</h4>
               <p>以 Unstructured.io 與 Detectron2 拆解旅遊手冊中的文字、表格與圖片，再整理成知識圖譜與向量資料庫。Neo4j 用於景點、行程與關係查詢，Qdrant 用於語意檢索，Redis / PostgreSQL 保存對話狀態與偏好。</p>
             </div>
             <div class="case-block">
-              <h4>Multimodal Flow</h4>
+              <h4>多模態流程</h4>
               <p>系統支援 LINE Bot 入口，搭配 Whisper 處理語音問題，BLIP-2 / Video-LLaMA 解析圖片與影片線索，並可透過即時搜尋補足每日變動的旅遊資訊。</p>
             </div>
             <div class="case-block">
-              <h4>Impact / Evidence</h4>
+              <h4>使用情境</h4>
+              <ul>
+                <li>旅客可詢問景點、行程、餐飲與交通安排，不必翻完整本手冊。</li>
+                <li>導遊可用系統減少重複講解，把常見問題轉成可重用的問答資料。</li>
+                <li>旅後回饋可整理成偏好資料，協助旅行社調整下一次行程設計。</li>
+              </ul>
+            </div>
+            <div class="case-block">
+              <h4>成果與佐證</h4>
               <p>作品全名為「具意圖探測的多模態旅遊問答服務系統」，獲 2025 InnoServe 商業發展治理創新組第三名。下方可直接預覽完整簡報，方便面試時查看系統情境、架構與展示流程。</p>
             </div>
           </div>
@@ -1351,19 +1447,27 @@
           <div class="case-body">
             <h3>Llama 企業 AI 客服優化</h3>
             <div class="case-block">
-              <h4>Problem</h4>
+              <h4>問題背景</h4>
               <p>企業客服導入 LLM 時，常遇到三個問題：回答內容可能幻覺、外部 API 成本不穩定、回答語氣不符合產業或品牌風格。這個專案以 Llama / TAIDE 為例，設計可控的知識問答流程。</p>
             </div>
             <div class="case-block">
-              <h4>Retrieval / Reuse</h4>
+              <h4>檢索與重用</h4>
               <p>檢索端結合 BM25、Embedding 與 Cross-Similarity Retrieval，讓問題能先對齊企業知識與歷史高品質問答；若已有相似答案，優先重用並降低重複呼叫模型的成本。</p>
             </div>
             <div class="case-block">
-              <h4>Model / Style</h4>
+              <h4>模型與風格</h4>
               <p>模型端透過 LoRA 微調 Llama / TAIDE，使回覆更接近需求單位的客服語氣與產業用語；同時搭配 QA Scoring 檢查回答品質，避免只靠單次生成決定最終答案。</p>
             </div>
             <div class="case-block">
-              <h4>Impact / Evidence</h4>
+              <h4>工程重點</h4>
+              <ul>
+                <li>先用企業知識庫約束回答來源，再讓模型生成，降低無根據回答。</li>
+                <li>用相似問答重用機制處理高頻客服問題，降低重複生成成本。</li>
+                <li>把回答品質、風格一致性與成本控制一起納入設計，而不是只做單次對話 Demo。</li>
+              </ul>
+            </div>
+            <div class="case-block">
+              <h4>成果與佐證</h4>
               <p>作品全名為「以 Llama 為例解決 LLM 幻覺問題、節省成本及特殊風格調整」，獲 2024 年度 AI 應用鬥智賽佳作，並保留完整提案文件供下載。</p>
             </div>
           </div>
@@ -1376,20 +1480,76 @@
           <div class="case-body">
             <h3>全域意境感知智慧會議秘書系統</h3>
             <div class="case-block">
-              <h4>Problem</h4>
+              <h4>問題背景</h4>
               <p>會議資料常分散在 LINE、Email、雲端文件與過往決議中；會議中若只留下逐字稿，後續仍要人工整理重點、責任分派與提醒，導致會後追蹤斷掉。</p>
             </div>
             <div class="case-block">
-              <h4>Before / During / After</h4>
+              <h4>會前、會中、會後</h4>
               <p>會前彙整歷史資料與議程，會中以 Whisper 轉錄並搭配 ECAPA-TDNN / Spectral Clustering 做語者分離，會後輸出摘要、任務清單與追蹤提醒。</p>
             </div>
             <div class="case-block">
-              <h4>Automation</h4>
+              <h4>自動化流程</h4>
               <p>以 Sentence-BERT、HDBSCAN、TextRank 與 NER 抽取主題、重點與行動項目，再透過 n8n、Webhook 與 Multi-Agent 串接 LINE、Email、Calendar 等通知流程。</p>
             </div>
             <div class="case-block">
-              <h4>Impact / Evidence</h4>
+              <h4>系統價值</h4>
+              <ul>
+                <li>把會議前的資料準備、會議中的紀錄與會後追蹤接成同一條流程。</li>
+                <li>讓逐字稿不只是紀錄，而是能產出摘要、責任分派與提醒。</li>
+                <li>適合用來展示語音處理、語者辨識、摘要、任務抽取與 Agent 流程整合。</li>
+              </ul>
+            </div>
+            <div class="case-block">
+              <h4>成果與佐證</h4>
               <p>展示影片已嵌入下方，可看到從語音轉錄、摘要生成到任務追蹤的流程；此作品也作為 2025 第十屆台灣服務創新獎相關成果的一部分呈現。</p>
+            </div>
+          </div>
+        </article>
+
+        <article id="case-railway" class="case-card reveal">
+          <figure class="case-media">
+            <img src="assets/ceci-ai-railway-visit.png" alt="世曦工程與淡江 AI 創智場域交流合照" loading="lazy" />
+            <figcaption>世曦工程拜訪淡江 AI 創智場域，對應鐵道 AI、巡檢數位轉型與專業顧問技術服務規劃。</figcaption>
+          </figure>
+          <div class="case-body">
+            <h3>鐵道專用交談式專家系統與巡檢數位轉型規劃</h3>
+            <div class="case-block">
+              <h4>標案脈絡</h4>
+              <p>對應「委託應用AI建構鐵道專業服務及巡檢數位轉型建置之規劃、基本設計、細部設計審查、監督審驗(含鐵道領域專業顧問)技術服務」。重點是把鐵道專業文件、巡檢資料、工程管理與審查流程整理成可建置、可審查、可驗收的 AI 系統規劃。</p>
+            </div>
+            <div class="case-block">
+              <h4>系統架構</h4>
+              <p>文件規劃包含鐵道專用交談式專家介面、鐵道知識庫、雲端大型語言模型與既有鐵道雲資料庫匯流排。模組涵蓋鐵道規範及業務資料上傳、工程施工管理、巡檢應用、審查與技術規範查詢。</p>
+            </div>
+            <div class="case-block">
+              <h4>知識庫設計</h4>
+              <ul>
+                <li>關聯型資料庫：保存結構化資料，例如車站、設備、工單、時刻與標準欄位。</li>
+                <li>文件型資料庫：保存事故報告、維修通報、政策公告與半結構化紀錄。</li>
+                <li>向量資料庫與知識圖譜：支援語意檢索、多階層關係查詢與鐵道規範追溯。</li>
+                <li>快取資料庫：保存近期查詢、熱門問題與短期上下文，降低重複查詢成本。</li>
+              </ul>
+            </div>
+            <div class="case-block">
+              <h4>問答與檢索策略</h4>
+              <p>鐵道專有名詞、法規條文與巡檢情境不能只靠單一向量檢索。規劃採問題分類器先辨識查詢類型，再依問題性質分配 BM25、RAG、知識圖譜或混合檢索，並要求回答能回到來源文件，讓答案可追溯。</p>
+            </div>
+            <div class="case-block">
+              <h4>多模態巡檢</h4>
+              <p>文件也整理影像辨識與多模態模型選用，例如 CLIP、SAM、BLIP、LLaVA 等，用於巡檢影像、空拍照片、影片與文字描述的共同理解。應用情境包含軌道缺陷、設備故障、異物入侵、淨空區間與施工風險提示。</p>
+            </div>
+            <div class="case-block">
+              <h4>驗收指標</h4>
+              <ul>
+                <li>RAG 問答需搭配人工評測，業務專家抽題確認事實正確性與可讀性。</li>
+                <li>BM25 需驗證關鍵查詢覆蓋與壓力測試，例如高負載下仍維持穩定查詢延遲。</li>
+                <li>語音轉文字需追蹤文字錯誤率、鐵道專有名詞命中率與關鍵詞召回率。</li>
+                <li>最終驗收規劃以共同測試集與隱藏測試集檢查泛化能力，避免只對已知題目最佳化。</li>
+              </ul>
+            </div>
+            <div class="case-block">
+              <h4>我的整理重點</h4>
+              <p>這個案例的價值在於把 AI 技術從「模型名稱」轉成工程標案能審查的內容：需求範圍、系統模組、資料庫選型、檢索策略、多模態巡檢、驗收指標與交付文件。面試時可延伸討論 RAG、BM25、知識圖譜、影像辨識與 AI 系統驗收設計。</p>
             </div>
           </div>
         </article>
@@ -1436,7 +1596,7 @@
       <div class="section-head">
         <div>
           <div class="accent-line" aria-hidden="true"></div>
-          <h2>Other Experience｜其他產學與教學經驗</h2>
+          <h2>其他產學與教學經驗</h2>
           <p>以下列出完整計畫與標案名稱，方便面試官對照你的研究室、產學合作與實際場域經驗。</p>
         </div>
       </div>
@@ -1470,7 +1630,7 @@
       <div class="section-head">
         <div>
           <div class="accent-line" aria-hidden="true"></div>
-          <h2>Evidence & Awards｜佐證與獲獎</h2>
+          <h2>佐證與獲獎</h2>
           <p>公開獎狀、合作截圖與現場照片可對應到上方代表作品與實際參與紀錄。</p>
         </div>
       </div>
@@ -1524,7 +1684,7 @@
       <div class="section-head">
         <div>
           <div class="accent-line" aria-hidden="true"></div>
-          <h2>AIIT Lab｜人工智慧與產業技術實驗室</h2>
+          <h2>AIIT 人工智慧與產業技術實驗室</h2>
           <p>研究室是我累積 AI 研究、產學合作與跨域系統實作經驗的主要場域。</p>
         </div>
       </div>
@@ -1556,7 +1716,7 @@
       <div class="section-head">
         <div>
           <div class="accent-line" aria-hidden="true"></div>
-          <h2>Contact｜聯絡資訊</h2>
+          <h2>聯絡資訊</h2>
           <p>想討論 AI / LLM / RAG 工程職缺或產學合作，可透過 Email 聯絡。</p>
         </div>
       </div>
@@ -1573,7 +1733,6 @@
           <strong>Portfolio</strong>
           <p><a href="https://david891205.github.io/resume-site/" target="_blank" rel="noreferrer">david891205.github.io/resume-site</a></p>
           <p>Location：Taiwan｜雙北 / 桃園可配合</p>
-          <p class="note">LINE ID：david891205（僅履歷投遞版本使用）</p>
         </article>
       </div>
     </section>
