@@ -11,4 +11,3 @@
 ## 聯絡
 
 - Email：a28473458@gmail.com
-- LINE ID：david891205
